@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="website.menu_website_rewrite" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('base.group_user')])]"/>
+  </record>
+
+  <record id="view_website_rewrite_form" model="ir.ui.view">
+    <field name="name">website.rewrite.form</field>
+    <field name="model">website.rewrite</field>
+    <field name="inherit_id" ref="website.view_website_rewrite_form"/>
+    <field name="arch" type="xml">
+      <field name="sequence" position="after">
+        <field
+          name="group_ids"
+          widget="many2many_tags"
+          attrs="{'invisible': [('redirect_type', '!=', '403')]}"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="action_website_rewrite_tree" model="ir.ui.view">
+    <field name="name">website.rewrite.list</field>
+    <field name="model">website.rewrite</field>
+    <field name="inherit_id" ref="website.action_website_rewrite_tree"/>
+    <field name="arch" type="xml">
+      <field name="active" position="before">
+        <field name="group_ids" widget="many2many_tags"/>
+      </field>
+    </field>
+  </record>
+</odoo>

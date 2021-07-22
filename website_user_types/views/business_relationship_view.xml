@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_business_relationship_form" model="ir.ui.view">
+      <field name="name">website_user_types.res.partner.business_relationship.form</field>
+      <field name="model">res.partner.business_relationship</field>
+      <field name="inherit_id" ref="business_relationships.view_business_relationship_form"/>
+      <field name="arch" type="xml">
+        <field name="show_line_subtotals_tax_selection" position="after">
+          <field name="website_user_group_id"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_business_relationship_tree" model="ir.ui.view">
+      <field name="name">website_user_types.res.partner.business_relationship.tree</field>
+      <field name="model">res.partner.business_relationship</field>
+      <field name="inherit_id" ref="business_relationships.view_business_relationship_tree"/>
+      <field name="arch" type="xml">
+        <field name="show_line_subtotals_tax_selection" position="after">
+          <field name="website_user_group_id"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</odoo>

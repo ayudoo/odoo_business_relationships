@@ -1,0 +1,81 @@
+<odoo>
+  <data>
+
+    <record id="view_account_fiscal_position_filter" model="ir.ui.view">
+      <field name="name">business_relationships.account.fiscal.position</field>
+      <field name="model">account.fiscal.position</field>
+      <field name="inherit_id" ref="account.view_account_position_filter"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="name" string="Fiscal Position"/>
+          <field name="business_relationship_ids" string="Business Relationship"/>
+          <separator/>
+          <filter
+            name="no_auto_apply"
+            string="With automatic detection"
+            domain="[('auto_apply','=',True)]"/>
+          <filter
+            name="no_auto_apply"
+            string="Without automatic detection"
+            domain="[('auto_apply','=',False)]"/>
+          <separator/>
+          <group>
+            <filter
+              name="group_by_country_id"
+              string="Country"
+              domain="[('auto_apply','=',True)]"
+              context="{'group_by':'country_id'}"/>
+            <filter
+              name="group_by_country_group_id"
+              string="Country Group"
+              domain="[('auto_apply','=',True)]"
+              context="{'group_by':'country_group_id'}"/>
+          </group>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_account_position_tree" model="ir.ui.view">
+      <field name="name">business_relationships.account.fiscal.position.tree</field>
+      <field name="model">account.fiscal.position</field>
+      <field name="inherit_id" ref="account.view_account_position_tree"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="auto_apply" invisible="1"/>
+          <field
+            name="business_relationship_ids"
+            widget="many2many_tags"
+            options="{'color_field': 'color'}"/>
+          <field
+            name="country_group_id"
+            readonly="1"
+            attrs="{'invisible': [
+            ('auto_apply', '!=', True)
+          ]}"/>
+          <field
+            name="country_id"
+            readonly="1"
+            attrs="{'invisible': [
+            ('auto_apply', '!=', True)
+          ]}"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_account_position_form" model="ir.ui.view">
+      <field name="name">business_relationships.account.fiscal.position.form</field>
+      <field name="model">account.fiscal.position</field>
+      <field name="inherit_id" ref="account.view_account_position_form"/>
+      <field name="arch" type="xml">
+        <field name="auto_apply" position="after">
+          <field
+            name="business_relationship_ids"
+            widget="many2many_tags"
+            options="{'color_field': 'color'}"
+            attrs="{'invisible': [('auto_apply', '!=', True)]}"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</odoo>

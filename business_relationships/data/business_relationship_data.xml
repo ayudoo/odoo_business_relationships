@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <record
+      forcecreate="True"
+      id="business_relationship_b2b"
+      model="res.partner.business_relationship">
+      <field name="sequence">1</field>
+      <field name="name">B2B</field>
+      <field name="color">7</field>
+      <field name="for_companies">True</field>
+      <field name="for_suppliers">True</field>
+      <field name="show_line_subtotals_tax_selection">tax_excluded</field>
+    </record>
+
+    <record
+      forcecreate="True"
+      id="business_relationship_internal"
+      model="res.partner.business_relationship">
+      <field name="sequence">23</field>
+      <field name="name">Internal</field>
+      <field name="color">5</field>
+      <field name="for_internal_users">True</field>
+      <field name="show_line_subtotals_tax_selection">tax_included</field>
+    </record>
+
+    <record
+      forcecreate="True"
+      id="business_relationship_b2c"
+      model="res.partner.business_relationship">
+      <field name="sequence">2</field>
+      <field name="name">B2C</field>
+      <field name="color">10</field>
+      <field name="show_line_subtotals_tax_selection">tax_included</field>
+    </record>
+
+  </data>
+</odoo>

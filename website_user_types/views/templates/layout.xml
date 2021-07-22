@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template
+    id="layout"
+    inherit_id="website.layout"
+    name="Website User Types Class">
+    <xpath expr="//t[@t-set='html_data']" position="after">
+      <t
+        t-set="body_classname"
+        t-value="(body_classname if body_classname else '') + env['res.users'].get_user_website_user_group_class()"/>
+    </xpath>
+  </template>
+
+</odoo>

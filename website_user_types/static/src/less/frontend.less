@@ -1,0 +1,35 @@
+body:not(.editor_enable) {
+  &:not(.wut_group_b2c) .restrict_to_wut_group_b2c {
+    display: none;
+  }
+
+  &:not(.wut_group_b2b) .restrict_to_wut_group_b2b {
+    display: none;
+  }
+
+  &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {
+    display: none;
+  }
+
+  &:not(.wut_tax_included) .restrict_to_wut_tax_included {
+    display: none;
+  }
+}
+
+body.editor_enable {
+  &:not(.wut_group_b2c) .restrict_to_wut_group_b2c {
+    opacity: 0.6;
+  }
+
+  &:not(.wut_group_b2b) .restrict_to_wut_group_b2b {
+    opacity: 0.6;
+  }
+
+  &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {
+    opacity: 0.6;
+  }
+
+  &:not(.wut_tax_included) .restrict_to_wut_tax_included {
+    opacity: 0.6;
+  }
+}

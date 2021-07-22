@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+
+    <record id="module_category_website_user_types" model="ir.module.category">
+      <field name="name">Website User Types</field>
+      <field name="description">Parent category to handle your different business relationship types for website visibility.</field>
+      <field name="sequence">1</field>
+    </record>
+
+    <record id="group_website_user_type_b2b" model="res.groups">
+      <field name="name">Group B2B</field>
+      <field
+        name="category_id"
+        ref="website_user_types.module_category_website_user_types"/>
+    </record>
+
+    <record id="group_website_user_type_b2c" model="res.groups">
+      <field name="name">Group B2C</field>
+      <field
+        name="category_id"
+        ref="website_user_types.module_category_website_user_types"/>
+    </record>
+
+  </data>
+</odoo>
