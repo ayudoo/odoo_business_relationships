@@ -1,0 +1,14 @@
+
+/* don't duplicate heading */
+#business-relationship-types h1:first-child {
+  display: none;
+}
+
+#contents a {
+  font-weight: normal;
+}
+
+div.content ul > li {
+  filter: grayscale(100%);
+  /* background: transparent url(bullet_orange.png) no-repeat scroll left 0.45em; */
+}
