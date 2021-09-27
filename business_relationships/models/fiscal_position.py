@@ -8,7 +8,7 @@ class AccountFiscalPosition(models.Model):
 
     business_relationship_ids = fields.Many2many(
         "res.partner.business_relationship",
-        string="Business Rel.",
+        string="Business Relationships",
         help="Restrict automatic assignment to these business relationships.",
     )
 

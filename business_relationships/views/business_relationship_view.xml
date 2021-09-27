@@ -60,6 +60,15 @@
                 </div>
                 <field name="show_line_subtotals_tax_selection"/>
               </group>
+              <group name="right" string="Pricelists">
+                <field name="child_contact_pricelist" string="Child Contacts"/>
+                <field name="sale_order_pricelist" string="Sales Order"/>
+                <div
+                  attrs="{'invisible': [('sale_order_pricelist', '=', 'partner')]}"
+                  >Note, that the shipping addresses' pricelists have prevalence.
+                   This means, that coupons and other geo filters for pricelists are
+                   ignored if the shipping address differs from the partner's address</div>
+              </group>
             </group>
           </sheet>
         </form>

@@ -8,7 +8,7 @@ class AccountMove(models.Model):
 
     business_relationship_id = fields.Many2one(
         "res.partner.business_relationship",
-        string="Business Rel.",
+        string="Business Relationship",
         related="partner_id.business_relationship_id",
         readonly=True,
     )

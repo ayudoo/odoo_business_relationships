@@ -29,6 +29,8 @@ Configurable business relationship types on contact level. Usable for
 * restrict website menus, pages, redirects and block visibility to certain users
 * use different access permission groups for portal users
 * create and configure your own business relationships
+* individual pricelists for child contacts
+* sale order pricelists by shipping address
 
 
 Typical use cases
@@ -63,11 +65,24 @@ included) <https://www.odoo.com/documentation/14.0/applications/finance/accounti
 you find a detailed description of the problem and the documented workaround: While
 basically working tax-excluded, you configure separate tax-included pricelists and
 fiscal positions, that swap tax-excluded to tax-included. These have to be assigned
-manually to your special tax-included customers.
+manually to your special tax-included customers and it won't work if this customer
+has multiple delivery addresses that differ in tax handling (e.g. tax free export).
 
 Here ``business_relationships`` comes to the help: instead of having to assign the
 tax-included pricelists and fiscal position manually on each contact, you may use
 automatic assignment based on the business relationships.
+
+
+Pricelists according to shipping address
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tax included prices come with a drawback: your client might have a delivery address
+in another country, that requires tax free export. The problem is, you cannot simply
+remove the taxes with the default configuration, because tax free means 0% on the
+invoice. To get things right, you will need to switch to a tax excluded pricelist,
+easily done with this module by setting the two options
+``individual pricelists for child contacts`` and
+``sale order pricelist by shipping address``.
 
 
 Usage
@@ -130,7 +145,7 @@ using a user group specific page or even a custom extension.
 Bug Tracker
 -----------
 
-Bugs are tracked on `GitHub Issues <https://github.com/ayudoo/odoo_business_relationships>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/ayudoo/odoo_business_relationships/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
 `feedback <https://github.com/ayudoo/odoo_business_relationships/issues/new**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.

@@ -27,7 +27,7 @@
       <field name="arch" type="xml">
 
         <field name="type" position="before">
-          <label for="business_relationship_id"/>
+          <label for="business_relationship_id" string="Business Rel."/>
           <div>
             <field name="same_as_parent_business_relationship_id" invisible="1"/>
             <field
@@ -54,6 +54,34 @@
                 class="oe_link"/></p>
           </div>
         </field>
+      </field>
+    </record>
+
+    <record id="view_partner_property_form" model="ir.ui.view">
+      <field name="name">res.partner.product.pricelist.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="product.view_partner_property_form"/>
+      <field name="arch" type="xml">
+        <group name="sale" position="inside">
+          <field name="child_contact_pricelist" invisible="1"/>
+        </group>
+
+        <field name="property_product_pricelist" position="attributes">
+          <attribute name="attrs">{'invisible': [
+            ('is_company','=',False),
+            ('parent_id','!=',False),
+            ('child_contact_pricelist','=','parent'),
+          ]}</attribute>
+        </field>
+        <div name="parent_pricelists" position="attributes">
+          <attribute name="attrs">{'invisible': [
+            ('|'),
+            ('is_company','=',True),
+            ('|'),
+            ('parent_id','=',False),
+            ('child_contact_pricelist','!=','parent'),
+          ]}</attribute>
+        </div>
       </field>
     </record>
 

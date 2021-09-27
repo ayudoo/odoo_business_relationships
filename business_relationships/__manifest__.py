@@ -12,14 +12,13 @@
         well as contact specifc tax display settings.
     """,
     "author": "Michael Jurke, Ayudoo Ltd",
-    "website": "ayudoo.bg",
     "category": "Sales",
     "version": "0.1",
     "depends": [
         "base",
         "contacts",
         "product",
-        "account",
+        "sale",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -29,6 +28,7 @@
         "views/account_move_view.xml",
         "views/pricelist_view.xml",
         "views/fiscal_position_view.xml",
+        "views/templates.xml",
     ],
     "license": "LGPL-3",
     "application": True,

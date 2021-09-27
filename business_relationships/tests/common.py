@@ -32,6 +32,7 @@ class BusinessRelationshipsTestUsers(BusinessRelationshipsTestCommon):
         super().setUpClass()
         cls.bg = fr = cls.env.ref("base.bg")
         cls.de = fr = cls.env.ref("base.de")
+        cls.us = fr = cls.env.ref("base.us")
 
         cls.user_portal = cls._create_portal_user(
             {

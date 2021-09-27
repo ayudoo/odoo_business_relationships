@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template
+    id="assets_backend"
+    inherit_id="web.assets_backend"
+    name="Business Relationships Assets Backend">
+    <xpath expr="//script[last()]" position="after">
+      <link rel="stylesheet" href="/business_relationships/static/src/scss/backend.scss"/>
+    </xpath>
+  </template>
+</odoo>

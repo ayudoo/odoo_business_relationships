@@ -15,8 +15,6 @@ The first test cases test the Odoo default behavior, so we do not break it
 @tagged("post_install", "-at_install")
 class TestPricelistCompanyProperty(BusinessRelationshipsTestCommon):
     def test_get_partner_pricelist_multi_default_company_behavior(self):
-        super().setUp()
-
         # ensure different currencies, independently of region
         other_currency = self.env.ref("base.USD").id
         public_pricelist = self.env.ref("product.list0")
@@ -63,8 +61,6 @@ class TestPricelistCompanyProperty(BusinessRelationshipsTestCommon):
 @tagged("post_install", "-at_install")
 class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
     def test_get_partner_pricelist_multi_default_company_behavior(self):
-        super().setUp()
-
         list_europe = self.env["product.pricelist"].create(
             {
                 "name": "Europe",
@@ -96,6 +92,32 @@ class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
             {test_partner_property2.id: list_europe},
         )
         self.assertEqual(test_partner_property2.property_product_pricelist, list_europe)
+
+    def test_sale_order_shipping_pricelist(self):
+        partner = self.env['res.partner'].create({
+            "name": "Partner",
+        })
+        public_pricelist = self.env.ref("product.list0")
+        self.assertEqual(partner.property_product_pricelist, public_pricelist)
+
+        other_pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Other Pricelist",
+                "currency_id": self.env.ref("base.EUR").id,
+                "sequence": 100,
+            }
+        )
+        shipping = self.env['res.partner'].create({
+            "name": "Shipping Address",
+            "parent_id": partner.id,
+            "property_product_pricelist": other_pricelist.id,
+        })
+
+        sale_order = self.env["sale.order"].create({
+            "partner_id": partner.id,
+        })
+        sale_order.partner_shipping_id = shipping
+        self.assertEqual(sale_order.pricelist_id, other_pricelist)
 
 
 @tagged("post_install", "-at_install")

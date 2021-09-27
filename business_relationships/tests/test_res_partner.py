@@ -81,3 +81,57 @@ class TestPartner(BusinessRelationshipsTestUsers):
             {"name": "Stanis", "business_relationship_id": business_relationship_with_image.id}
         )
         self.assertEqual(partner.image_1920, business_relationship_with_image.image_1920)
+
+    def test_individual_child_contact_pricelist(self):
+        Pricelist = self.env["product.pricelist"]
+        pricelist_main = Pricelist.create({
+            "name": "Main Pricelist",
+            "country_group_ids": [self.env.ref("base.europe").id],
+            "business_relationship_ids": [
+                self.business_relationship_b2c.id,
+                self.business_relationship_b2b.id,
+            ],
+        })
+        pricelist_sub = Pricelist.create({
+            "name": "Sub Pricelist",
+            "business_relationship_ids": [
+                self.business_relationship_b2c.id,
+                self.business_relationship_b2b.id,
+            ],
+        })
+
+        user = self.env["res.partner"].create(
+            {
+                "name": "B2C User",
+                "country_id": self.bg.id,
+            }
+        )
+        self.assertEqual(user.property_product_pricelist, pricelist_main)
+        shipping = self.env["res.partner"].create(
+            {
+                "name": "Shipping Address US",
+                "country_id": self.us.id,
+                "parent_id": user.id,
+                "type": "delivery",
+            }
+        )
+        self.assertEqual(shipping.property_product_pricelist, pricelist_sub)
+
+        # By default, B2B users share the same pricelist with their parent
+        user = self.env["res.partner"].create(
+            {
+                "name": "B2B User",
+                "country_id": self.bg.id,
+                "business_relationship_id": self.business_relationship_b2b.id,
+            }
+        )
+        self.assertEqual(user.property_product_pricelist, pricelist_main)
+        shipping = self.env["res.partner"].create(
+            {
+                "name": "Shipping Address US",
+                "country_id": self.us.id,
+                "parent_id": user.id,
+                "type": "delivery",
+            }
+        )
+        self.assertEqual(shipping.property_product_pricelist, pricelist_main)

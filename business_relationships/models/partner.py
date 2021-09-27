@@ -12,7 +12,7 @@ class Partner(models.Model):
 
     business_relationship_id = fields.Many2one(
         "res.partner.business_relationship",
-        string="Business Rel.",
+        string="Business Relationship",
         ondelete="restrict",
         tracking=True,
         help="The business relationship with this contact. Use for tax display," +
@@ -48,6 +48,11 @@ class Partner(models.Model):
 
     same_as_parent_business_relationship_id = fields.Boolean(
         compute=_compute_same_as_parent_business_relationship_id,
+    )
+
+    child_contact_pricelist = fields.Selection(
+        related="business_relationship_id.child_contact_pricelist",
+        readonly=True,
     )
 
     def _after_business_relationship_changed(self):
@@ -108,10 +113,15 @@ class Partner(models.Model):
         if "business_relationship_id" in values:
             old_business_relationship = self.business_relationship_id
 
-        super().write(values)
+        r = super().write(values)
 
-        if old_business_relationship and old_business_relationship != self.business_relationship_id:
+        if (
+            old_business_relationship is not None
+            and old_business_relationship != self.business_relationship_id
+        ):
             self._after_business_relationship_changed()
+
+        return r
 
     # depends on business_relationship now, too
     @api.depends("country_id", "business_relationship_id")
@@ -188,6 +198,16 @@ class Partner(models.Model):
         else:
             return False
 
+    def _commercial_fields(self):
+        # Remove pricelist from commercial fields if set to individual
+        commercial_fields = super()._commercial_fields()
+        if (
+            self.child_contact_pricelist == 'individual'
+            and "property_product_pricelist" in commercial_fields
+        ):
+            commercial_fields.remove("property_product_pricelist")
+        return commercial_fields
+
     @api.model
     def _init_partner_business_relationships(self):
         default = self.env["res.partner.business_relationship"].search(
@@ -218,10 +238,20 @@ class Partner(models.Model):
             or default
         )
 
+        child_partner_ids = self.env["res.partner"].with_context(
+            active_test=False
+        ).search([
+            ("business_relationship_id", "=", False),
+            ("parent_id", "!=", False),
+        ]).ids
+
         for partner in (
             self.env["res.partner"]
             .with_context(active_test=False)
-            .search([("business_relationship_id", "=", False)])
+            .search([
+                ("business_relationship_id", "=", False),
+                ("parent_id", "=", False),
+            ])
         ):
             if partner.user_ids and all(
                 u.has_group("base.group_user") for u in partner.user_ids
@@ -233,3 +263,14 @@ class Partner(models.Model):
                 partner.business_relationship_id = suppliers
             else:
                 partner.business_relationship_id = default
+
+        # Set internal users regardless of parent partner configuration. This will
+        # be the default case for the own company where the company itself has no
+        # login.
+        # Note, parent and child type will differ, which works, but will not be the
+        # default usecase when you create contacts manually.
+        for partner in self.env["res.partner"].browse(child_partner_ids):
+            if partner.user_ids and all(
+                u.has_group("base.group_user") for u in partner.user_ids
+            ):
+                partner.business_relationship_id = internal_users

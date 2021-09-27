@@ -61,6 +61,26 @@ class BusinessRelationship(models.Model):
         default="tax_excluded",
     )
 
+    child_contact_pricelist = fields.Selection(
+        [
+            ("parent", "By Parent Contact"),
+            ("individual", "Individual"),
+        ],
+        string="Child Contact Pricelist",
+        required=True,
+        default="parent",
+    )
+
+    sale_order_pricelist = fields.Selection(
+        [
+            ("partner", "By Partner Address"),
+            ("shipping", "By Shipping Address"),
+        ],
+        string="Sales Order Pricelist",
+        required=True,
+        default="partner",
+    )
+
     partner_ids = fields.One2many(
         "res.partner",
         "business_relationship_id",
