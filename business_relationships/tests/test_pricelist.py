@@ -96,6 +96,7 @@ class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
     def test_sale_order_shipping_pricelist(self):
         partner = self.env['res.partner'].create({
             "name": "Partner",
+            "business_relationship_id": self.business_relationship_b2c_shipping.id,
         })
         public_pricelist = self.env.ref("product.list0")
         self.assertEqual(partner.property_product_pricelist, public_pricelist)

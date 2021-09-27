@@ -26,6 +26,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
         self.assertEqual(test_user.partner_id.business_relationship_id, self.business_relationship_b2c)
 
         self.business_relationship_b2c.active = False
+        self.business_relationship_b2c_shipping.active = False
         test_user = self._create_user({"name": "Vanya"})
         self.assertEqual(test_user.partner_id.business_relationship_id, self.business_relationship_b2b)
 
@@ -89,6 +90,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
             "country_group_ids": [self.env.ref("base.europe").id],
             "business_relationship_ids": [
                 self.business_relationship_b2c.id,
+                self.business_relationship_b2c_shipping.id,
                 self.business_relationship_b2b.id,
             ],
         })
@@ -96,6 +98,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
             "name": "Sub Pricelist",
             "business_relationship_ids": [
                 self.business_relationship_b2c.id,
+                self.business_relationship_b2c_shipping.id,
                 self.business_relationship_b2b.id,
             ],
         })
@@ -104,6 +107,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
             {
                 "name": "B2C User",
                 "country_id": self.bg.id,
+                "business_relationship_id": self.business_relationship_b2c_shipping.id,
             }
         )
         self.assertEqual(user.property_product_pricelist, pricelist_main)
@@ -117,7 +121,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
         )
         self.assertEqual(shipping.property_product_pricelist, pricelist_sub)
 
-        # By default, B2B users share the same pricelist with their parent
+        # Default behavior, contacts share the same pricelist with their parent
         user = self.env["res.partner"].create(
             {
                 "name": "B2B User",

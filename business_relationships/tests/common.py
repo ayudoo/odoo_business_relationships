@@ -10,6 +10,11 @@ class BusinessRelationshipsTestCommon(SavepointCase):
 
         cls.business_relationship_b2b = cls.env.ref("business_relationships.business_relationship_b2b")
         cls.business_relationship_b2c = cls.env.ref("business_relationships.business_relationship_b2c")
+        cls.business_relationship_b2c_shipping = cls.business_relationship_b2c.copy()
+        cls.business_relationship_b2c_shipping.name = "B2C individual"
+        cls.business_relationship_b2c_shipping.child_contact_pricelist = "individual"
+        cls.business_relationship_b2c_shipping.sale_order_pricelist = "shipping"
+
         cls.business_relationship_internal = cls.env.ref(
             "business_relationships.business_relationship_internal"
         )
