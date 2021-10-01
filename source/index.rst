@@ -11,4 +11,6 @@
 Welcome
 =======
 
+`View it on github.com <https://github.com/ayudoo/odoo_business_relationships>`_
+
 .. include:: ../README.rst

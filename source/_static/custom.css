@@ -1,14 +1,18 @@
 
 /* don't duplicate heading */
-#business-relationship-types h1:first-child {
+#welcome h1:first-child, #business-relationship-types h1:first-child {
   display: none;
+}
+
+#welcome p {
+  text-align: right;
 }
 
 #contents a {
   font-weight: normal;
+  text-align: right;
 }
 
 div.content ul > li {
   filter: grayscale(100%);
-  /* background: transparent url(bullet_orange.png) no-repeat scroll left 0.45em; */
 }
