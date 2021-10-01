@@ -5,5 +5,10 @@
    * :ref:`modindex`
    * :ref:`search`
 
+.. toctree::
+    :hidden:
+
+Welcome
+=======
 
 .. include:: ../README.rst

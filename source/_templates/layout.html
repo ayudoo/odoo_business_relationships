@@ -1,0 +1,15 @@
+{%- if github -%}
+---
+layout: null
+---
+{%- endif -%}
+{%- extends "haiku/layout.html" -%}
+{% block htmltitle %}
+{%- if github -%}
+    {%- raw -%}
+    {% seo %}
+    {%- endraw -%}
+{%- else -%}
+   {{ super() }}
+{%- endif -%}
+{% endblock %}

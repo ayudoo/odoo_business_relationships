@@ -59,3 +59,8 @@ html_theme_options = {
 html_css_files = [
     'custom.css',
 ]
+
+if tags.has('github'):
+    html_context = {
+        'github': True,
+    }

@@ -14,7 +14,7 @@ export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
 # Python Sphinx, configured with source/conf.py
 # See https://www.sphinx-doc.org/
 make clean
-make html
+SPHINXOPTS="-t github" make html
 
 #######################
 # Update GitHub Pages #
@@ -32,9 +32,20 @@ git init
 git remote add deploy "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 git checkout -b gh-pages
 
-# Adds .nojekyll file to the root to signal to GitHub that
-# directories that start with an underscore (_) can remain
-touch .nojekyll
+# instead of adding .nojekyll, we have set the layout to null, so we can use
+# github pages' jekyll plugins
+
+# Add add jekyll config
+cat > _config.yml <<EOF
+title: Odoo Business Relationship Types Documentation
+description: Manage business relationship types, e.g. B2B, B2C and Internal on contact level
+baseurl: "/odoo_business_relationships" # the subpath of your site, e.g. /blog
+url: "https://ayudoo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+permalink: pretty
+plugins:
+  - jekyll-seo-tag
+EOF
 
 # Add README
 cat > README.md <<EOF
