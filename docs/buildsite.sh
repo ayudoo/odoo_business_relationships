@@ -45,6 +45,9 @@ url: "https://ayudoo.github.io" # the base hostname & protocol for your site, e.
 permalink: pretty
 plugins:
   - jekyll-seo-tag
+
+include:
+  - _static
 EOF
 
 # Add README
