@@ -27,6 +27,7 @@ author = 'Michael Jurke'
 # let's not use sphinx.ext.githubpages, because we use jekyll plugins
 extensions = [
     # 'sphinx.ext.githubpages',
+    'sphinx_sitemap',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -44,6 +45,7 @@ master_doc = 'index'
 # -- Options for HTML output -------------------------------------------------
 html_static_path = ['_static']
 
+html_baseurl = 'https://ayudoo.github.io/odoo_business_relationships/'
 html_title = 'Odoo Business Relationship Types Documentation'
 html_theme = 'haiku'
 html_theme_options = {
