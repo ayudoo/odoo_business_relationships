@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, SUPERUSER_ID
-from . import controllers, models
+from . import controllers, models, report
 
 
 def init_partner_business_relationships(cr, registry):

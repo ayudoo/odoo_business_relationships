@@ -29,6 +29,7 @@
         "views/pricelist_view.xml",
         "views/fiscal_position_view.xml",
         "views/templates.xml",
+        "report/sale_report_view.xml",
     ],
     "license": "LGPL-3",
     "application": True,
