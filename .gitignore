@@ -4,4 +4,4 @@ __pycache__
 *.swp
 
 /.env
-/build
+/docs/build
