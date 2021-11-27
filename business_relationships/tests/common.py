@@ -39,6 +39,7 @@ class BusinessRelationshipsTestUsers(BusinessRelationshipsTestCommon):
         cls.de = fr = cls.env.ref("base.de")
         cls.us = fr = cls.env.ref("base.us")
 
+        cls.user_odoo_root = cls.env.ref('base.user_root')
         cls.user_portal = cls._create_portal_user(
             {
                 "name": "Georgi",

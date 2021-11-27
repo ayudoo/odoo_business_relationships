@@ -117,10 +117,16 @@ class BusinessRelationship(models.Model):
             to_remove = self.env.ref("account.group_show_line_subtotals_tax_excluded")
             to_add = self.env.ref("account.group_show_line_subtotals_tax_included")
 
-        for partner in self.partner_ids:
-            for user_id in partner.user_ids.ids:
-                to_remove.write({"users": [(3, user_id)]})
-                to_add.write({"users": [(4, user_id)]})
+        for user_id in self.partner_ids.with_context(active_test=False).user_ids.ids:
+            # This is odd: adding works for inactive users, but removal not:
+            # We need to remove it manually
+            self._cr.execute("""
+                DELETE FROM res_groups_users_rel
+                WHERE uid={} AND gid={}
+            """.format(user_id, to_remove.id))
+            # and also from the cache:
+            to_remove.write({"users": [(3, user_id)]})
+            to_add.write({"users": [(4, user_id)]})
 
     def open_invoicing_settings(self):
         """ Utility method used to add an "Open Settings" button in views """

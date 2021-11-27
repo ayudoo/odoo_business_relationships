@@ -15,8 +15,8 @@ class Partner(models.Model):
         string="Business Relationship",
         ondelete="restrict",
         tracking=True,
-        help="The business relationship with this contact. Use for tax display," +
-        " fiscal positions and pricelists.",
+        help="The business relationship with this contact. Use for tax display,"
+        + " fiscal positions and pricelists.",
     )
 
     @api.onchange(
@@ -26,7 +26,9 @@ class Partner(models.Model):
     )
     def _compute_default_business_relationship_id(self):
         if not self.business_relationship_id:
-            self.default_business_relationship_id = self._get_default_business_relationship()
+            self.default_business_relationship_id = (
+                self._get_default_business_relationship()
+            )
         else:
             self.default_business_relationship_id = False
 
@@ -82,25 +84,33 @@ class Partner(models.Model):
             if not record.business_relationship_id:
                 continue
 
-            tax_selection = record.business_relationship_id.show_line_subtotals_tax_selection
-
+            tax_selection = (
+                record.business_relationship_id.show_line_subtotals_tax_selection
+            )
             if tax_selection == "tax_excluded":
-                for user_id in record.with_context(active_test=False).user_ids:
-                    tax_included_group.with_context(active_test=False).write(
-                        {"users": [(3, user_id.id)]}
-                    )
-                    tax_excluded_group.write({"users": [(4, user_id.id)]})
+                to_remove = tax_included_group
+                to_add = tax_excluded_group
             else:
-                for user_id in record.with_context(active_test=False).user_ids:
-                    tax_excluded_group.with_context(active_test=False).write(
-                        {"users": [(3, user_id.id)]}
-                    )
-                    tax_included_group.write({"users": [(4, user_id.id)]})
+                to_remove = tax_excluded_group
+                to_add = tax_included_group
+
+            for user_id in record.with_context(active_test=False).user_ids.ids:
+                self._cr.execute("""
+                    DELETE FROM res_groups_users_rel
+                    WHERE uid={} AND gid={}
+                """.format(user_id, to_remove.id))
+
+                to_remove.with_context(active_test=False).write(
+                    {"users": [(3, user_id)]}
+                )
+                to_add.write({"users": [(4, user_id)]})
 
     @api.model
     def create(self, values):
         if not values.get("business_relationship_id", None):
-            values["business_relationship_id"] = self._get_default_business_relationship(values).id
+            values[
+                "business_relationship_id"
+            ] = self._get_default_business_relationship(values).id
         if not values.get("image_1920", None):
             values["image_1920"] = self._get_default_business_relationship_image(values)
         r = super().create(values)
@@ -177,10 +187,14 @@ class Partner(models.Model):
                 conditions.append(("for_suppliers", "=", True))
                 if len(conditions) > 1:
                     conditions.insert(0, "|")
-            res = self.env["res.partner.business_relationship"].search(conditions, limit=1)
+            res = self.env["res.partner.business_relationship"].search(
+                conditions, limit=1
+            )
 
         if not res:
-            res = self.env["res.partner.business_relationship"].search(fallback, limit=1)
+            res = self.env["res.partner.business_relationship"].search(
+                fallback, limit=1
+            )
             if not res:
                 res = self.env["res.partner.business_relationship"].search([], limit=1)
 
@@ -191,7 +205,9 @@ class Partner(models.Model):
         if not business_relationship_id:
             return
 
-        business_relationship = self.env["res.partner.business_relationship"].browse(business_relationship_id)
+        business_relationship = self.env["res.partner.business_relationship"].browse(
+            business_relationship_id
+        )
 
         if business_relationship.image_1920:
             return business_relationship.image_1920
@@ -202,7 +218,7 @@ class Partner(models.Model):
         # Remove pricelist from commercial fields if set to individual
         commercial_fields = super()._commercial_fields()
         if (
-            self.child_contact_pricelist == 'individual'
+            self.child_contact_pricelist == "individual"
             and "property_product_pricelist" in commercial_fields
         ):
             commercial_fields.remove("property_product_pricelist")
@@ -210,13 +226,17 @@ class Partner(models.Model):
 
     @api.model
     def _init_partner_business_relationships(self):
-        default = self.env["res.partner.business_relationship"].search(
-            [
-                ("for_suppliers", "=", False),
-                ("for_companies", "=", False),
-                ("for_internal_users", "=", False),
-            ],
-            limit=1,
+        default = (
+            self.env["res.partner.business_relationship"]
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("for_suppliers", "=", False),
+                    ("for_companies", "=", False),
+                    ("for_internal_users", "=", False),
+                ],
+                limit=1,
+            )
         )
 
         internal_users = (
@@ -238,23 +258,31 @@ class Partner(models.Model):
             or default
         )
 
-        child_partner_ids = self.env["res.partner"].with_context(
-            active_test=False
-        ).search([
-            ("business_relationship_id", "=", False),
-            ("parent_id", "!=", False),
-        ]).ids
+        child_partner_ids = (
+            self.env["res.partner"]
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("business_relationship_id", "=", False),
+                    ("parent_id", "!=", False),
+                ]
+            )
+            .ids
+        )
 
         for partner in (
             self.env["res.partner"]
             .with_context(active_test=False)
-            .search([
-                ("business_relationship_id", "=", False),
-                ("parent_id", "=", False),
-            ])
+            .search(
+                [
+                    ("business_relationship_id", "=", False),
+                    ("parent_id", "=", False),
+                ]
+            )
         ):
-            if partner.user_ids and all(
-                u.has_group("base.group_user") for u in partner.user_ids
+            user_ids = partner.with_context(active_test=False).user_ids
+            if user_ids and all(
+                u.has_group("base.group_user") for u in user_ids
             ):
                 partner.business_relationship_id = internal_users
             elif partner.is_company:
@@ -270,7 +298,8 @@ class Partner(models.Model):
         # Note, parent and child type will differ, which works, but will not be the
         # default usecase when you create contacts manually.
         for partner in self.env["res.partner"].browse(child_partner_ids):
-            if partner.user_ids and all(
-                u.has_group("base.group_user") for u in partner.user_ids
+            user_ids = partner.with_context(active_test=False).user_ids
+            if user_ids and all(
+                u.has_group("base.group_user") for u in user_ids
             ):
                 partner.business_relationship_id = internal_users

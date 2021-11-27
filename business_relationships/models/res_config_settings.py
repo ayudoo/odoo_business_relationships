@@ -57,7 +57,9 @@ class ResConfigSettings(models.TransientModel):
             # when switching to business_relationship_dependent, there are no more implied
             # tax_selection groups and we need to set the business relationship ones
             if self.show_line_subtotals_tax_selection == "business_relationship_dependent":
-                for partner in self.env["res.partner"].search([]):
+                for partner in self.env["res.partner"].with_context(
+                    active_test=False
+                ).search([]):
                     partner._set_tax_groups()
 
         return res
