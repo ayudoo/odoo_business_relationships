@@ -22,7 +22,7 @@
       <field name="name">Internal</field>
       <field name="color">5</field>
       <field name="for_internal_users">True</field>
-      <field name="show_line_subtotals_tax_selection">tax_included</field>
+      <field name="show_line_subtotals_tax_selection">tax_excluded</field>
     </record>
 
     <record

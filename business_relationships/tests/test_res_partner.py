@@ -151,9 +151,9 @@ class TestPartner(BusinessRelationshipsTestUsers):
         config.flush()
         config.execute()
 
-        self.user_odoo_root.business_relationship_id = self.business_relationship_b2b
         self.user_portal.business_relationship_id = self.business_relationship_b2b
         self.user_company.business_relationship_id = self.business_relationship_b2c
+        self.user_odoo_root.business_relationship_id = self.business_relationship_b2c
 
         self.assertEqual(self.user_portal.has_group(tax_included), False)
         self.assertEqual(self.user_portal.has_group(tax_excluded), True)
@@ -162,5 +162,5 @@ class TestPartner(BusinessRelationshipsTestUsers):
         self.assertEqual(self.user_company.has_group(tax_included), True)
 
         # and for inactive user
-        self.assertEqual(self.user_odoo_root.has_group(tax_included), False)
-        self.assertEqual(self.user_odoo_root.has_group(tax_excluded), True)
+        self.assertEqual(self.user_odoo_root.has_group(tax_excluded), False)
+        self.assertEqual(self.user_odoo_root.has_group(tax_included), True)

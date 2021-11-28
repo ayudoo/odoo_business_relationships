@@ -36,21 +36,29 @@ Configurable business relationship types on contact level. Usable for
 Typical use cases
 -----------------
 
-Tax Display
-^^^^^^^^^^^
-
-Depending on your country's laws, you may have to show tax-included prices to B2C
-customers, while you still want to show the lower tax-excluded prices for B2B.
-By default, tax display is a global setting in Odoo. With this module you can simply
-activate ``Business Relationship Dependent`` tax display and configure this option for
-each business relationship separately.
-
-
 Different prices for user groups
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You want to offer different prices for customers like employees or agents? No problem,
 just create the desired pricelist with a business relationship filter.
+
+
+Tax Display
+^^^^^^^^^^^
+
+Depending on your country's laws, you may have to show tax-included prices to B2C
+customers, while you still want to show the lower tax-excluded prices for logged-in
+B2B users.
+By default, tax display is a global setting in Odoo. With this module you can
+activate ``Business Relationship Dependent`` tax display and configure this option for
+each business relationship separately.
+The defaults are ``tax_excluded`` for internal and B2B, but ``tax_included`` for B2C.
+
+Note, that ``tax_display`` depends on the currently logged-in user. Your website
+customers will see prices according to this setting. However, in the admin backend
+sale order and account move forms, tax line display depends on the setting for
+`Internal` users. Depending on your requirements for printed invoices, this may or may
+not require, that you customize the document layout.
 
 
 Round prices for B2C

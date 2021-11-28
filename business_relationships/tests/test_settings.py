@@ -10,14 +10,16 @@ class TestSettings(BusinessRelationshipsTestUsers):
         self.assertEqual(self.user_portal.has_group(tax_excluded), False)
         self.assertEqual(self.user_company.has_group(tax_excluded), True)
         self.assertEqual(self.user_supplier.has_group(tax_excluded), True)
-        self.assertEqual(self.user_employee.has_group(tax_excluded), False)
-        self.assertEqual(self.user_account_invoice.has_group(tax_excluded), False)
+        self.assertEqual(self.user_employee.has_group(tax_excluded), True)
+        self.assertEqual(self.user_account_invoice.has_group(tax_excluded), True)
+        self.assertEqual(self.user_odoo_root.has_group(tax_excluded), True)
 
         self.assertEqual(self.user_portal.has_group(tax_included), True)
         self.assertEqual(self.user_company.has_group(tax_included), False)
         self.assertEqual(self.user_supplier.has_group(tax_included), False)
-        self.assertEqual(self.user_employee.has_group(tax_included), True)
-        self.assertEqual(self.user_account_invoice.has_group(tax_included), True)
+        self.assertEqual(self.user_employee.has_group(tax_included), False)
+        self.assertEqual(self.user_account_invoice.has_group(tax_included), False)
+        self.assertEqual(self.user_odoo_root.has_group(tax_included), False)
 
     def test_switch_tax_excluded_tax_business_relationship(self):
         self._assert_every_user_has_group(
