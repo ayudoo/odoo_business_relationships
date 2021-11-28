@@ -7,8 +7,8 @@ Business Relationship Types
 
 **This is module is in beta state. Feel free to provide feedback.**
 
-Extend your contacts with business relationship types, e.g. ``B2C``, ``B2B`` and
-``Internal`` and configure automatic assignment of pricelists and fiscal positions.
+Extend your contacts with business relationship types, e.g. `B2C`, `B2B` and
+`Internal` and configure automatic assignment of pricelists and fiscal positions.
 Change tax display (``Tax-Excluded (B2B)``, ``Tax-Included (B2C)``) of login users
 according to the business relationship of the associated partner contact.
 
@@ -52,21 +52,24 @@ B2B users.
 By default, tax display is a global setting in Odoo. With this module you can
 activate ``Business Relationship Dependent`` tax display and configure this option for
 each business relationship separately.
-The defaults are ``tax_excluded`` for internal and B2B, but ``tax_included`` for B2C.
+The defaults are ``tax_excluded`` for `Internal` and `B2B`, but ``tax_included`` for
+`B2C`.
 
 Note, that ``tax_display`` depends on the currently logged-in user. Your website
 customers will see prices according to this setting. However, in the admin backend
-sale order and account move forms, tax line display depends on the setting for
-`Internal` users. Depending on your requirements for printed invoices, this may or may
-not require, that you customize the document layout.
+sale order and account move forms, the total/subtotal line display depends on the
+setting for `Internal` users.
+Depending on your usage of tax included or excluded pricelists this may or may not
+require, that you customize the document layout.
 
 
 Round prices for B2C
 ^^^^^^^^^^^^^^^^^^^^
 
 Odoo manages tax-excluded and tax-included prices easily, but not both together.
-Still, this may be your exact use case: You want to provide round tax-included prices
-for your B2C customers, but correct tax-excluded prices for other B2B transactions.
+Still, this may be your exact use case: You want to provide beautifully rounded
+tax-included prices for your `B2C` customers, but correct tax-excluded prices for other
+`B2B` transactions.
 
 In `Manage prices for B2B (tax excluded) and B2C (tax
 included) <https://www.odoo.com/documentation/14.0/applications/finance/accounting/taxation/taxes/B2B_B2C.html>`__
@@ -100,8 +103,8 @@ Set your partner's business relationship in the contact form, right under the na
 of the box they can be used as additional filter option for your pricelists and fiscal
 positions.
 
-If you want to adapt the ``Line Subtotals Tax Display``, you need to set the option
-under ``Settings`` -> ``Invoicing`` to ``Business Relationship Dependent``.
+If you want to adapt the ``Product Prices`` display, you need to set the option
+under ``Settings`` -> ``Website`` -> ``Pricing`` to ``Business Relationship Dependent``.
 
 
 Automatic assignment
@@ -111,10 +114,10 @@ Under ``Contacts`` -> ``Configuration`` -> ``Business Relationships`` you can mo
 existing business relationships or create new ones. There is some basic automatic
 assignment for new contacts and on app installation, but they can be freely reassigned.
 
-By default, there are ``B2B``, ``B2C`` and ``Internal``. ``B2B`` is default for
-companies and for contacts, that have ``Purchase`` ``Payment Terms`` set (your
-suppliers). ``Internal`` will be set for your employees (users of group
-``base.group_user``). All further contacts are set to ``B2C``. The match conditions
+By default, there are `B2B`, `B2C` and `Internal`. `B2B` is default for
+companies and for contacts, that have ``Purchase Payment Terms`` set (your
+suppliers). `Internal` will be set for your employees (users of group
+``base.group_user``). All further contacts are set to `B2C`. The match conditions
 are configurable and the first matching business relationship will be assigned as
 default to a new contact, if and only if you do not explicitly set another one.
 
@@ -126,15 +129,15 @@ Website User Types
 
 As a website extension, you may install the auxiliary module ``Website User Types``.
 After installation, login users will have an access permission group according to the
-configuration of the business relationship of the contact, ``Group B2C`` and
-``Group B2B``.
+configuration of the business relationship of the contact, `Group B2C` and
+`Group B2B`.
 
 
 Pages, Menus and Redirects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All three models can now be restricted to arbitrary Odoo access groups, including the
-new ones from above. This way you can redirect your B2B (or other) customers to
+new ones from above. This way you can redirect your `B2B` (or other) customers to
 specific landing pages, as well as restrict menu and page accessibility to different
 user groups.
 
@@ -143,7 +146,7 @@ Block Visibility
 ^^^^^^^^^^^^^^^^
 
 The web editor provides a new option ``Visibility``, that allows you to restrict the
-visibility of any configurable block to ``Group B2C``, ``Group B2B`` or a tax display
+visibility of any configurable block to `Group B2C`, `Group B2B` or a tax display
 group. Use it, for example, to create business relationship dependent mega menu entries
 or to add tax display specific information.
 
