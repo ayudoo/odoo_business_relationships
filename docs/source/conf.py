@@ -55,10 +55,10 @@ html_theme_options = {
     "visitedlinkcolor": "#000",
     "hoverlinkcolor": "#000",
 }
-
 html_css_files = [
     'custom.css',
 ]
+html_extra_path = ['robots.txt']
 
 if tags.has('github'):
     html_context = {
