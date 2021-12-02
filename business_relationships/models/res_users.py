@@ -10,6 +10,7 @@ class Users(models.Model):
         """Pass on the group_ids so we can assign the default business relationship on the
         partner model.
         """
+
         if "groups_id" in values:
             self = self.with_context(
                 user_group_ids={
@@ -19,4 +20,6 @@ class Users(models.Model):
                     if groups_add[0] == 6
                 }
             )
-        return super().create(values)
+        record = super().create(values)
+        record.partner_id._set_tax_groups()
+        return record

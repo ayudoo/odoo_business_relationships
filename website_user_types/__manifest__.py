@@ -2,7 +2,7 @@
 
 {
     "author": "Michael Jurke, Ayudoo EOOD",
-    "name": "Website User Type Groups",
+    "name": "Website User Types",
     "summary": """
         Extends business relationships with website access permission groups
         """,
@@ -23,6 +23,7 @@
         "security/website_user_type_security.xml",
         "data/business_relationship_data.xml",
         "views/business_relationship_view.xml",
+        "views/product_template_view.xml",
         "views/website_menu_view.xml",
         "views/website_rewrite_view.xml",
         "views/website_page_view.xml",

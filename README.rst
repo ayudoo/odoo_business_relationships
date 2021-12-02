@@ -155,6 +155,17 @@ rendering logic involved. For more sophisticated features you might rather consi
 using a user group specific page or even a custom extension.
 
 
+Product Accessibility
+^^^^^^^^^^^^^^^^^^^^^
+
+In the product form, `eCommerce` tab, you find the new section
+`Website User Visibility`. Use it to remove product access of one of the user groups.
+
+When unset, users of the group will not see the product in the shop list and accessing
+the product page results in 404. However, internal users of group `Web Designer` are
+still able to see and access it without limit.
+
+
 Bug Tracker
 -----------
 

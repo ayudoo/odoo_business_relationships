@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="product_template_search_view" model="ir.ui.view">
+    <field name="name">product.template.search.published</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_search_view"/>
+    <field name="arch" type="xml">
+      <filter name="published" position="after">
+        <separator/>
+        <filter string="Group B2C" name="visible_group_b2c" domain="[('visible_group_b2c', '=', True)]"/>
+        <filter string="Group B2B" name="visible_group_b2b" domain="[('visible_group_b2b', '=', True)]"/>
+      </filter>
+    </field>
+  </record>
+
+  <record id="product_template_form_view" model="ir.ui.view">
+    <field name="name">product.template.product.form</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="arch" type="xml">
+      <group name="shop" position='inside'>
+        <group name="website_user_type_visibility" string="Website User Visibility">
+          <field name="visible_group_b2c" string="Group B2C"/>
+          <field name="visible_group_b2b" string="Group B2B"/>
+        </group>
+      </group>
+    </field>
+  </record>
+
+  <record id="product_template_view_tree_website_sale" model="ir.ui.view">
+    <field name="name">product.template.product.form</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="website_sale.product_template_view_tree_website_sale"/>
+    <field name="arch" type="xml">
+      <field name="website_id" position="after">
+        <field name="visible_group_b2c" string="B2C" widget="boolean_toggle" optional="hide"/>
+        <field name="visible_group_b2b" string="B2B" widget="boolean_toggle" optional="hide"/>
+      </field>
+    </field>
+  </record>
+
+</odoo>
