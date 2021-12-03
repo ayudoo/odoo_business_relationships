@@ -23,10 +23,23 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
+        self._set_enforced_values(vals)
+
         record = super().create(vals)
         if record.partner_id != record.partner_shipping_id:
             record.onchange_partner_shipping_id()
+
         return record
+
+    def _set_enforced_values(self, values):
+        partner_id = values.get('partner_id', False)
+        if not partner_id:
+            return
+
+        partner = self.env['res.partner'].browse(partner_id)
+        if partner.business_relationship_id.enforce_salesperson_website:
+            if partner.business_relationship_id.salesperson_id:
+                values['user_id'] = partner.business_relationship_id.salesperson_id.id
 
     def write(self, values):
         r = super().write(values)

@@ -107,15 +107,21 @@ class Partner(models.Model):
 
     @api.model
     def create(self, values):
-        if not values.get("business_relationship_id", None):
-            values[
-                "business_relationship_id"
-            ] = self._get_default_business_relationship(values).id
-        if not values.get("image_1920", None):
-            values["image_1920"] = self._get_default_business_relationship_image(values)
+        business_relationship_id = values.get("business_relationship_id", None)
+        if business_relationship_id:
+            business_relationship = self.env[
+                "res.partner.business_relationship"
+            ].browse(business_relationship_id)
+        else:
+            business_relationship = self._get_default_business_relationship(values)
+        values["business_relationship_id"] = business_relationship.id
+
+        for name, value in business_relationship.get_partner_default_values().items():
+            if not values.get(name, None):
+                values[name] = value
+
         r = super().create(values)
         r._after_business_relationship_changed()
-
         return r
 
     def write(self, values):
@@ -199,20 +205,6 @@ class Partner(models.Model):
                 res = self.env["res.partner.business_relationship"].search([], limit=1)
 
         return res
-
-    def _get_default_business_relationship_image(self, values):
-        business_relationship_id = values.get("business_relationship_id", None)
-        if not business_relationship_id:
-            return
-
-        business_relationship = self.env["res.partner.business_relationship"].browse(
-            business_relationship_id
-        )
-
-        if business_relationship.image_1920:
-            return business_relationship.image_1920
-        else:
-            return False
 
     def _commercial_fields(self):
         # Remove pricelist from commercial fields if set to individual

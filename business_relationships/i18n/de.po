@@ -22,7 +22,7 @@ msgstr "Aktiv"
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
-msgid "Any of the following must be true (leave empty to mach all contacts)."
+msgid "Any of the following must be true (leave empty to match all contacts)."
 msgstr ""
 "Eine Bedingung muss zutreffen (leer lassen, um auf alle Kontakte "
 "zuzutreffen)"

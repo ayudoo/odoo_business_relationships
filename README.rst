@@ -5,7 +5,7 @@ Business Relationship Types
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-**This is module is in beta state. Feel free to provide feedback.**
+**This module is in beta state. Feel free to provide feedback.**
 
 Extend your contacts with business relationship types, e.g. `B2C`, `B2B` and
 `Internal` and configure automatic assignment of pricelists and fiscal positions.
@@ -25,7 +25,8 @@ Configurable business relationship types on contact level. Usable for
 
 * automatic assignment of pricelists and fiscal positions
 * different tax display settings for different users
-* customize the default business relationship and default image for new contacts
+* customize the default business relationship for new contacts
+* assign a default image, salesperson or salesteam to new contacts
 * restrict website menus, pages, redirects and block visibility to certain users
 * use different access permission groups for portal users
 * create and configure your own business relationships
@@ -43,8 +44,8 @@ You want to offer different prices for customers like employees or agents? No pr
 just create the desired pricelist with a business relationship filter.
 
 
-Tax Display
-^^^^^^^^^^^
+Business Relationship dependent Tax Display
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Depending on your country's laws, you may have to show tax-included prices to B2C
 customers, while you still want to show the lower tax-excluded prices for logged-in
@@ -54,13 +55,6 @@ activate ``Business Relationship Dependent`` tax display and configure this opti
 each business relationship separately.
 The defaults are ``tax_excluded`` for `Internal` and `B2B`, but ``tax_included`` for
 `B2C`.
-
-Note, that ``tax_display`` depends on the currently logged-in user. Your website
-customers will see prices according to this setting. However, in the admin backend
-sale order and account move forms, the total/subtotal line display depends on the
-setting for `Internal` users.
-Depending on your usage of tax included or excluded pricelists this may or may not
-require, that you customize the document layout.
 
 
 Round prices for B2C
@@ -103,18 +97,16 @@ Set your partner's business relationship in the contact form, right under the na
 of the box they can be used as additional filter option for your pricelists and fiscal
 positions.
 
-If you want to adapt the ``Product Prices`` display, you need to set the option
-under ``Settings`` -> ``Website`` -> ``Pricing`` to ``Business Relationship Dependent``.
-
 
 Automatic assignment
 ^^^^^^^^^^^^^^^^^^^^
 
 Under ``Contacts`` -> ``Configuration`` -> ``Business Relationships`` you can modify
-existing business relationships or create new ones. There is some basic automatic
-assignment for new contacts and on app installation, but they can be freely reassigned.
+existing business relationships or create new ones. There is some basic configuration to
+assign defaults to new contacts and on app installation, but they can be freely
+reassigned.
 
-By default, there are `B2B`, `B2C` and `Internal`. `B2B` is default for
+There are `B2B`, `B2C` and `Internal`. `B2B` is default for
 companies and for contacts, that have ``Purchase Payment Terms`` set (your
 suppliers). `Internal` will be set for your employees (users of group
 ``base.group_user``). All further contacts are set to `B2C`. The match conditions
@@ -122,6 +114,46 @@ are configurable and the first matching business relationship will be assigned a
 default to a new contact, if and only if you do not explicitly set another one.
 
 If you need more options, don't hesitate to file a feature request.
+
+
+Tax Display
+^^^^^^^^^^^
+
+If you want to adapt the ``Product Prices`` display, you need to set the option
+under ``Settings`` -> ``Website`` -> ``Pricing`` to ``Business Relationship Dependent``.
+
+Note, that ``tax_display`` depends on the currently logged-in user. Your website
+customers will see prices according to this setting. However, in the admin backend
+sale order and account move forms, the total/subtotal line display depends on the
+setting for `Internal` users.
+
+
+Email Template
+~~~~~~~~~~~~~~
+
+Odoo's sale order and move related email templates (not the attached reports)
+display taxes according to the settings of the salesperson. If you want to
+provide a consistent user experience, either create your own templates or assign a
+salesperson to orders and invoice with the same setting as the targeted partner.
+
+The recommended approach is to configure the `B2C` business relationship with a
+salesperson with type `B2C`, e.g. `My B2C Shop`. In ``Contacts`` -> ``Configuration``
+-> ``Business Relationships`` you can assign the default salesperson for new contacts
+and update existing ones. For this to work in the website context, you need to check
+`Enforce on sale orders in website context`.
+
+
+Sales Order and Invoice PDF Reports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In difference to email templates, these are generated with the tax display settings of
+the OdooBot. Depending on your requirements, you might want to create your own report
+templates, that include conditions to display the right tax line values and contain
+other business relationship dependent information. However, as an alternative or
+support module, you may install the module ``salesperson_report_context``. Like emails,
+the reports will be generated in the context of the associated salesperson and you can
+rely on the salesperson configuration from above.
+Please note, that this feature is still experimental.
 
 
 Website User Types

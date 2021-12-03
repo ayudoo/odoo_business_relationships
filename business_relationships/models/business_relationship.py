@@ -39,6 +39,7 @@ class BusinessRelationship(models.Model):
         default=False,
         help="triggers, if the contact is a company",
     )
+
     for_suppliers = fields.Boolean(
         string="Purchase (suppliers)",
         help="triggers, if purchase supplier payment terms are set",
@@ -56,9 +57,38 @@ class BusinessRelationship(models.Model):
             ("tax_excluded", "Tax-Excluded"),
             ("tax_included", "Tax-Included"),
         ],
-        string="Line Subtotals Tax Display",
+        string="Tax Display",
         required=True,
         default="tax_excluded",
+    )
+
+    salesteam_id = fields.Many2one(
+        'crm.team',
+        string='Sales Team',
+    )
+
+    salesperson_id = fields.Many2one(
+        'res.users',
+        string='Salesperson',
+    )
+
+    enforce_salesperson_website = fields.Boolean(
+        "Enforce on sale orders in website context",
+        default=False,
+    )
+
+    @api.onchange('show_line_subtotals_tax_selection', 'salesperson_id')
+    def _compute_salesperson_tax_selection_matches(self):
+        for record in self:
+            if not record.salesperson_id:
+                record.salesperson_tax_selection_matches = True
+            else:
+                s_tax_display = record.salesperson_id.partner_id.business_relationship_id.show_line_subtotals_tax_selection
+                record.salesperson_tax_selection_matches = record.show_line_subtotals_tax_selection == s_tax_display
+
+    salesperson_tax_selection_matches = fields.Boolean(
+        string="Salesperson Tax Display Matches",
+        compute=_compute_salesperson_tax_selection_matches,
     )
 
     child_contact_pricelist = fields.Selection(
@@ -98,6 +128,19 @@ class BusinessRelationship(models.Model):
         compute=_compute_user_ids,
         context={"active_test": False},
     )
+
+    def get_partner_default_values(self):
+        values = {}
+        if self.image_1920:
+            values["image_1920"] = self.image_1920
+
+        if self.salesteam_id:
+            values["salesteam_id"] = self.salesteam_id.id
+
+        if self.salesperson_id:
+            values["user_id"] = self.salesperson_id.id
+
+        return values
 
     def write(self, values):
         old_tax_selection = self.show_line_subtotals_tax_selection
@@ -140,3 +183,9 @@ class BusinessRelationship(models.Model):
             "target": "current",
             "flags": {"form": {"action_buttons": True}},
         }
+
+    def action_assign_defaults_to_partners(self):
+        for partner in self.partner_ids:
+            for field_name, value in self.get_partner_default_values().items():
+                if not getattr(partner, field_name):
+                    setattr(partner, field_name, value)
