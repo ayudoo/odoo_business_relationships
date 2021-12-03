@@ -31,6 +31,16 @@ msgid "All Website User Types"
 msgstr "Alle Website-Nutzertypen"
 
 #. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_view_tree_website_sale
+msgid "B2B"
+msgstr ""
+
+#. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_view_tree_website_sale
+msgid "B2C"
+msgstr ""
+
+#. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner_business_relationship
 msgid "Business Relationship, e.g. B2B, B2C"
 msgstr "Geschäftsbeziehung, bswp. B2B, B2C"
@@ -42,9 +52,11 @@ msgstr "Kontakt"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http__display_name
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_res_users__display_name
+#: model:ir.model.fields,field_description:website_user_types.field_website__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__display_name
 msgid "Display Name"
@@ -52,12 +64,16 @@ msgstr "Anzeigename"
 
 #. module: website_user_types
 #: model:res.groups,name:website_user_types.group_website_user_type_b2b
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_search_view
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "Group B2B"
 msgstr "Gruppe B2B"
 
 #. module: website_user_types
 #: model:res.groups,name:website_user_types.group_website_user_type_b2c
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_search_view
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "Group B2C"
 msgstr "Gruppe B2C"
@@ -79,9 +95,11 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http__id
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__id
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner__id
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__id
 #: model:ir.model.fields,field_description:website_user_types.field_res_users__id
+#: model:ir.model.fields,field_description:website_user_types.field_website__id
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__id
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__id
 msgid "ID"
@@ -89,9 +107,11 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http____last_update
+#: model:ir.model.fields,field_description:website_user_types.field_product_template____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_res_users____last_update
+#: model:ir.model.fields,field_description:website_user_types.field_website____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_website_page____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite____last_update
 msgid "Last Modified on"
@@ -110,6 +130,11 @@ msgid ""
 msgstr ""
 "Oberkategorie, um die verschieden Geschäftsbeziehungstypen für "
 "Webseitensichtbarkeit zu nutzen."
+
+#. module: website_user_types
+#: model:ir.model,name:website_user_types.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_page__group_ids
@@ -141,10 +166,27 @@ msgid "Visibility"
 msgstr "Sichtbarkeit"
 
 #. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2b
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2b
+msgid "Visible Group B2B"
+msgstr "Sichtbar für Gruppe B2B"
+
+#. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2c
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2c
+msgid "Visible Group B2C"
+msgstr "Sichtbar für Gruppe B2C"
+
+#. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__group_ids
 msgid "Visible Groups"
 msgstr "Sichtbarkeitsgruppen"
+
+#. module: website_user_types
+#: model:ir.model,name:website_user_types.model_website
+msgid "Website"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__website_user_group_id
@@ -157,6 +199,6 @@ msgid "Website User Types"
 msgstr "Website-Nutzertypen"
 
 #. module: website_user_types
-#: model:ir.model,name:website_user_types.model_website_rewrite
-msgid "Website rewrite"
-msgstr "Website Weiterleitung"
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
+msgid "Website User Visibility"
+msgstr "Website-Nutzer Sichtbarkeit"

@@ -15,7 +15,7 @@ class IrActionsReport(models.Model):
             if docs.user_id:
                 self = self.with_user(docs.user_id[0])
 
-        elif model == "account.move":
+        elif model == "account.move" and docs:
             self._validate_same_tax_display_settings(docs.user_id)
             if docs.user_id:
                 self = self.with_user(docs.user_id[0])
