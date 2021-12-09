@@ -72,6 +72,11 @@ class BusinessRelationship(models.Model):
         string='Salesperson',
     )
 
+    analytic_account_id = fields.Many2one(
+        'account.analytic.account',
+        string='Analytic Account',
+    )
+
     enforce_salesperson_website = fields.Boolean(
         "Enforce on sale orders in website context",
         default=False,
@@ -135,10 +140,18 @@ class BusinessRelationship(models.Model):
             values["image_1920"] = self.image_1920
 
         if self.salesteam_id:
-            values["salesteam_id"] = self.salesteam_id.id
+            values["team_id"] = self.salesteam_id.id
 
         if self.salesperson_id:
             values["user_id"] = self.salesperson_id.id
+
+        return values
+
+    def get_sale_order_default_values(self, include_false=False):
+        values = {}
+
+        if self.analytic_account_id or include_false:
+            values["analytic_account_id"] = self.analytic_account_id.id
 
         return values
 
@@ -187,5 +200,7 @@ class BusinessRelationship(models.Model):
     def action_assign_defaults_to_partners(self):
         for partner in self.partner_ids:
             for field_name, value in self.get_partner_default_values().items():
-                if not getattr(partner, field_name):
-                    setattr(partner, field_name, value)
+                # if not getattr(partner, field_name):
+                # TODO add wizard, so users can choose whether to override existing
+                # values
+                setattr(partner, field_name, value)

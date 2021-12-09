@@ -26,7 +26,8 @@ Configurable business relationship types on contact level. Usable for
 * automatic assignment of pricelists and fiscal positions
 * different tax display settings for different users
 * customize the default business relationship for new contacts
-* assign a default image, salesperson or salesteam to new contacts
+* assign a default image, salesperson or sales team to new contacts
+* assign default salesperson and analytic account to sale orders
 * restrict website menus, pages, redirects and block visibility to certain users
 * use different access permission groups for portal users
 * create and configure your own business relationships
@@ -134,7 +135,7 @@ Email Template
 Odoo's sale order and move related email templates (not the attached reports)
 display taxes according to the settings of the salesperson. If you want to
 provide a consistent user experience, either create your own templates or assign a
-salesperson to orders and invoice with the same setting as the targeted partner.
+salesperson to orders and invoices with the same setting as the targeted partner.
 
 The recommended approach is to configure the `B2C` business relationship with a
 salesperson with type `B2C`, e.g. `My B2C Shop`. In ``Contacts`` -> ``Configuration``
