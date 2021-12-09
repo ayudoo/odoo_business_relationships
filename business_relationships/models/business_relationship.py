@@ -62,9 +62,14 @@ class BusinessRelationship(models.Model):
         default="tax_excluded",
     )
 
-    salesteam_id = fields.Many2one(
+    team_id = fields.Many2one(
         'crm.team',
         string='Sales Team',
+    )
+
+    enforce_team_website = fields.Boolean(
+        "Enforce team on sale orders in website context",
+        default=False,
     )
 
     salesperson_id = fields.Many2one(
@@ -72,14 +77,14 @@ class BusinessRelationship(models.Model):
         string='Salesperson',
     )
 
+    enforce_salesperson_website = fields.Boolean(
+        "Enforce salesperson on sale orders in website context",
+        default=False,
+    )
+
     analytic_account_id = fields.Many2one(
         'account.analytic.account',
         string='Analytic Account',
-    )
-
-    enforce_salesperson_website = fields.Boolean(
-        "Enforce on sale orders in website context",
-        default=False,
     )
 
     @api.onchange('show_line_subtotals_tax_selection', 'salesperson_id')
@@ -139,8 +144,8 @@ class BusinessRelationship(models.Model):
         if self.image_1920:
             values["image_1920"] = self.image_1920
 
-        if self.salesteam_id:
-            values["team_id"] = self.salesteam_id.id
+        if self.team_id:
+            values["team_id"] = self.team_id.id
 
         if self.salesperson_id:
             values["user_id"] = self.salesperson_id.id

@@ -55,6 +55,8 @@ class SaleOrder(models.Model):
         if self.env.context.get('website_id'):
             if br.enforce_salesperson_website and br.salesperson_id:
                 values['user_id'] = br.salesperson_id.id
+            if br.enforce_team_website and br.team_id:
+                values['team_id'] = br.team_id.id
 
     def write(self, values):
         r = super().write(values)

@@ -364,7 +364,7 @@ msgid "Sales Order Pricelist"
 msgstr "Auftragspreisliste"
 
 #. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__salesteam_id
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__team_id
 msgid "Sales Team"
 msgstr "Verkaufsteam"
 

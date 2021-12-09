@@ -80,20 +80,33 @@
                     string="Update Related Partners Now"
                     class="btn-link pt-0 oe_read_only"
                     attrs="{'invisible': [
-                      ('salesteam_id', '=', False),
+                      ('team_id', '=', False),
                       ('salesperson_id', '=', False),
                     ]}"
                     icon="fa-refresh"/>
                 </div>
 
-                <field name="salesteam_id"/>
+                <label for="team_id"/>
+                <div>
+                  <field name="team_id"/>
+                  <div attrs="{'invisible': [('team_id', '=', False)]}">
+                    <field name="enforce_team_website"/>
+                    <label
+                      for="enforce_team_website"
+                      string="Enforce on sale orders in website context"
+                      />
+                  </div>
+                </div>
 
                 <label for="salesperson_id"/>
                 <div>
                   <field name="salesperson_id"/>
                   <div attrs="{'invisible': [('salesperson_id', '=', False)]}">
                     <field name="enforce_salesperson_website"/>
-                    <label for="enforce_salesperson_website"/>
+                    <label
+                      for="enforce_salesperson_website"
+                      string="Enforce on sale orders in website context"
+                      />
                   </div>
                 </div>
                 <field name="salesperson_tax_selection_matches" invisible="1"/>
