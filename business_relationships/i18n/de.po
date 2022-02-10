@@ -21,6 +21,11 @@ msgid "Active"
 msgstr "Aktiv"
 
 #. module: business_relationships
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__analytic_account_id
+msgid "Analytic Account"
+msgstr "Kostenstelle"
+
+#. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Any of the following must be true (leave empty to match all contacts)."
 msgstr ""
@@ -189,9 +194,19 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__enforce_salesperson_website
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Enforce on sale orders in website context"
 msgstr "In Aufträgen aus dem Webseiten-Kontext erzwingen"
+
+#. module: business_relationships
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__enforce_salesperson_website
+msgid "Enforce salesperson on sale orders in website context"
+msgstr "Salesperson in Aufträgen aus dem Webseiten-Kontext erzwingen"
+
+#. module: business_relationships
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__enforce_team_website
+msgid "Enforce team on sale orders in website context"
+msgstr "Team in Aufträgen aus dem Webseiten-Kontext erzwingen"
 
 #. module: business_relationships
 #: model:ir.model,name:business_relationships.model_account_fiscal_position
@@ -274,7 +289,7 @@ msgstr "Interne Nutzer"
 #. module: business_relationships
 #: model:ir.model,name:business_relationships.model_account_move
 msgid "Journal Entry"
-msgstr Buchungssatz""
+msgstr "Buchungssatz"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_account_fiscal_position____last_update
@@ -305,10 +320,15 @@ msgid "Line Subtotals Tax Display"
 msgstr "Zwischensummen Steuerdarstellung"
 
 #. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_property_form
+msgid "Make it static"
+msgstr "Festsetzen"
+
+#. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__name
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_tree
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
@@ -332,6 +352,12 @@ msgid "Pricelist"
 msgstr "Preisliste"
 
 #. module: business_relationships
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner__is_fixed_property_pricelist
+#: model:ir.model.fields,field_description:business_relationships.field_res_users__is_fixed_property_pricelist
+msgid "Pricelist is fixed on this contact"
+msgstr "Preisliste ist fest auf dem Kontakt"
+
+#. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Pricelists"
 msgstr "Preislisten"
@@ -340,6 +366,11 @@ msgstr "Preislisten"
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__for_suppliers
 msgid "Purchase (suppliers)"
 msgstr "Einkauf (Lieferanten)"
+
+#. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_property_form
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_account_fiscal_position__business_relationship_ids
@@ -356,7 +387,7 @@ msgstr "Verkaufsanalysebericht"
 #: model:ir.model,name:business_relationships.model_sale_order
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Sales Order"
-msgstr "Auftrag"
+msgstr "Verkaufsauftrag"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__sale_order_pricelist
@@ -408,6 +439,16 @@ msgstr "Steuer-exkludiert"
 #: model:ir.model.fields.selection,name:business_relationships.selection__res_partner_business_relationship__show_line_subtotals_tax_selection__tax_included
 msgid "Tax-Included"
 msgstr "Steuer-inkludiert"
+
+#. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_property_form
+msgid "The Pricelist is fixed on this contact."
+msgstr "Die Preisliste ist fest auf dem Kontakt."
+
+#. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_property_form
+msgid "The Pricelist will change according to configuration."
+msgstr "Die Preisliste ändert sich entsprechend Konfiguration."
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_account_bank_statement_line__business_relationship_id

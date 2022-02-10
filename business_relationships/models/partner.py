@@ -2,6 +2,7 @@
 import logging
 
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -56,6 +57,59 @@ class Partner(models.Model):
         related="business_relationship_id.child_contact_pricelist",
         readonly=True,
     )
+
+    @api.depends('country_id')
+    @api.depends_context('company')
+    def _compute_is_fixed_property_pricelist(self):
+        for record in self:
+            actual = self.env['ir.property']._get('property_product_pricelist', 'res.partner', 'res.partner,%s' % record.id)
+            if actual:
+                record.is_fixed_property_pricelist = True
+            else:
+                record.is_fixed_property_pricelist = False
+
+    def _search_is_fixed_property_pricelist(self, operator, operand):
+        if operator != "=":
+            raise UserError("Property Pricelist search only works with operator '='.")
+
+        if operand is True:
+            operator = "in"
+        elif operand is False:
+            operator = "not in"
+        else:
+            raise UserError(
+                "Property Pricelist search only works operands True and False."
+            )
+
+        domain = self.env['ir.property']._get_domain(
+            'property_product_pricelist', 'res.partner'
+        )
+        properties = actual = self.env['ir.property'].search(domain)
+        res_ids = [
+            int(p["res_id"].split(",")[1])
+            for p in properties.read(['res_id'])
+        ]
+        return [("id", "in", res_ids)]
+
+    is_fixed_property_pricelist = fields.Boolean(
+        'Pricelist is fixed on this contact',
+        compute=_compute_is_fixed_property_pricelist,
+        search=_search_is_fixed_property_pricelist,
+    )
+
+    def reset_fixed_property_pricelist(self):
+        self.env['ir.property']._set_multi(
+            'property_product_pricelist',
+            self._name,
+            {self.id: False},
+        )
+
+    def make_property_pricelist_fixed(self):
+        self.env['ir.property']._set_multi(
+            'property_product_pricelist',
+            self._name,
+            {self.id: self.property_product_pricelist},
+        )
 
     def _after_business_relationship_changed(self):
         self._set_tax_groups()

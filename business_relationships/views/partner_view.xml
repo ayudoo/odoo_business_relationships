@@ -67,7 +67,7 @@
         </group>
 
         <field name="property_product_pricelist" position="attributes">
-          <attribute name="attrs">{'invisible': [
+          <attribute name="attrs">{'readonly': [
             ('is_company','=',False),
             ('parent_id','!=',False),
             ('child_contact_pricelist','=','parent'),
@@ -82,6 +82,34 @@
             ('child_contact_pricelist','!=','parent'),
           ]}</attribute>
         </div>
+        <field name="property_product_pricelist" position="after">
+          <field name="is_fixed_property_pricelist" invisible="1"/>
+          <div
+            class="oe_read_only fixed-pricelist-actions"
+            groups="product.group_product_pricelist"
+            colspan="2"
+            attrs="{'invisible': [('property_product_pricelist','=',False)]}">
+            <div
+              attrs="{'invisible': [('is_fixed_property_pricelist','=',False)]}"
+            >The Pricelist is fixed on this contact. <button
+              name="reset_fixed_property_pricelist"
+              type="object"
+              string="Reset"
+              class="p-0 border-0 oe_link"
+              style="line-height: 1;"/>
+            </div>
+            <div
+              attrs="{'invisible': [('is_fixed_property_pricelist','=',True)]}"
+              >The Pricelist will change according to configuration. <button
+              name="make_property_pricelist_fixed"
+              type="object"
+              string="Make it static"
+              class="p-0 border-0 oe_link"
+              style="line-height: 1;"/>
+            </div>
+          </div>
+        </field>
+
       </field>
     </record>
 
