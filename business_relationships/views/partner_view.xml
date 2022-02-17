@@ -1,117 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
 
-    <record id="view_res_partner_business_relationship_search" model="ir.ui.view">
-      <field name="name">business_relationships.res.partner.select</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_res_partner_filter"/>
-      <field name="arch" type="xml">
-        <field name="name" position="after">
-          <field name="business_relationship_id" string="Business Relationship"/>
-        </field>
-        <filter name="group_country" position="after">
-          <filter
-            name="group_by_business_relationship_id"
-            string="Business Relationship"
-            context="{'group_by': 'business_relationship_id'}"
-            help="Business Relationship, e.g. B2B, B2C"/>
-        </filter>
+  <record id="view_res_partner_business_relationship_search" model="ir.ui.view">
+    <field name="name">business_relationships.res.partner.select</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_filter"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="business_relationship_id" string="Business Relationship"/>
       </field>
-    </record>
+      <filter name="group_country" position="after">
+        <filter
+          name="group_by_business_relationship_id"
+          string="Business Relationship"
+          context="{'group_by': 'business_relationship_id'}"
+          help="Business Relationship, e.g. B2B, B2C"/>
+      </filter>
+    </field>
+  </record>
 
-    <record id="view_partner_business_relationship_form" model="ir.ui.view">
-      <field name="name">business_relationships.res.partner</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
+  <record id="view_partner_business_relationship_form" model="ir.ui.view">
+    <field name="name">business_relationships.res.partner</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
 
-        <field name="type" position="before">
-          <label for="business_relationship_id" string="Business Rel."/>
-          <div>
-            <field name="same_as_parent_business_relationship_id" invisible="1"/>
-            <field
-              name="business_relationship_id"
-              style="width: 50%;"
-              attrs="{'readonly': [('same_as_parent_business_relationship_id','=',True)]}"/>
-            <field
-              name="default_business_relationship_id"
-              readonly="1"
-              nolabel="1"
-              style="width: 50%; padding-left: 10px; color: #ccc;"
-              attrs="{'invisible': [('business_relationship_id','!=', False)]}"/>
-          </div>
-          <label for="open_commercial_entity" string=""/>
-          <div
-            name="parent_business_relationship"
-            attrs="{'invisible': [('parent_id','=',False)]}"
-            class="oe_edit_only">
-            <p>is managed on
-              <button
-                name="open_commercial_entity"
-                type="object"
-                string="the parent contact"
-                class="oe_link"/></p>
-          </div>
-        </field>
-      </field>
-    </record>
-
-    <record id="view_partner_property_form" model="ir.ui.view">
-      <field name="name">res.partner.product.pricelist.form.inherit</field>
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="product.view_partner_property_form"/>
-      <field name="arch" type="xml">
-        <group name="sale" position="inside">
-          <field name="child_contact_pricelist" invisible="1"/>
-        </group>
-
-        <field name="property_product_pricelist" position="attributes">
-          <attribute name="attrs">{'readonly': [
-            ('is_company','=',False),
-            ('parent_id','!=',False),
-            ('child_contact_pricelist','=','parent'),
-          ]}</attribute>
-        </field>
-        <div name="parent_pricelists" position="attributes">
-          <attribute name="attrs">{'invisible': [
-            ('|'),
-            ('is_company','=',True),
-            ('|'),
-            ('parent_id','=',False),
-            ('child_contact_pricelist','!=','parent'),
-          ]}</attribute>
+      <field name="type" position="before">
+        <label for="business_relationship_id" string="Business Rel."/>
+        <div>
+          <field name="same_as_parent_business_relationship_id" invisible="1"/>
+          <field
+            name="business_relationship_id"
+            style="width: 50%;"
+            attrs="{'readonly': [('same_as_parent_business_relationship_id','=',True)]}"/>
+          <field
+            name="default_business_relationship_id"
+            readonly="1"
+            nolabel="1"
+            style="width: 50%; padding-left: 10px; color: #ccc;"
+            attrs="{'invisible': [('business_relationship_id','!=', False)]}"/>
         </div>
-        <field name="property_product_pricelist" position="after">
-          <field name="is_fixed_property_pricelist" invisible="1"/>
-          <div
-            class="oe_read_only fixed-pricelist-actions"
-            groups="product.group_product_pricelist"
-            colspan="2"
-            attrs="{'invisible': [('property_product_pricelist','=',False)]}">
-            <div
-              attrs="{'invisible': [('is_fixed_property_pricelist','=',False)]}"
-            >The Pricelist is fixed on this contact. <button
-              name="reset_fixed_property_pricelist"
+        <label for="open_commercial_entity" string=""/>
+        <div
+          name="parent_business_relationship"
+          attrs="{'invisible': [('parent_id','=',False)]}"
+          class="oe_edit_only">
+          <p>is managed on
+            <button
+              name="open_commercial_entity"
               type="object"
-              string="Reset"
-              class="p-0 border-0 oe_link"
-              style="line-height: 1;"/>
-            </div>
-            <div
-              attrs="{'invisible': [('is_fixed_property_pricelist','=',True)]}"
-              >The Pricelist will change according to configuration. <button
-              name="make_property_pricelist_fixed"
-              type="object"
-              string="Make it static"
-              class="p-0 border-0 oe_link"
-              style="line-height: 1;"/>
-            </div>
-          </div>
-        </field>
-
+              string="the parent contact"
+              class="oe_link"/></p>
+        </div>
       </field>
-    </record>
+    </field>
+  </record>
 
-  </data>
+  <record id="view_partner_property_form" model="ir.ui.view">
+    <field name="name">res.partner.product.pricelist.form.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="product.view_partner_property_form"/>
+    <field name="arch" type="xml">
+      <group name="sale" position="inside">
+        <field name="child_contact_pricelist" invisible="1"/>
+      </group>
+
+      <field name="property_product_pricelist" position="attributes">
+        <attribute name="attrs">{'readonly': [
+          ('is_company','=',False),
+          ('parent_id','!=',False),
+          ('child_contact_pricelist','=','parent'),
+        ]}</attribute>
+      </field>
+      <div name="parent_pricelists" position="attributes">
+        <attribute name="attrs">{'invisible': [
+          ('|'),
+          ('is_company','=',True),
+          ('|'),
+          ('parent_id','=',False),
+          ('child_contact_pricelist','!=','parent'),
+        ]}</attribute>
+      </div>
+      <field name="property_product_pricelist" position="after">
+        <field name="is_fixed_property_pricelist" invisible="1"/>
+        <div
+          class="oe_read_only fixed-pricelist-actions"
+          groups="product.group_product_pricelist"
+          colspan="2"
+          attrs="{'invisible': [('property_product_pricelist','=',False)]}">
+          <div
+            attrs="{'invisible': [('is_fixed_property_pricelist','=',False)]}"
+          >The Pricelist is fixed on this contact. <button
+            name="reset_fixed_property_pricelist"
+            type="object"
+            string="Reset"
+            class="p-0 border-0 oe_link"
+            style="line-height: 1;"/>
+          </div>
+          <div
+            attrs="{'invisible': [('is_fixed_property_pricelist','=',True)]}"
+            >The Pricelist will change according to configuration. <button
+            name="make_property_pricelist_fixed"
+            type="object"
+            string="Make it static"
+            class="p-0 border-0 oe_link"
+            style="line-height: 1;"/>
+          </div>
+        </div>
+      </field>
+
+    </field>
+  </record>
 </odoo>

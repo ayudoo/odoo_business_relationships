@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo.http import request
-from odoo import api, models, fields, SUPERUSER_ID
+from odoo import fields, models, SUPERUSER_ID
 
 
 class Page(models.Model):
@@ -9,7 +9,10 @@ class Page(models.Model):
     group_ids = fields.Many2many(
         "res.groups",
         string="Visible Groups",
-        help="The user needs to be in at least one of these groups for the redirect to have effect",
+        help=(
+            "The user needs to be in at least one of these groups for the redirect to"
+            + " have effect"
+        ),
     )
 
     def _compute_visible(self):

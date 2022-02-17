@@ -3,6 +3,7 @@
 {
     "author": "Michael Jurke, Ayudoo EOOD",
     "name": "Website User Types",
+    "version": "0.1",
     "summary": """
         Extends business relationships with website access permission groups
         """,
@@ -12,8 +13,7 @@
         accoring to the business relationship with the contact.
     """,
     "license": "LGPL-3",
-    "category": "Sales",
-    "version": "0.1",
+    "category": "Sales/Sales",
     "depends": [
         "base",
         "website",

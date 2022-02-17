@@ -7,9 +7,8 @@ class Users(models.Model):
 
     @api.model
     def create(self, values):
-        """Pass on the group_ids so we can assign the default business relationship on the
-        partner model.
-        """
+        # Pass on the group_ids so we can assign the default business relationship on
+        # the partner model.
 
         if "groups_id" in values:
             self = self.with_context(

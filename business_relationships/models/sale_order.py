@@ -11,16 +11,14 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
-    @api.onchange('partner_id')
+    @api.onchange("partner_id")
     def onchange_partner_id(self):
         super().onchange_partner_id()
         br = self.partner_id.business_relationship_id
         if br:
-            self.update(
-                br.get_sale_order_default_values(include_false=True)
-            )
+            self.update(br.get_sale_order_default_values(include_false=True))
 
-    @api.onchange('partner_shipping_id', 'partner_id', 'company_id')
+    @api.onchange("partner_shipping_id", "partner_id", "company_id")
     def onchange_partner_shipping_id(self):
         res = super().onchange_partner_shipping_id()
         shipping_pricelist_id = self.partner_shipping_id.property_product_pricelist
@@ -41,22 +39,22 @@ class SaleOrder(models.Model):
         return record
 
     def _set_business_relationship_values(self, values):
-        partner_id = values.get('partner_id', False)
+        partner_id = values.get("partner_id", False)
         if not partner_id:
             return
 
-        partner = self.env['res.partner'].browse(partner_id)
+        partner = self.env["res.partner"].browse(partner_id)
         br = partner.business_relationship_id
 
         for name, value in br.get_sale_order_default_values().items():
             if not values.get(name, None):
                 values[name] = value
 
-        if self.env.context.get('website_id'):
+        if self.env.context.get("website_id"):
             if br.enforce_salesperson_website and br.salesperson_id:
-                values['user_id'] = br.salesperson_id.id
+                values["user_id"] = br.salesperson_id.id
             if br.enforce_team_website and br.team_id:
-                values['team_id'] = br.team_id.id
+                values["team_id"] = br.team_id.id
 
     def write(self, values):
         r = super().write(values)

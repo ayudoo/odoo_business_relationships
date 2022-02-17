@@ -1,164 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
 
-    <record id="view_business_relationships_search" model="ir.ui.view">
-      <field name="name">res.partner.business_relationship.search</field>
-      <field name="model">res.partner.business_relationship</field>
-      <field name="arch" type="xml">
-        <search string="Business Relationships Search">
-          <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-          <field name="name"/>
-        </search>
-      </field>
-    </record>
+  <record id="view_business_relationships_search" model="ir.ui.view">
+    <field name="name">res.partner.business_relationship.search</field>
+    <field name="model">res.partner.business_relationship</field>
+    <field name="arch" type="xml">
+      <search string="Business Relationships Search">
+        <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+        <field name="name"/>
+      </search>
+    </field>
+  </record>
 
-    <record id="view_business_relationship_form" model="ir.ui.view">
-      <field name="name">res.partner.business_relationship.form</field>
-      <field name="model">res.partner.business_relationship</field>
-      <field name="arch" type="xml">
-        <form string="Business Relationship">
-          <sheet>
-            <div class="oe_button_box" name="button_box"/>
-            <widget
-              name="web_ribbon"
-              title="Archived"
-              bg_color="bg-danger"
-              attrs="{'invisible': [('active', '=', True)]}"/>
-            <field
-              name="image_1920"
-              help="If set, will be used as fallback image on contact creation."
-              widget='image'
-              class="oe_avatar"
-              options='{"preview_image": "image_128"}'/>
-            <div class="oe_title">
-              <label for="name" class="oe_edit_only" string="Business Relationship"/>
-              <h1>
-                <field name="name" placeholder="Business Relationship Name..."/>
-              </h1>
-              <field name="color" widget="color_picker"/>
-            </div>
-            <group>
-              <group name="default_for" string="This is the default for">
-                <div class="text-muted" colspan="2">
-                  Any of the following must be true (leave empty to match all contacts).
-                </div>
-                <field name="active" invisible="1"/>
-                <field name="for_internal_users"/>
-                <field name="for_companies"/>
-                <field name="for_suppliers"/>
-              </group>
-              <group name="options" string="Groups / Options">
-                <div name="parent_business_relationship" colspan="2">
-                  <p class="text-muted">To set the associated users' tax group according
-                    to the business relationship, activate the options in the
-                    <button
-                      name="open_invoicing_settings"
-                      type="object"
-                      string="invoicing settings"
-                      class="oe_link p-0"/>.
-                  </p>
-                </div>
-                <field name="show_line_subtotals_tax_selection"/>
-              </group>
-              <group name="pricelists" string="Pricelists">
-                <field name="child_contact_pricelist" string="Child Contacts"/>
-                <field name="sale_order_pricelist" string="Sales Order"/>
-                <div
-                  colspan="2"
-                  class="mr-3 text-muted"
-                  attrs="{'invisible': [('sale_order_pricelist', '=', 'partner')]}"
-                  >Note, that the shipping addresses' pricelists have prevalence.
-                   This means, that coupons and other geo filters for pricelists are
-                   ignored if the shipping address differs from the partner's address</div>
-              </group>
-              <group name="assignment" string="Assignment">
-                <div colspan="2">
-                  <button
-                    type="object"
-                    name="action_assign_defaults_to_partners"
-                    string="Update Related Partners Now"
-                    class="btn-link pt-0 oe_read_only"
-                    attrs="{'invisible': [
-                      ('team_id', '=', False),
-                      ('salesperson_id', '=', False),
-                    ]}"
-                    icon="fa-refresh"/>
-                </div>
-
-                <label for="team_id"/>
-                <div>
-                  <field name="team_id"/>
-                  <div attrs="{'invisible': [('team_id', '=', False)]}">
-                    <field name="enforce_team_website"/>
-                    <label
-                      for="enforce_team_website"
-                      string="Enforce on sale orders in website context"
-                      />
-                  </div>
-                </div>
-
-                <label for="salesperson_id"/>
-                <div>
-                  <field name="salesperson_id"/>
-                  <div attrs="{'invisible': [('salesperson_id', '=', False)]}">
-                    <field name="enforce_salesperson_website"/>
-                    <label
-                      for="enforce_salesperson_website"
-                      string="Enforce on sale orders in website context"
-                      />
-                  </div>
-                </div>
-                <field name="salesperson_tax_selection_matches" invisible="1"/>
-                <div
-                  colspan="2"
-                  class="text-danger"
-                  attrs="{'invisible': [
-                    ('salesperson_tax_selection_matches', '=', True),
-                  ]}"
-                >Warning: The salesperson has a different tax display!</div>
-                <field name="analytic_account_id"/>
-              </group>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="view_business_relationship_tree" model="ir.ui.view">
-      <field name="name">res.partner.business_relationship.tree</field>
-      <field name="model">res.partner.business_relationship</field>
-      <field name="field_parent">child_ids</field>
-      <field name="arch" type="xml">
-        <tree string="Business Relationship">
-          <field name="sequence" widget="handle"/>
+  <record id="view_business_relationship_form" model="ir.ui.view">
+    <field name="name">res.partner.business_relationship.form</field>
+    <field name="model">res.partner.business_relationship</field>
+    <field name="arch" type="xml">
+      <form string="Business Relationship">
+        <sheet>
+          <div class="oe_button_box" name="button_box"/>
+          <widget
+            name="web_ribbon"
+            title="Archived"
+            bg_color="bg-danger"
+            attrs="{'invisible': [('active', '=', True)]}"/>
           <field
-            name="self_ref_ids"
-            string="Name"
-            widget="many2many_tags"
-            options="{'color_field': 'color'}"/>
-          <field name="show_line_subtotals_tax_selection"/>
-          <field name="active" invisible="1"/>
-        </tree>
-      </field>
-    </record>
+            name="image_1920"
+            help="If set, will be used as fallback image on contact creation."
+            widget='image'
+            class="oe_avatar"
+            options='{"preview_image": "image_128"}'/>
+          <div class="oe_title">
+            <label for="name" class="oe_edit_only" string="Business Relationship"/>
+            <h1>
+              <field name="name" placeholder="Business Relationship Name..."/>
+            </h1>
+            <field name="color" widget="color_picker"/>
+          </div>
+          <group>
+            <group name="default_for" string="This is the default for">
+              <div class="text-muted" colspan="2">
+                Any of the following must be true (leave empty to match all contacts).
+              </div>
+              <field name="active" invisible="1"/>
+              <field name="for_internal_users"/>
+              <field name="for_companies"/>
+              <field name="for_suppliers"/>
+            </group>
+            <group name="options" string="Groups / Options">
+              <div name="parent_business_relationship" colspan="2">
+                <p class="text-muted">To set the associated users' tax group according
+                  to the business relationship, activate the options in the
+                  <button
+                    name="open_invoicing_settings"
+                    type="object"
+                    string="invoicing settings"
+                    class="oe_link p-0"/>.
+                </p>
+              </div>
+              <field name="show_line_subtotals_tax_selection"/>
+            </group>
+            <group name="pricelists" string="Pricelists">
+              <field name="child_contact_pricelist" string="Child Contacts"/>
+              <field name="sale_order_pricelist" string="Sales Order"/>
+              <div
+                colspan="2"
+                class="mr-3 text-muted"
+                attrs="{'invisible': [('sale_order_pricelist', '=', 'partner')]}"
+                >Note, that the shipping addresses' pricelists have prevalence.
+                 This means, that coupons and other geo filters for pricelists are
+                 ignored if the shipping address differs from the partner's address</div>
+            </group>
+            <group name="assignment" string="Assignment">
+              <div colspan="2">
+                <button
+                  type="object"
+                  name="action_assign_defaults_to_partners"
+                  string="Update Related Partners Now"
+                  class="btn-link pt-0 oe_read_only"
+                  attrs="{'invisible': [
+                    ('team_id', '=', False),
+                    ('salesperson_id', '=', False),
+                  ]}"
+                  icon="fa-refresh"/>
+              </div>
 
-    <record id="action_business_relationship" model="ir.actions.act_window">
-      <field name="name">Business Relationships</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">res.partner.business_relationship</field>
-      <field name="view_id" ref="view_business_relationship_tree"/>
-      <field name="help">
-        You can manage the different B2C/B2B business relationship types in use
-        from here. Business relationships are attached to your partners.
-      </field>
-    </record>
+              <label for="team_id"/>
+              <div>
+                <field name="team_id"/>
+                <div attrs="{'invisible': [('team_id', '=', False)]}">
+                  <field name="enforce_team_website"/>
+                  <label
+                    for="enforce_team_website"
+                    string="Enforce on sale orders in website context"
+                    />
+                </div>
+              </div>
 
-    <menuitem
-      id="menu_partner_business_relationship"
-      action="business_relationships.action_business_relationship"
-      name="Business Relationships"
-      parent="contacts.res_partner_menu_config"
-      sequence="4"/>
-  </data>
+              <label for="salesperson_id"/>
+              <div>
+                <field name="salesperson_id"/>
+                <div attrs="{'invisible': [('salesperson_id', '=', False)]}">
+                  <field name="enforce_salesperson_website"/>
+                  <label
+                    for="enforce_salesperson_website"
+                    string="Enforce on sale orders in website context"
+                    />
+                </div>
+              </div>
+              <field name="salesperson_tax_selection_matches" invisible="1"/>
+              <div
+                colspan="2"
+                class="text-danger"
+                attrs="{'invisible': [
+                  ('salesperson_tax_selection_matches', '=', True),
+                ]}"
+              >Warning: The salesperson has a different tax display!</div>
+              <field name="analytic_account_id"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_business_relationship_tree" model="ir.ui.view">
+    <field name="name">res.partner.business_relationship.tree</field>
+    <field name="model">res.partner.business_relationship</field>
+    <field name="field_parent">child_ids</field>
+    <field name="arch" type="xml">
+      <tree string="Business Relationship">
+        <field name="sequence" widget="handle"/>
+        <field
+          name="self_ref_ids"
+          string="Name"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"/>
+        <field name="show_line_subtotals_tax_selection"/>
+        <field name="active" invisible="1"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_business_relationship" model="ir.actions.act_window">
+    <field name="name">Business Relationships</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">res.partner.business_relationship</field>
+    <field name="view_id" ref="view_business_relationship_tree"/>
+    <field name="help">
+      You can manage the different B2C/B2B business relationship types in use
+      from here. Business relationships are attached to your partners.
+    </field>
+  </record>
+
+  <menuitem
+    id="menu_partner_business_relationship"
+    action="business_relationships.action_business_relationship"
+    name="Business Relationships"
+    parent="contacts.res_partner_menu_config"
+    sequence="4"/>
 </odoo>

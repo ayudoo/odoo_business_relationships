@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo.addons.business_relationships.tests.common import BusinessRelationshipsTestUsers
+from odoo.addons.business_relationships.tests.common import (
+    BusinessRelationshipsTestUsers,
+)
 
 
 class TestPartner(BusinessRelationshipsTestUsers):
@@ -21,12 +23,16 @@ class TestPartner(BusinessRelationshipsTestUsers):
         self.assertEqual(self.user_company.has_group(group_b2b), True)
         self.assertEqual(self.user_supplier.has_group(group_b2b), True)
 
-        self.user_portal.partner_id.business_relationship_id = self.business_relationship_b2b
+        self.user_portal.partner_id.business_relationship_id = (
+            self.business_relationship_b2b
+        )
 
         self.assertEqual(self.user_portal.has_group(group_b2b), True)
         self.assertEqual(self.user_portal.has_group(group_b2c), False)
 
-        self.user_company.partner_id.business_relationship_id = self.business_relationship_b2c
+        self.user_company.partner_id.business_relationship_id = (
+            self.business_relationship_b2c
+        )
 
         self.assertEqual(self.user_company.has_group(group_b2c), True)
         self.assertEqual(self.user_company.has_group(group_b2b), False)

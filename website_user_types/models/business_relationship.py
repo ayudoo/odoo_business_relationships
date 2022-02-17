@@ -25,7 +25,10 @@ class BusinessRelationship(models.Model):
     website_user_group_id = fields.Many2one(
         "res.groups",
         "Website User Type",
-        help="Use this field to assign an access group to login users associated with this partner",
+        help=(
+            "Use this field to assign an access group to login users associated with"
+            + " this partner"
+        ),
         default=_get_default_website_user_group,
         domain=_website_user_group_domain,
     )
@@ -69,10 +72,13 @@ class BusinessRelationship(models.Model):
         group_b2b = self.env.ref("website_user_types.group_website_user_type_b2b")
         internal = self.env.ref("business_relationships.business_relationship_internal")
 
-        for business_relationship in self.env["res.partner.business_relationship"].search(
-            [("website_user_group_id", "=", False)]
-        ):
-            if business_relationship == internal or "b2c" in business_relationship.name.lower():
+        for business_relationship in self.env[
+            "res.partner.business_relationship"
+        ].search([("website_user_group_id", "=", False)]):
+            if (
+                business_relationship == internal
+                or "b2c" in business_relationship.name.lower()
+            ):
                 business_relationship.website_user_group_id = group_b2c.id
             else:
                 business_relationship.website_user_group_id = group_b2b.id

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
 
-    <record id="view_account_move_business_relationship_filter" model="ir.ui.view">
-      <field name="name">business_relationships.account.move.select</field>
-      <field name="model">account.move</field>
-      <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-      <field name="arch" type="xml">
-        <field name="name" position="after">
-          <field name="business_relationship_id" string="Business Relationship"/>
-        </field>
+  <record id="view_account_move_business_relationship_filter" model="ir.ui.view">
+    <field name="name">business_relationships.account.move.select</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="business_relationship_id" string="Business Relationship"/>
       </field>
-    </record>
+    </field>
+  </record>
 
-  </data>
 </odoo>

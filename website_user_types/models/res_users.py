@@ -10,7 +10,9 @@ class Users(models.Model):
         res = super().create(values)
 
         if res.partner_id and res.partner_id.business_relationship_id:
-            website_user_group = res.partner_id.business_relationship_id.website_user_group_id
+            website_user_group = (
+                res.partner_id.business_relationship_id.website_user_group_id
+            )
             if website_user_group:
                 website_user_group.write({"users": [(4, res.id)]})
 

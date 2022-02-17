@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -58,11 +58,15 @@ class Partner(models.Model):
         readonly=True,
     )
 
-    @api.depends('country_id')
-    @api.depends_context('company')
+    @api.depends("country_id")
+    @api.depends_context("company")
     def _compute_is_fixed_property_pricelist(self):
         for record in self:
-            actual = self.env['ir.property']._get('property_product_pricelist', 'res.partner', 'res.partner,%s' % record.id)
+            actual = self.env["ir.property"]._get(
+                "property_product_pricelist",
+                "res.partner",
+                "res.partner,%s" % record.id,
+            )
             if actual:
                 record.is_fixed_property_pricelist = True
             else:
@@ -81,32 +85,29 @@ class Partner(models.Model):
                 "Property Pricelist search only works operands True and False."
             )
 
-        domain = self.env['ir.property']._get_domain(
-            'property_product_pricelist', 'res.partner'
+        domain = self.env["ir.property"]._get_domain(
+            "property_product_pricelist", "res.partner"
         )
-        properties = actual = self.env['ir.property'].search(domain)
-        res_ids = [
-            int(p["res_id"].split(",")[1])
-            for p in properties.read(['res_id'])
-        ]
+        properties = self.env["ir.property"].search(domain)
+        res_ids = [int(p["res_id"].split(",")[1]) for p in properties.read(["res_id"])]
         return [("id", "in", res_ids)]
 
     is_fixed_property_pricelist = fields.Boolean(
-        'Pricelist is fixed on this contact',
+        "Pricelist is fixed on this contact",
         compute=_compute_is_fixed_property_pricelist,
         search=_search_is_fixed_property_pricelist,
     )
 
     def reset_fixed_property_pricelist(self):
-        self.env['ir.property']._set_multi(
-            'property_product_pricelist',
+        self.env["ir.property"]._set_multi(
+            "property_product_pricelist",
             self._name,
             {self.id: False},
         )
 
     def make_property_pricelist_fixed(self):
-        self.env['ir.property']._set_multi(
-            'property_product_pricelist',
+        self.env["ir.property"]._set_multi(
+            "property_product_pricelist",
             self._name,
             {self.id: self.property_product_pricelist},
         )
@@ -149,10 +150,14 @@ class Partner(models.Model):
                 to_add = tax_included_group
 
             for user_id in record.with_context(active_test=False).user_ids.ids:
-                self._cr.execute("""
+                self._cr.execute(
+                    """
                     DELETE FROM res_groups_users_rel
                     WHERE uid={} AND gid={}
-                """.format(user_id, to_remove.id))
+                """.format(
+                        user_id, to_remove.id
+                    )
+                )
 
                 to_remove.with_context(active_test=False).write(
                     {"users": [(3, user_id)]}
@@ -327,9 +332,7 @@ class Partner(models.Model):
             )
         ):
             user_ids = partner.with_context(active_test=False).user_ids
-            if user_ids and all(
-                u.has_group("base.group_user") for u in user_ids
-            ):
+            if user_ids and all(u.has_group("base.group_user") for u in user_ids):
                 partner.business_relationship_id = internal_users
             elif partner.is_company:
                 partner.business_relationship_id = companies
@@ -345,7 +348,5 @@ class Partner(models.Model):
         # default usecase when you create contacts manually.
         for partner in self.env["res.partner"].browse(child_partner_ids):
             user_ids = partner.with_context(active_test=False).user_ids
-            if user_ids and all(
-                u.has_group("base.group_user") for u in user_ids
-            ):
+            if user_ids and all(u.has_group("base.group_user") for u in user_ids):
                 partner.business_relationship_id = internal_users

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from odoo import api, fields, models
-from odoo.http import request
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     visible_group_b2c = fields.Boolean(
         "Visible Group B2C",
@@ -22,9 +21,10 @@ class ProductTemplate(models.Model):
             if self.user_has_groups("website.group_website_designer"):
                 return can_access
 
-            if (
-                self.user_has_groups("website_user_types.group_website_user_type_b2b")
-                and self.user_has_groups("website_user_types.group_website_user_type_b2c")
+            if self.user_has_groups(
+                "website_user_types.group_website_user_type_b2b"
+            ) and self.user_has_groups(
+                "website_user_types.group_website_user_type_b2c"
             ):
                 return self.visible_group_b2c or self.visible_group_b2b
             elif self.user_has_groups("website_user_types.group_website_user_type_b2b"):

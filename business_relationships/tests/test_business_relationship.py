@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from odoo.tests import tagged
-from odoo.addons.business_relationships.tests.common import BusinessRelationshipsTestUsers
+from odoo.addons.business_relationships.tests.common import (
+    BusinessRelationshipsTestUsers,
+)
 
 
 @tagged("post_install", "-at_install")
 class TestBusinessRelationship(BusinessRelationshipsTestUsers):
-
     def test_switch_b2b2tax_included(self):
         tax_excluded = "account.group_show_line_subtotals_tax_excluded"
         tax_included = "account.group_show_line_subtotals_tax_included"
@@ -21,7 +22,9 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
         # self.assertEqual(self.user_company.has_group(tax_excluded), True)
         # self.assertEqual(self.user_supplier.has_group(tax_excluded), True)
 
-        self.business_relationship_b2b.show_line_subtotals_tax_selection = "tax_included"
+        self.business_relationship_b2b.show_line_subtotals_tax_selection = (
+            "tax_included"
+        )
 
         # test it remains unchanged
         self.assertEqual(self.user_portal.has_group(tax_included), True)
@@ -45,7 +48,9 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
         # self.assertEqual(self.user_employee.has_group(tax_included), True)
         # self.assertEqual(self.user_portal.has_group(tax_included), True)
 
-        self.business_relationship_b2c.show_line_subtotals_tax_selection = "tax_excluded"
+        self.business_relationship_b2c.show_line_subtotals_tax_selection = (
+            "tax_excluded"
+        )
 
         # test it remains unchanged
         self.assertEqual(self.user_employee.has_group(tax_included), False)
@@ -69,7 +74,9 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
         # self.assertEqual(self.user_employee.has_group(tax_included), True)
         self.assertEqual(self.user_odoo_root.has_group(tax_excluded), True)
 
-        self.business_relationship_internal.show_line_subtotals_tax_selection = "tax_included"
+        self.business_relationship_internal.show_line_subtotals_tax_selection = (
+            "tax_included"
+        )
 
         # test it remains unchanged
         self.assertEqual(self.user_supplier.has_group(tax_excluded), True)

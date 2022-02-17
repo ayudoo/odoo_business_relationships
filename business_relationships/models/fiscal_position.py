@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class AccountFiscalPosition(models.Model):
@@ -32,7 +32,6 @@ class AccountFiscalPosition(models.Model):
 
         # add business relationship domain
         if business_relationship:
-            # base_domain.append(('business_relationship_ids', '=', business_relationship))
             base_domain += [
                 ("|"),
                 ("business_relationship_ids", "=", business_relationship.id),
@@ -45,7 +44,6 @@ class AccountFiscalPosition(models.Model):
             ("country_id", "=", False),
             ("country_group_id", "=", False),
         ]
-        null_business_relationship_dom = [("business_relationship_ids", "=", False)]
 
         if zipcode:
             zip_domain = [("zip_from", "<=", zipcode), ("zip_to", ">=", zipcode)]
@@ -58,7 +56,8 @@ class AccountFiscalPosition(models.Model):
 
         # Build domain to search records with exact matching criteria
         fpos = self.search(domain_country + state_domain + zip_domain, limit=1)
-        # return records that fit the most the criteria, and fallback on less specific fiscal positions if any can be found
+        # return records that fit the most the criteria, and fallback on less specific
+        # fiscal positions if any can be found
         if not fpos and state_id:
             fpos = self.search(domain_country + null_state_dom + zip_domain, limit=1)
         if not fpos and zipcode:

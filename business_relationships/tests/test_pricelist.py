@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
-from unittest.mock import patch
-
-from odoo.addons.business_relationships.tests.common import BusinessRelationshipsTestCommon
+from odoo.addons.business_relationships.tests.common import (
+    BusinessRelationshipsTestCommon,
+)
 from odoo.tests import tagged
-from odoo.tests.common import HttpCase, TransactionCase
-from odoo.tools import DotDict
-
-
-"""
-The first test cases test the Odoo default behavior, so we do not break it
-"""
 
 
 @tagged("post_install", "-at_install")
@@ -94,10 +87,12 @@ class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
         self.assertEqual(test_partner_property2.property_product_pricelist, list_europe)
 
     def test_sale_order_shipping_pricelist(self):
-        partner = self.env['res.partner'].create({
-            "name": "Partner",
-            "business_relationship_id": self.business_relationship_b2c_shipping.id,
-        })
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Partner",
+                "business_relationship_id": self.business_relationship_b2c_shipping.id,
+            }
+        )
         public_pricelist = self.env.ref("product.list0")
         self.assertEqual(partner.property_product_pricelist, public_pricelist)
 
@@ -108,15 +103,19 @@ class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
                 "sequence": 100,
             }
         )
-        shipping = self.env['res.partner'].create({
-            "name": "Shipping Address",
-            "parent_id": partner.id,
-            "property_product_pricelist": other_pricelist.id,
-        })
+        shipping = self.env["res.partner"].create(
+            {
+                "name": "Shipping Address",
+                "parent_id": partner.id,
+                "property_product_pricelist": other_pricelist.id,
+            }
+        )
 
-        sale_order = self.env["sale.order"].create({
-            "partner_id": partner.id,
-        })
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": partner.id,
+            }
+        )
         sale_order.partner_shipping_id = shipping
         self.assertEqual(sale_order.pricelist_id, other_pricelist)
 
@@ -152,7 +151,14 @@ class TestPricelist(BusinessRelationshipsTestCommon):
                 "name": "Benelux B2C/Internal",
                 "country_group_ids": [(4, cls.benelux.id)],
                 "business_relationship_ids": [
-                    (6, 0, [cls.business_relationship_b2c.id, cls.business_relationship_internal.id])
+                    (
+                        6,
+                        0,
+                        [
+                            cls.business_relationship_b2c.id,
+                            cls.business_relationship_internal.id,
+                        ],
+                    )
                 ],
                 "sequence": 1,
             }
@@ -177,7 +183,9 @@ class TestPricelist(BusinessRelationshipsTestCommon):
         cls.list_internal = cls.env["product.pricelist"].create(
             {
                 "name": "B2C/Internal",
-                "business_relationship_ids": [(6, 0, [cls.business_relationship_internal.id])],
+                "business_relationship_ids": [
+                    (6, 0, [cls.business_relationship_internal.id])
+                ],
                 "sequence": 4,
             }
         )
@@ -258,7 +266,9 @@ class TestPricelist(BusinessRelationshipsTestCommon):
             {
                 "name": "Hugo",
                 "country_id": self.env.ref("base.nl").id,
-                "business_relationship_id": self.env.ref("business_relationships.business_relationship_b2b").id,
+                "business_relationship_id": self.env.ref(
+                    "business_relationships.business_relationship_b2b"
+                ).id,
             }
         )
         self.assertEqual(

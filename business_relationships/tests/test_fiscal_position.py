@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo.addons.business_relationships.tests.common import BusinessRelationshipsTestUsers
-from odoo.tests import common
+from odoo.addons.business_relationships.tests.common import (
+    BusinessRelationshipsTestUsers,
+)
 
 
 class TestFiscalPosition(BusinessRelationshipsTestUsers):
@@ -17,7 +18,9 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
         cls.de_b2c = cls.fp.create(
             {
                 "name": "DE B2C",
-                "business_relationship_ids": [(6, 0, [cls.business_relationship_b2c.id])],
+                "business_relationship_ids": [
+                    (6, 0, [cls.business_relationship_b2c.id])
+                ],
                 "auto_apply": True,
                 "country_id": cls.de.id,
                 "vat_required": False,
@@ -28,7 +31,14 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
             {
                 "name": "BG B2C",
                 "business_relationship_ids": [
-                    (6, 0, [cls.business_relationship_b2c.id, cls.business_relationship_internal.id])
+                    (
+                        6,
+                        0,
+                        [
+                            cls.business_relationship_b2c.id,
+                            cls.business_relationship_internal.id,
+                        ],
+                    )
                 ],
                 "auto_apply": True,
                 "country_id": cls.bg.id,
@@ -39,7 +49,9 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
         cls.bg_b2b = cls.fp.create(
             {
                 "name": "BG B2B",
-                "business_relationship_ids": [(6, 0, [cls.business_relationship_b2b.id])],
+                "business_relationship_ids": [
+                    (6, 0, [cls.business_relationship_b2b.id])
+                ],
                 "auto_apply": True,
                 "country_id": cls.bg.id,
                 "vat_required": True,
@@ -50,7 +62,14 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
             {
                 "name": "EU B2C",
                 "business_relationship_ids": [
-                    (6, 0, [cls.business_relationship_b2c.id, cls.business_relationship_internal.id])
+                    (
+                        6,
+                        0,
+                        [
+                            cls.business_relationship_b2c.id,
+                            cls.business_relationship_internal.id,
+                        ],
+                    )
                 ],
                 "auto_apply": True,
                 "country_group_id": cls.env.ref("base.europe").id,
@@ -61,7 +80,9 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
         cls.europe_b2b_without_vat = cls.fp.create(
             {
                 "name": "EU B2B without VAT",
-                "business_relationship_ids": [(6, 0, [cls.business_relationship_b2b.id])],
+                "business_relationship_ids": [
+                    (6, 0, [cls.business_relationship_b2b.id])
+                ],
                 "auto_apply": True,
                 "country_group_id": cls.env.ref("base.europe").id,
                 "vat_required": False,
@@ -71,7 +92,9 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
         cls.europe_b2b = cls.fp.create(
             {
                 "name": "EU B2B with VAT",
-                "business_relationship_ids": [(6, 0, [cls.business_relationship_b2b.id])],
+                "business_relationship_ids": [
+                    (6, 0, [cls.business_relationship_b2b.id])
+                ],
                 "auto_apply": True,
                 "country_group_id": cls.env.ref("base.europe").id,
                 "vat_required": True,

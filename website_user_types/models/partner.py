@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models
 
 
 class Partner(models.Model):
@@ -14,9 +14,7 @@ class Partner(models.Model):
         category_id = self.env.ref(
             "website_user_types.module_category_website_user_types"
         )
-        return self.env['res.groups'].search([
-            ('category_id', '=', category_id.id)
-        ])
+        return self.env["res.groups"].search([("category_id", "=", category_id.id)])
 
     def _set_website_user_groups(self):
         website_user_groups = self._get_website_user_groups()
@@ -35,4 +33,6 @@ class Partner(models.Model):
                     if website_user_group == group:
                         website_user_group.write({"users": [(4, user_id.id)]})
                     else:
-                        website_user_group.with_context(active_test=False).write({"users": [(3, user_id.id)]})
+                        website_user_group.with_context(active_test=False).write(
+                            {"users": [(3, user_id.id)]}
+                        )

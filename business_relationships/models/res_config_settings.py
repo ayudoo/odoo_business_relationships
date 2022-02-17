@@ -28,7 +28,9 @@ class ResConfigSettings(models.TransientModel):
         selection_add=[
             ("business_relationship_dependent", "Business Relationship Dependent"),
         ],
-        ondelete={"business_relationship_dependent": _ondelete_business_relationship_dependent},
+        ondelete={
+            "business_relationship_dependent": _ondelete_business_relationship_dependent
+        },
         # default="tax_excluded",
     )
 
@@ -46,20 +48,25 @@ class ResConfigSettings(models.TransientModel):
             tax_selection_changed = True
             # Users._check_one_user_type is executed whenever a group is set or removed
             # during super().set_values()
-            # This means, when switching away from business_relationship_dependent, first we
-            # need to remove the business relationship dependent groups before super is called
+            # This means, when switching away from business_relationship_dependent,
+            # first we  need to remove the business relationship dependent groups
+            # before super is called
             if current_tax_selection == "business_relationship_dependent":
                 self._reset_business_relationship_dependent_groups()
 
         res = super().set_values()
 
         if tax_selection_changed:
-            # when switching to business_relationship_dependent, there are no more implied
-            # tax_selection groups and we need to set the business relationship ones
-            if self.show_line_subtotals_tax_selection == "business_relationship_dependent":
-                for partner in self.env["res.partner"].with_context(
-                    active_test=False
-                ).search([]):
+            # when switching to business_relationship_dependent, there are no more
+            # implied tax_selection groups and we need to set the business relationship
+            # ones
+            if (
+                self.show_line_subtotals_tax_selection
+                == "business_relationship_dependent"
+            ):
+                for partner in (
+                    self.env["res.partner"].with_context(active_test=False).search([])
+                ):
                     partner._set_tax_groups()
 
         return res

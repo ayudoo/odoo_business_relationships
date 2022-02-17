@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class WebsiteRedirect(models.Model):
@@ -8,7 +8,10 @@ class WebsiteRedirect(models.Model):
     group_ids = fields.Many2many(
         "res.groups",
         string="Visible Groups",
-        help="The user needs to be in at least one of these groups for the redirect to have effect",
+        help=(
+            "The user needs to be in at least one of these groups for the redirect to"
+            + " have effect"
+        ),
     )
 
     redirect_type = fields.Selection(

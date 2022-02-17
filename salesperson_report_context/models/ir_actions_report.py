@@ -4,11 +4,11 @@ from odoo.exceptions import UserError
 
 
 class IrActionsReport(models.Model):
-    _inherit = 'ir.actions.report'
+    _inherit = "ir.actions.report"
 
     def _render_template(self, template, values=None):
-        model = values.get('doc_model', False)
-        docs = values.get('docs', False)
+        model = values.get("doc_model", False)
+        docs = values.get("docs", False)
 
         if model == "sale.order" and docs:
             self._validate_same_tax_display_settings(docs.user_id)
@@ -33,7 +33,7 @@ class IrActionsReport(models.Model):
         )
 
         for user in users:
-            if user.has_group('account.group_show_line_subtotals_tax_excluded'):
+            if user.has_group("account.group_show_line_subtotals_tax_excluded"):
                 if tax_excluded is None:
                     tax_excluded = True
 

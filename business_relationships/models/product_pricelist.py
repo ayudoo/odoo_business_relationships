@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api, tools
+from odoo import fields, models
 
 
 class Pricelist(models.Model):
@@ -52,7 +52,8 @@ class Pricelist(models.Model):
             if not val or not val._get_partner_pricelist_multi_filter_hook()
         ]
         if remaining_partner_ids:
-            # get fallback pricelist when no pricelist for a given country or business relationship
+            # get fallback pricelist when no pricelist for a given country or business
+            # relationship
             pl_fallback = (
                 Pricelist.search(
                     pl_domain
@@ -78,7 +79,8 @@ class Pricelist(models.Model):
             for group in groups:
                 country_id = group["country_id"] and group["country_id"][0]
                 business_relationship_id = (
-                    group["business_relationship_id"] and group["business_relationship_id"][0]
+                    group["business_relationship_id"]
+                    and group["business_relationship_id"][0]
                 )
 
                 if country_id:
@@ -105,7 +107,11 @@ class Pricelist(models.Model):
                         pl_domain
                         + [
                             ("country_group_ids", "=", False),
-                            ("business_relationship_ids", "=", business_relationship_id),
+                            (
+                                "business_relationship_ids",
+                                "=",
+                                business_relationship_id,
+                            ),
                         ],
                         limit=1,
                     )

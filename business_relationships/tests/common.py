@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields
-from odoo.tests.common import TransactionCase, SavepointCase, tagged
+from odoo.tests.common import SavepointCase
 
 
 class BusinessRelationshipsTestCommon(SavepointCase):
@@ -8,8 +7,10 @@ class BusinessRelationshipsTestCommon(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.business_relationship_b2b = cls.env.ref("business_relationships.business_relationship_b2b")
-        cls.business_relationship_b2c = cls.env.ref("business_relationships.business_relationship_b2c")
+        cls.business_relationship_b2b = cls.env.ref(
+            "business_relationships.business_relationship_b2b")
+        cls.business_relationship_b2c = cls.env.ref(
+            "business_relationships.business_relationship_b2c")
         cls.business_relationship_b2c_shipping = cls.business_relationship_b2c.copy()
         cls.business_relationship_b2c_shipping.name = "B2C individual"
         cls.business_relationship_b2c_shipping.child_contact_pricelist = "individual"
@@ -35,9 +36,9 @@ class BusinessRelationshipsTestUsers(BusinessRelationshipsTestCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.bg = fr = cls.env.ref("base.bg")
-        cls.de = fr = cls.env.ref("base.de")
-        cls.us = fr = cls.env.ref("base.us")
+        cls.bg = cls.env.ref("base.bg")
+        cls.de = cls.env.ref("base.de")
+        cls.us = cls.env.ref("base.us")
 
         cls.user_odoo_root = cls.env.ref('base.user_root')
         cls.user_portal = cls._create_portal_user(

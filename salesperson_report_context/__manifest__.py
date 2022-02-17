@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 {
+    "author": "Michael Jurke, Ayudoo Ltd",
     "name": "Salesperson Report Context",
-    "summary": """
-        Sale order and invoice reports are created in salesperson user context""",
+    "version": "0.1",
+    "summary": "Salesperson tax context for reports",
     "description": """
         Sale order and invoice reports are created in salesperson user context
     """,
-    "author": "Michael Jurke, Ayudoo Ltd",
-    "category": "Sales",
-    "version": "0.1",
+    "license": "LGPL-3",
+    "category": "Sales/Sales",
+    "support": "support@ayudoo.bg",
     "depends": [
         "base",
         "sale",
     ],
     "data": [
     ],
-    "license": "LGPL-3",
 }

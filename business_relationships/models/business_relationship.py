@@ -63,8 +63,8 @@ class BusinessRelationship(models.Model):
     )
 
     team_id = fields.Many2one(
-        'crm.team',
-        string='Sales Team',
+        "crm.team",
+        string="Sales Team",
     )
 
     enforce_team_website = fields.Boolean(
@@ -73,8 +73,8 @@ class BusinessRelationship(models.Model):
     )
 
     salesperson_id = fields.Many2one(
-        'res.users',
-        string='Salesperson',
+        "res.users",
+        string="Salesperson",
     )
 
     enforce_salesperson_website = fields.Boolean(
@@ -83,18 +83,24 @@ class BusinessRelationship(models.Model):
     )
 
     analytic_account_id = fields.Many2one(
-        'account.analytic.account',
-        string='Analytic Account',
+        "account.analytic.account",
+        string="Analytic Account",
     )
 
-    @api.onchange('show_line_subtotals_tax_selection', 'salesperson_id')
+    @api.onchange("show_line_subtotals_tax_selection", "salesperson_id")
     def _compute_salesperson_tax_selection_matches(self):
         for record in self:
             if not record.salesperson_id:
                 record.salesperson_tax_selection_matches = True
             else:
-                s_tax_display = record.salesperson_id.partner_id.business_relationship_id.show_line_subtotals_tax_selection
-                record.salesperson_tax_selection_matches = record.show_line_subtotals_tax_selection == s_tax_display
+                br = record.salesperson_id.partner_id.business_relationship_id
+                if (
+                    record.show_line_subtotals_tax_selection
+                    == br.show_line_subtotals_tax_selection
+                ):
+                    record.salesperson_tax_selection_matches = True
+                else:
+                    record.salesperson_tax_selection_matches = False
 
     salesperson_tax_selection_matches = fields.Boolean(
         string="Salesperson Tax Display Matches",
@@ -181,16 +187,20 @@ class BusinessRelationship(models.Model):
         for user_id in self.partner_ids.with_context(active_test=False).user_ids.ids:
             # This is odd: adding works for inactive users, but removal not:
             # We need to remove it manually
-            self._cr.execute("""
+            self._cr.execute(
+                """
                 DELETE FROM res_groups_users_rel
                 WHERE uid={} AND gid={}
-            """.format(user_id, to_remove.id))
+            """.format(
+                    user_id, to_remove.id
+                )
+            )
             # and also from the cache:
             to_remove.write({"users": [(3, user_id)]})
             to_add.write({"users": [(4, user_id)]})
 
     def open_invoicing_settings(self):
-        """ Utility method used to add an "Open Settings" button in views """
+        """Utility method used to add an "Open Settings" button in views"""
         self.ensure_one()
 
         return {

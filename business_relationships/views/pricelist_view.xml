@@ -1,46 +1,42 @@
 <odoo>
-  <data>
-
-    <record id="product_pricelist_view" model="ir.ui.view">
-      <field name="name">business_relationships.product.pricelist.form</field>
-      <field name="model">product.pricelist</field>
-      <field name="inherit_id" ref="product.product_pricelist_view"/>
-      <field name="arch" type="xml">
-        <field name="country_group_ids" position="before">
-          <field
-            name="business_relationship_ids"
-            string="Business Rel."
-            widget="many2many_tags"
-            options="{'color_field': 'color'}"/>
-        </field>
+  <record id="product_pricelist_view" model="ir.ui.view">
+    <field name="name">business_relationships.product.pricelist.form</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view"/>
+    <field name="arch" type="xml">
+      <field name="country_group_ids" position="before">
+        <field
+          name="business_relationship_ids"
+          string="Business Rel."
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"/>
       </field>
-    </record>
+    </field>
+  </record>
 
-    <record id="product_pricelist_view_tree" model="ir.ui.view">
-      <field name="name">business_relationships.product.pricelist.tree</field>
-      <field name="model">product.pricelist</field>
-      <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
-      <field name="arch" type="xml">
-        <field name="currency_id" position="after">
-          <field
-            name="business_relationship_ids"
-            widget="many2many_tags"
-            options="{'color_field': 'color'}"/>
-          <field name="country_group_ids" widget="many2many_tags"/>
-        </field>
+  <record id="product_pricelist_view_tree" model="ir.ui.view">
+    <field name="name">business_relationships.product.pricelist.tree</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+    <field name="arch" type="xml">
+      <field name="currency_id" position="after">
+        <field
+          name="business_relationship_ids"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"/>
+        <field name="country_group_ids" widget="many2many_tags"/>
       </field>
-    </record>
+    </field>
+  </record>
 
-    <record model="ir.ui.view" id="product_pricelist_view_search">
-      <field name="name">business_relationships.product.pricelist.search</field>
-      <field name="model">product.pricelist</field>
-      <field name="inherit_id" ref="product.product_pricelist_view_search"/>
-      <field name="arch" type="xml">
-        <field name="name" position="after">
-          <field name="business_relationship_ids" string="Business Relationship"/>
-        </field>
+  <record model="ir.ui.view" id="product_pricelist_view_search">
+    <field name="name">business_relationships.product.pricelist.search</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view_search"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="business_relationship_ids" string="Business Relationship"/>
       </field>
-    </record>
-
-  </data>
+    </field>
+  </record>
 </odoo>
