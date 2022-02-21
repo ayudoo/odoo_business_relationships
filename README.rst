@@ -30,9 +30,9 @@ Configurable business relationship types on contact level. Usable for
 * assign default salesperson and analytic account to sale orders
 * restrict website menus, pages, redirects and block visibility to certain users
 * use different access permission groups for portal users
+* restrict product visibility to certain user groups
 * create and configure your own business relationships
-* individual pricelists for child contacts
-* sale order pricelists by shipping address
+* individual pricelists for child contacts and sale order pricelists by shipping address
 
 
 Typical use cases
