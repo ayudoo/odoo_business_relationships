@@ -16,7 +16,7 @@
     "category": "Sales/Sales",
     "depends": [
         "base",
-        "website",
+        "website_sale",
         "business_relationships",
     ],
     "data": [
