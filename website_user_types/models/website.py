@@ -16,11 +16,11 @@ class Website(models.Model):
         if self.user_has_groups(
             "website_user_types.group_website_user_type_b2b"
         ) and self.user_has_groups("website_user_types.group_website_user_type_b2c"):
-            domain.append(
+            domain = domain + [
                 ("|"),
                 ("visible_group_b2c", "=", True),
                 ("visible_group_b2b", "=", True),
-            )
+            ]
         else:
             if self.user_has_groups("website_user_types.group_website_user_type_b2b"):
                 domain.append(
