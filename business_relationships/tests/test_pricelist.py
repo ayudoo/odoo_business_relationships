@@ -45,7 +45,6 @@ class TestPricelistCompanyProperty(BusinessRelationshipsTestCommon):
                 "name": "Max",
             }
         )
-
         self.assertEqual(
             test_partner_other_company.property_product_pricelist, list_other_currency
         )

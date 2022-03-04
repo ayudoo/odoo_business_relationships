@@ -117,10 +117,12 @@ class TestPartner(BusinessRelationshipsTestUsers):
 
     def test_individual_child_contact_pricelist(self):
         Pricelist = self.env["product.pricelist"]
+        # put it after the sub pricelist, so we check country prevalence
         pricelist_main = Pricelist.create(
             {
                 "name": "Main Pricelist",
                 "country_group_ids": [self.env.ref("base.europe").id],
+                "sequence": 1,
                 "business_relationship_ids": [
                     self.business_relationship_b2c.id,
                     self.business_relationship_b2c_shipping.id,
@@ -131,6 +133,7 @@ class TestPartner(BusinessRelationshipsTestUsers):
         pricelist_sub = Pricelist.create(
             {
                 "name": "Sub Pricelist",
+                "sequence": 0,
                 "business_relationship_ids": [
                     self.business_relationship_b2c.id,
                     self.business_relationship_b2c_shipping.id,
