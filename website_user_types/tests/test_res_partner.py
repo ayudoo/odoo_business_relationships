@@ -36,3 +36,30 @@ class TestPartner(BusinessRelationshipsTestUsers):
 
         self.assertEqual(self.user_company.has_group(group_b2c), True)
         self.assertEqual(self.user_company.has_group(group_b2b), False)
+
+    def test_grant_portal_access(self):
+        # copying the template user should not cause multiple user groups
+        group_b2b = "website_user_types.group_website_user_type_b2b"
+        group_b2c = "website_user_types.group_website_user_type_b2c"
+
+        partner = self.env["res.partner"].create(
+            {
+                "name": "B2B User",
+                "country_id": self.bg.id,
+                "email": "b2btest@example.com",
+                "business_relationship_id": self.business_relationship_b2b.id,
+            }
+        )
+
+        wizard = self.env['portal.wizard'].with_context({
+            "active_ids": partner.ids
+        }).create({})
+        wizard.user_ids.write({"in_portal": True})
+
+        wizard.action_apply()
+
+        self.assertEqual(len(partner.user_ids), 1)
+        user = partner.user_ids
+
+        self.assertTrue(user.has_group(group_b2b))
+        self.assertFalse(user.has_group(group_b2c))

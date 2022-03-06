@@ -7,6 +7,7 @@ class Users(models.Model):
 
     @api.model
     def create(self, values):
+        self._strip_website_user_groups(values)
         res = super().create(values)
 
         if res.partner_id and res.partner_id.business_relationship_id:
@@ -17,6 +18,21 @@ class Users(models.Model):
                 website_user_group.write({"users": [(4, res.id)]})
 
         return res
+
+    def _strip_website_user_groups(self, values):
+        # the template user will have a wut group that we need to filter
+        # TODO consider to implement different template users according to br
+        wut_ids = self.env["res.partner.business_relationship"].search(
+            []
+        ).website_user_group_id.ids
+
+        group_id = values.get("groups_id", [])
+        if group_id:
+            for rels in group_id:
+                if rels[0] == 6:
+                    for wut_id in wut_ids:
+                        if wut_id in rels[2]:
+                            rels[2].remove(wut_id)
 
     @api.model
     def get_user_website_user_group_class(self):
