@@ -28,11 +28,11 @@
       <field name="type" position="before">
         <label for="business_relationship_id" string="Business Rel."/>
         <div>
-          <field name="same_as_parent_business_relationship_id" invisible="1"/>
+          <field name="can_change_business_relationship_id" invisible="1"/>
           <field
             name="business_relationship_id"
             style="width: 50%;"
-            attrs="{'readonly': [('same_as_parent_business_relationship_id','=',True)]}"/>
+            attrs="{'readonly': [('can_change_business_relationship_id','=',False)]}"/>
           <field
             name="default_business_relationship_id"
             readonly="1"
@@ -43,8 +43,13 @@
         <label for="open_commercial_entity" string=""/>
         <div
           name="parent_business_relationship"
-          attrs="{'invisible': [('parent_id','=',False)]}"
-          class="oe_edit_only">
+          attrs="{'invisible': [
+            ('|'),
+            ('parent_id','=',False),
+            ('can_change_business_relationship_id','=',True),
+          ]}"
+          class="oe_edit_only"
+          style="margin-right: -30px;">
           <p>is managed on
             <button
               name="open_commercial_entity"

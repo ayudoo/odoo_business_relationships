@@ -410,10 +410,10 @@ msgid "Salesperson Tax Display Matches"
 msgstr "Steuern werden dem Verkäufer auf gleiche Art dargestellt"
 
 #. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner__same_as_parent_business_relationship_id
-#: model:ir.model.fields,field_description:business_relationships.field_res_users__same_as_parent_business_relationship_id
-msgid "Same As Parent Business Relationship"
-msgstr "Entspricht Eltern-Geschäftsbeziehung"
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner__can_change_business_relationship_id
+#: model:ir.model.fields,field_description:business_relationships.field_res_users__can_change_business_relationship_id
+msgid "Can change Business Relationship"
+msgstr "Geschäftsbeziehung kann geändert werden"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__self_ref_ids

@@ -41,16 +41,26 @@ class Partner(models.Model):
         compute=_compute_default_business_relationship_id,
     )
 
-    def _compute_same_as_parent_business_relationship_id(self):
-        if self.business_relationship_id and self.parent_id:
-            self.same_as_parent_business_relationship_id = (
-                self.business_relationship_id == self.parent_id.business_relationship_id
-            )
-        else:
-            self.same_as_parent_business_relationship_id = False
+    def _compute_can_change_business_relationship_id(self):
+        for record in self:
+            # For convenience, if a partner has a login, you can change it's
+            # business relationship even if it has a parent_id. This is the typical
+            # case for employees, being sub contacts of the company.
+            if record.user_ids and any(
+                user.has_group("base.group_user") for user in record.user_ids
+            ):
+                record.can_change_business_relationship_id = True
+            # on missmatch, it's editable so it can be fixed
+            elif record.business_relationship_id and record.parent_id:
+                record.can_change_business_relationship_id = (
+                    record.business_relationship_id
+                    != record.parent_id.business_relationship_id
+                )
+            else:
+                record.can_change_business_relationship_id = True
 
-    same_as_parent_business_relationship_id = fields.Boolean(
-        compute=_compute_same_as_parent_business_relationship_id,
+    can_change_business_relationship_id = fields.Boolean(
+        compute=_compute_can_change_business_relationship_id,
     )
 
     child_contact_pricelist = fields.Selection(
