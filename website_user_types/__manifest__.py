@@ -16,11 +16,13 @@
     "category": "Sales/Sales",
     "depends": [
         "base",
+        "website",
         "website_sale",
         "business_relationships",
     ],
     "data": [
         "security/website_user_type_security.xml",
+        "security/website_security.xml",
         "data/business_relationship_data.xml",
         "views/business_relationship_view.xml",
         "views/product_template_view.xml",

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- changing menu permissions as little as possible -->
+  <record id="website.website_menu" model="ir.rule">
+    <field
+      name="groups"
+      eval="[(4, ref('base.group_portal')), (4, ref('base.group_public'))]"/>
+  </record>
+
+  <!-- while website user groups are accessible by all employees, other restrictions still
+  work -->
+  <record id="website_menu_group_designer" model="ir.rule">
+    <field name="name">Website menu group user: group_ids</field>
+    <field name="model_id" ref="website.model_website_menu"/>
+    <field name="domain_force">[
+      '|',
+      ('group_ids','=',False),
+      ('group_ids','in',user.groups_id.ids + [user.env.ref('website_user_types.group_website_user_type_b2c').id,user.env.ref('website_user_types.group_website_user_type_b2b').id]),
+    ]</field>
+    <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+  </record>
+
+</odoo>
