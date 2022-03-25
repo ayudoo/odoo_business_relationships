@@ -40,3 +40,26 @@ class WebsiteSaleShipping(WebsiteSale):
                 return request.redirect("/shop/payment")
 
         return super().confirm_order(**post)
+
+    def values_postprocess(self, order, *args, **kwargs):
+        new_values, errors, error_msg = super().values_postprocess(
+            order, *args, **kwargs
+        )
+
+        br = order.partner_id.business_relationship_id
+
+        if br:
+            if br.enforce_salesperson_website and br.salesperson_id:
+                # the salesperson was set on create
+                if order.user_id != br.salesperson_id:
+                    new_values["user_id"] = br.salesperson_id.id
+                elif "user_id" in new_values:
+                    del new_values["user_id"]
+
+            if br.enforce_team_website and br.team_id:
+                if order.team_id != br.team_id:
+                    new_values["team_id"] = br.team_id.id
+                elif "team_id" in new_values:
+                    del new_values["team_id"]
+
+        return new_values, errors, error_msg
