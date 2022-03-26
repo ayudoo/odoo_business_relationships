@@ -41,6 +41,7 @@ class Partner(models.Model):
         compute=_compute_default_business_relationship_id,
     )
 
+    @api.depends("business_relationship_id")
     def _compute_can_change_business_relationship_id(self):
         for record in self:
             # For convenience, if a partner has a login, you can change it's
