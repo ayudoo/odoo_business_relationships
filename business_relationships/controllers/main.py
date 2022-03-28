@@ -16,8 +16,7 @@ class WebsiteSaleShipping(WebsiteSale):
             order = request.website.sale_get_order()
 
             if (
-                order.partner_id != order.partner_shipping_id
-                and order.partner_id.property_product_pricelist
+                order.pricelist_id
                 != order.partner_shipping_id.property_product_pricelist
             ):
                 redirection = self.checkout_redirection(
