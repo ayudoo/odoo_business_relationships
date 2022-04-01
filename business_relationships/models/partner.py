@@ -44,11 +44,17 @@ class Partner(models.Model):
     @api.depends("business_relationship_id")
     def _compute_can_change_business_relationship_id(self):
         for record in self:
-            # For convenience, if a partner has a login, you can change it's
+            # For convenience, if a partner has an internal login, you can change it's
             # business relationship even if it has a parent_id. This is the typical
             # case for employees, being sub contacts of the company.
-            if record.user_ids and any(
-                user.has_group("base.group_user") for user in record.user_ids
+
+            ref = record
+            if hasattr(ref, '_origin'):
+                ref = ref._origin
+            ref = ref.with_context(active_test=False)
+
+            if ref.user_ids and any(
+                user.has_group("base.group_user") for user in ref.user_ids
             ):
                 record.can_change_business_relationship_id = True
             # on missmatch, it's editable so it can be fixed
