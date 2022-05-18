@@ -20,6 +20,7 @@ class Page(models.Model):
         if self.env.user.id != SUPERUSER_ID:
             for record in self:
                 if record.group_ids and record.is_visible:
-                    record.is_visible = (
-                        record.group_ids.ids in request.env.user.groups_id.ids
+                    record.is_visible = any(
+                        gid in request.env.user.groups_id.ids
+                        for gid in record.group_ids.ids
                     )
