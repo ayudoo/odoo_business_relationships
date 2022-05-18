@@ -16,7 +16,9 @@ class Http(models.AbstractModel):
             "|",
             ("redirect_type", "in", ("301", "302")),
             "&",
-            ("redirect_type", "=", "403"),
+            ("redirect_type", "in", ("403", "404")),
+            "|",
+            ("group_ids", "=", False),
             ("group_ids", "in", request.env.user.groups_id.ids),
         ]
         domain += request.website.with_context(with_group_ids=False).website_domain()

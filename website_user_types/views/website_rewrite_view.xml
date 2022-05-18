@@ -14,7 +14,10 @@
         <field
           name="group_ids"
           widget="many2many_tags"
-          attrs="{'invisible': [('redirect_type', '!=', '403')]}"/>
+          attrs="{'invisible': [('redirect_type', 'not in', ['403', '404'])]}"/>
+      </field>
+      <field name="url_to"  position="attributes">
+        <attribute name="attrs">{}</attribute>
       </field>
     </field>
   </record>
