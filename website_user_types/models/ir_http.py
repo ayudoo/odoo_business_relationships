@@ -6,23 +6,10 @@ from odoo.http import request
 class Http(models.AbstractModel):
     _inherit = "ir.http"
 
-    @classmethod
-    def _serve_redirect(cls):
-        req_page = request.httprequest.path
-        domain = [
-            "|",
-            ('url_from', '=', req_page.rstrip('/')),
-            ('url_from', '=', req_page + '/'),
-            "|",
-            ("redirect_type", "in", ("301", "302")),
-            "&",
-            ("redirect_type", "in", ("403", "404")),
-            "|",
-            ("group_ids", "=", False),
-            ("group_ids", "in", request.env.user.groups_id.ids),
-        ]
-        domain += request.website.with_context(with_group_ids=False).website_domain()
-        return request.env["website.rewrite"].sudo().search(domain, limit=1)
+    # Note, we don't need to override _serve_redirect as it is only called in
+    # _serve_page, and website_domain will contain the group filter
+    # @classmethod
+    # def _serve_redirect(cls):
 
     @classmethod
     def _serve_page(cls):
