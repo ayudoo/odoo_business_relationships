@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import api, models
+from odoo import api, models, tools
 
 
 class Website(models.Model):
@@ -7,6 +7,8 @@ class Website(models.Model):
 
     @api.model
     def website_domain(self, website_id=False):
+        # there is no perfect solution, either fully override _serve_page, or
+        # use with_group_ids context for website but not view to keep compatibility high
         domain = super().website_domain(website_id=website_id)
         group_ids = self.env.context.get("with_group_ids", False)
         if group_ids:
@@ -45,3 +47,19 @@ class Website(models.Model):
                 )
 
         return domain
+
+
+class View(models.Model):
+    _inherit = "ir.ui.view"
+    _name = "ir.ui.view"
+
+    @api.model
+    @tools.ormcache_context('self.env.uid', 'self.env.su', 'xml_id', keys=('website_id',))
+    def get_view_id(self, xml_id):
+        self = self.with_context(with_group_ids=False)
+        return super().get_view_id(xml_id)
+
+    @api.model
+    def _get_inheriting_views_arch_domain(self, model):
+        self = self.with_context(with_group_ids=False)
+        return super()._get_inheriting_views_arch_domain(model)
