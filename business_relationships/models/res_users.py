@@ -5,6 +5,16 @@ from odoo import api, models
 class Users(models.Model):
     _inherit = "res.users"
 
+    # TODO !!!
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     users = super().create(vals_list)
+    #     for user in users:
+    #         if user.has_group("base.group_user"):
+    #             user.partner_id
+    #
+    #     ...
+
     @api.model
     def create(self, values):
         # Pass on the group_ids so we can assign the default business relationship on
