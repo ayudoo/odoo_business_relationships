@@ -24,7 +24,8 @@ class SaleOrder(models.Model):
         shipping_pricelist_id = self.partner_shipping_id.property_product_pricelist
         if shipping_pricelist_id and shipping_pricelist_id != self.pricelist_id:
             if self.business_relationship_id.sale_order_pricelist == "shipping":
-                self.pricelist_id = shipping_pricelist_id.id
+                if self.pricelist_id.id != shipping_pricelist_id.id:
+                    self.pricelist_id = shipping_pricelist_id.id
 
         return res
 
@@ -55,9 +56,3 @@ class SaleOrder(models.Model):
                 values["user_id"] = br.salesperson_id.id
             if br.enforce_team_website and br.team_id:
                 values["team_id"] = br.team_id.id
-
-    def write(self, values):
-        r = super().write(values)
-        if "partner_shipping_id" in values or "partner_id" in values:
-            self.onchange_partner_shipping_id()
-        return r
