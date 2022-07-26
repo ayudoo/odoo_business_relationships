@@ -5,7 +5,7 @@ Business Relationship Types
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-**This module is in beta state. Feel free to provide feedback.**
+**This module is in beta state and currently Odoo 14 only. Feel free to provide feedback.**
 
 Extend your contacts with business relationship types, e.g. `B2C`, `B2B` and
 `Internal` and configure automatic assignment of pricelists and fiscal positions.
