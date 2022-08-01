@@ -116,6 +116,7 @@ class TestPricelistPartnerProperty(BusinessRelationshipsTestCommon):
             }
         )
         sale_order.partner_shipping_id = shipping
+        sale_order.onchange_partner_shipping_id()
         self.assertEqual(sale_order.pricelist_id, other_pricelist)
 
 
