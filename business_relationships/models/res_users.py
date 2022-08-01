@@ -5,30 +5,22 @@ from odoo import api, models
 class Users(models.Model):
     _inherit = "res.users"
 
-    # TODO !!!
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     users = super().create(vals_list)
-    #     for user in users:
-    #         if user.has_group("base.group_user"):
-    #             user.partner_id
-    #
-    #     ...
-
-    @api.model
-    def create(self, values):
-        # Pass on the group_ids so we can assign the default business relationship on
-        # the partner model.
-
-        if "groups_id" in values:
-            self = self.with_context(
-                user_group_ids={
-                    gid
-                    for groups_add in values["groups_id"]
-                    for gid in groups_add[2]
-                    if groups_add[0] == 6
-                }
-            )
-        record = super().create(values)
-        record.partner_id._set_tax_groups()
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        # we cannot know all custom modules, installation order and all group
+        # configurations.
+        # Furthermore, not using model_create_multi notably slows down bulk create.
+        # So, we fix the business relationship of the associated partner
+        # after user creation.
+        users = super().create(vals_list)
+        for user in users:
+            partner = user.partner_id
+            if partner:
+                if user.has_group("base.group_user"):
+                    partner = partner.with_context(
+                        business_relationship_internal_user=True
+                    )
+                default_br = partner._get_default_business_relationship()
+                if default_br and default_br != partner.business_relationship_id:
+                    partner.business_relationship_id = default_br
+        return users

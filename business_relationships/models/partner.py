@@ -232,20 +232,7 @@ class Partner(models.Model):
         if parent_id and parent_id.business_relationship_id:
             return parent_id.business_relationship_id
 
-        internal = False
-        group_ids = self.env.context.get("user_group_ids", set())
-        if group_ids:
-            group_user_id = self.env.ref("base.group_user").id
-            all_group_ids = set()
-            for group_id in group_ids:
-                all_group_ids.add(group_id)
-                all_group_ids |= set(
-                    self.env["res.groups"].browse(group_id).trans_implied_ids.ids
-                )
-
-            if group_user_id in all_group_ids:
-                internal = True
-
+        internal = self.env.context.get("business_relationship_internal_user", False)
         is_company = values.get("is_company", self.is_company)
         property_supplier_payment_term_id = values.get(
             "property_supplier_payment_term_id", self.property_supplier_payment_term_id
