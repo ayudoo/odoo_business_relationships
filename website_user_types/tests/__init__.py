@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from . import test_business_relationship
-from . import test_res_partner
+from . import (
+    test_business_relationship,
+    test_res_partner,
+    test_res_users,
+)
