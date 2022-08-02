@@ -25,7 +25,7 @@
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
 
-      <field name="type" position="before">
+      <xpath expr="//span[@name='address_name']" position="before">
         <label for="business_relationship_id" string="Business Rel."/>
         <div>
           <field name="can_change_business_relationship_id" invisible="1"/>
@@ -57,7 +57,7 @@
               string="the parent contact"
               class="oe_link"/></p>
         </div>
-      </field>
+      </xpath>
     </field>
   </record>
 

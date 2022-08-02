@@ -5,7 +5,7 @@ Business Relationship Types
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-**This is the Odoo 14 branch.**
+**This is the Odoo 15 branch.**
 
 **This module is in beta state. Feel free to provide feedback.**
 

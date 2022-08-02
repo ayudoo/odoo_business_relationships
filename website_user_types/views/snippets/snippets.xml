@@ -2,11 +2,14 @@
 <odoo>
 
   <template id="snippet_options" inherit_id="website.snippet_options">
-    <xpath expr="//div[@data-js='ScrollButton']" position="after">
+    <xpath expr="//we-select[@data-save-attribute='visibilityValueLogged']" position="before">
+
       <div
         data-option-name="portalGroupVisibility"
         data-selector="section,.s_mega_menu_multi_menus > .container > .row > div, a">
-        <we-select string="Visibility">
+        <we-select
+          string="⌙ User Groups"
+          data-dependencies="visibility_conditional">
           <we-button data-select-class="" title="All Website User Types">All Website User Types</we-button>
           <we-button data-select-class="restrict_to_wut_group_b2b" title="Group B2B">Group B2B</we-button>
           <we-button data-select-class="restrict_to_wut_group_b2c" title="Group B2C">Group B2C</we-button>

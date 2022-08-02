@@ -30,9 +30,13 @@
         "views/website_rewrite_view.xml",
         "views/website_page_view.xml",
         "views/snippets/snippets.xml",
-        "views/templates/head.xml",
         "views/templates/layout.xml",
     ],
+    "assets": {
+        'web.assets_frontend': [
+            "website_user_types/static/src/scss/frontend.scss",
+        ],
+    },
     "license": "LGPL-3",
     "post_init_hook": "init_website_user_groups",
     "demo": [],

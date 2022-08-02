@@ -30,9 +30,13 @@
         "views/account_move_view.xml",
         "views/pricelist_view.xml",
         "views/fiscal_position_view.xml",
-        "views/templates.xml",
         "report/sale_report_view.xml",
     ],
+    "assets": {
+        'web.assets_backend': [
+            "business_relationships/static/src/scss/backend.scss",
+        ],
+    },
     "application": True,
     "installable": True,
     "post_init_hook": "init_partner_business_relationships",
