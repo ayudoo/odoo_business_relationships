@@ -7,7 +7,7 @@
     <xpath expr="//script[last()]" position="after">
       <link
         rel="stylesheet"
-        href="/website_user_types/static/src/less/frontend.less"/>
+        href="/website_user_types/static/src/scss/frontend.scss"/>
     </xpath>
   </template>
 </odoo>
