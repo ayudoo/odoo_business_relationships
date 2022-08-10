@@ -9,6 +9,20 @@
       <field name="show_line_subtotals_tax_selection" position="after">
         <field name="website_user_group_id"/>
       </field>
+      <field name="child_contact_pricelist" position="after">
+        <field
+          name="update_prices"
+          string="Update On Login/Address Change"/>
+        <div
+          colspan="2"
+          class="mr-3 text-muted"
+          attrs="{'invisible': [
+            ('update_prices', '=', False),
+          ]}"
+          >Note, that pricelists for website sale orders will change according to
+         configuration. This means, that coupons and geo filters for pricelist
+         selection may be ignored.</div>
+      </field>
     </field>
   </record>
 

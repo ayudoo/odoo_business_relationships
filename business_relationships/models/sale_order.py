@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
         res = super().onchange_partner_shipping_id()
         shipping_pricelist_id = self.partner_shipping_id.property_product_pricelist
         if shipping_pricelist_id and shipping_pricelist_id != self.pricelist_id:
-            if self.business_relationship_id.sale_order_pricelist == "shipping":
+            if self.business_relationship_id.update_pricelist_by == "shipping":
                 if self.pricelist_id.id != shipping_pricelist_id.id:
                     self.pricelist_id = shipping_pricelist_id.id
 

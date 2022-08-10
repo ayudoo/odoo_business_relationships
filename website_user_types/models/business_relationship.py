@@ -6,6 +6,15 @@ class BusinessRelationship(models.Model):
     _name = "res.partner.business_relationship"
     _inherit = ["res.partner.business_relationship"]
 
+    update_prices = fields.Boolean(
+        string="Update Prices on Login/Address Change",
+        requied=True,
+        default=True,
+        help="By default, Odoo does not change pricelists or recalculate prices on"
+        + " address or login changes. With this option, pricelists and prices will be"
+        + " updated according to configuration. This option may conflict with Geo IP.",
+    )
+
     def _get_default_website_user_group(self):
         return self.env.ref(
             "website_user_types.group_website_user_type_b2b",

@@ -113,14 +113,10 @@ msgid "By Parent Contact"
 msgstr "Nach Elternkontakt"
 
 #. module: business_relationships
-#: model:ir.model.fields.selection,name:business_relationships.selection__res_partner_business_relationship__sale_order_pricelist__partner
-msgid "By Partner Address"
-msgstr "Nach Kontaktadresse"
-
-#. module: business_relationships
-#: model:ir.model.fields.selection,name:business_relationships.selection__res_partner_business_relationship__sale_order_pricelist__shipping
-msgid "By Shipping Address"
-msgstr "Nach Lieferadresse"
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner__can_change_business_relationship_id
+#: model:ir.model.fields,field_description:business_relationships.field_res_users__can_change_business_relationship_id
+msgid "Can Change Business Relationship"
+msgstr "Geschäftsbeziehung kann geändert werden"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner__child_contact_pricelist
@@ -331,20 +327,9 @@ msgid "Name"
 msgstr ""
 
 #. module: business_relationships
-#: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
-msgid ""
-"Note, that the shipping addresses' pricelists have prevalence.\n"
-"                   This means, that coupons and other geo filters for pricelists are\n"
-"                   ignored if the shipping address differs from the partner's address"
-msgstr ""
-"Bitte beachten, dass die Preisliste der Lieferadresse Vorrang hat.\n"
-"                   Das bedeuted, dass Coupons oder Geo-Filter für Preislisten ignoriert\n"
-"                   werden, wennn sich die Lieferadresse von der Adresse des Partners unterscheidet."
-
-#. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__partner_ids
-msgid "Partner"
-msgstr ""
+#: model:ir.model.fields.selection,name:business_relationships.selection__res_partner_business_relationship__update_pricelist_by__partner
+msgid "Partner Address"
+msgstr "Kundenadresse"
 
 #. module: business_relationships
 #: model:ir.model,name:business_relationships.model_product_pricelist
@@ -385,14 +370,8 @@ msgstr "Verkaufsanalysebericht"
 
 #. module: business_relationships
 #: model:ir.model,name:business_relationships.model_sale_order
-#: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
-
-#. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__sale_order_pricelist
-msgid "Sales Order Pricelist"
-msgstr "Auftragspreisliste"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__team_id
@@ -410,12 +389,6 @@ msgid "Salesperson Tax Display Matches"
 msgstr "Steuern werden dem Verkäufer auf gleiche Art dargestellt"
 
 #. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner__can_change_business_relationship_id
-#: model:ir.model.fields,field_description:business_relationships.field_res_users__can_change_business_relationship_id
-msgid "Can change Business Relationship"
-msgstr "Geschäftsbeziehung kann geändert werden"
-
-#. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__self_ref_ids
 msgid "Self Ref"
 msgstr "Selbstreferenz"
@@ -424,6 +397,11 @@ msgstr "Selbstreferenz"
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__sequence
 msgid "Sequence"
 msgstr "Sequenz"
+
+#. module: business_relationships
+#: model:ir.model.fields.selection,name:business_relationships.selection__res_partner_business_relationship__update_pricelist_by__shipping
+msgid "Shipping Address"
+msgstr "Lieferadresse"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__show_line_subtotals_tax_selection
@@ -473,10 +451,20 @@ msgstr "Standard Geschäftsbeziehung für"
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid ""
 "To set the associated users' tax group according\n"
-"                    to the business relationship, activate the options in the"
+"                  to the business relationship, activate the options in the"
 msgstr ""
 "Um die Steuer-Anzeige-Gruppe entsprechend der Geschäftsbeziehung zu setzen, "
 "activieren sie die Option in den"
+
+#. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
+msgid "Update By"
+msgstr "Aktualisieren nach"
+
+#. module: business_relationships
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__update_pricelist_by
+msgid "Update Pricelist By"
+msgstr "Preisliste aktualisieren nach"
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
@@ -512,7 +500,7 @@ msgstr "Ohne automatischer Zuweisung"
 #: model_terms:ir.actions.act_window,help:business_relationships.action_business_relationship
 msgid ""
 "You can manage the different B2C/B2B business relationship types in use\n"
-"        from here. Business relationships are attached to your partners."
+"      from here. Business relationships are attached to your partners."
 msgstr ""
 "Hier können Sie die verschiedenen B2C/B2B Geschäftsbeziehungen verwalten. "
 "Geschäftsbeziehungstypen werden mit Ihren Kontakten verknüpft."

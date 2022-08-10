@@ -107,6 +107,16 @@ class BusinessRelationship(models.Model):
         compute=_compute_salesperson_tax_selection_matches,
     )
 
+    update_pricelist_by = fields.Selection(
+        [
+            ("partner", "Partner Address"),
+            ("shipping", "Shipping Address"),
+        ],
+        string="Update Pricelist By",
+        required=True,
+        default="partner",
+    )
+
     child_contact_pricelist = fields.Selection(
         [
             ("parent", "By Parent Contact"),
@@ -117,19 +127,10 @@ class BusinessRelationship(models.Model):
         default="parent",
     )
 
-    sale_order_pricelist = fields.Selection(
-        [
-            ("partner", "By Partner Address"),
-            ("shipping", "By Shipping Address"),
-        ],
-        string="Sales Order Pricelist",
-        required=True,
-        default="partner",
-    )
-
     partner_ids = fields.One2many(
         "res.partner",
         "business_relationship_id",
+        string="Partners",
         context={"active_test": False},
     )
 

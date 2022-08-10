@@ -40,7 +40,7 @@
           <group>
             <group name="default_for" string="This is the default for">
               <div class="text-muted" colspan="2">
-                Any of the following must be true (leave empty to match all contacts).
+                <p>Any of the following must be true (leave empty to match all contacts).</p>
               </div>
               <field name="active" invisible="1"/>
               <field name="for_internal_users"/>
@@ -61,15 +61,8 @@
               <field name="show_line_subtotals_tax_selection"/>
             </group>
             <group name="pricelists" string="Pricelists">
+              <field name="update_pricelist_by" string="Update By"/>
               <field name="child_contact_pricelist" string="Child Contacts"/>
-              <field name="sale_order_pricelist" string="Sales Order"/>
-              <div
-                colspan="2"
-                class="mr-3 text-muted"
-                attrs="{'invisible': [('sale_order_pricelist', '=', 'partner')]}"
-                >Note, that the shipping addresses' pricelists have prevalence.
-                 This means, that coupons and other geo filters for pricelists are
-                 ignored if the shipping address differs from the partner's address</div>
             </group>
             <group name="assignment" string="Assignment">
               <div colspan="2">

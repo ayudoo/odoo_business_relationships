@@ -1,9 +1,60 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, tools
+from odoo.http import request
 
 
 class Website(models.Model):
     _inherit = "website"
+
+    def sale_get_order(
+        self,
+        force_create=False,
+        code=None,
+        update_pricelist=False,
+        force_pricelist=False,
+    ):
+        if code or force_pricelist:
+            return super().sale_get_order(
+                force_create=force_create,
+                code=code,
+                update_pricelist=update_pricelist,
+                force_pricelist=force_pricelist,
+            )
+
+        partner = self.env.user.partner_id
+        sale_order_id = request.session.get('sale_order_id')
+
+        if not sale_order_id and not self.env.user._is_public():
+            last_order = partner.last_website_so_id
+            if last_order:
+                available_pricelists = self.get_pricelist_available()
+                sale_order_id = last_order.pricelist_id in available_pricelists and last_order.id
+
+        sale_order = self.env['sale.order'].with_company(request.website.company_id.id).sudo().browse(sale_order_id).exists() if sale_order_id else None
+
+        if sale_order:
+            last_pricelist = sale_order.pricelist_id
+
+            if partner.business_relationship_id.update_prices:
+                self._recompute_pricelist_for_business_relationship(sale_order)
+
+                if sale_order.pricelist_id and last_pricelist != sale_order.pricelist_id:
+                    force_pricelist = sale_order.pricelist_id.id
+
+        return super().sale_get_order(
+            force_create=force_create,
+            code=code,
+            update_pricelist=update_pricelist,
+            force_pricelist=force_pricelist,
+        )
+
+    def _recompute_pricelist_for_business_relationship(self, sale_order):
+        partner = sale_order.partner_id
+        if partner.business_relationship_id.update_pricelist_by == "shipping":
+            sale_order.onchange_partner_shipping_id()
+        elif partner.property_product_pricelist:
+            # cannot use onchange_partner_id because it will reset addresses
+            sale_order.pricelist_id = partner.property_product_pricelist
 
     @api.model
     def website_domain(self, website_id=False):

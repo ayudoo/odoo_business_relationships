@@ -34,6 +34,7 @@ Configurable business relationship types on contact level. Usable for
 * use different access permission groups for portal users
 * restrict product visibility to certain user groups
 * create and configure your own business relationships
+* recompute existing cart prices on login and address changes
 * individual pricelists for child contacts and sale order pricelists by shipping address
 
 
