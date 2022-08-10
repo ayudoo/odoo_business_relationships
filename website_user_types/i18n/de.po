@@ -46,12 +46,24 @@ msgid "Business Relationship, e.g. B2B, B2C"
 msgstr "Geschäftsbeziehung, bswp. B2B, B2C"
 
 #. module: website_user_types
+#: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__update_prices
+msgid ""
+"By default, Odoo does not change pricelists or recalculate prices on address"
+" or login changes. With this option, pricelists and prices will be updated "
+"according to configuration. This option may conflict with Geo IP."
+msgstr ""
+"Standardmäßig aktualisiert odoo keine Preislisten und Preise bei Address- oder Loginänderungen. "
+"Mit dieser Option werden Preislisten und Preise entsprechende der Konfiguration geändert. "
+"Geo IP funktioniert mit dieser Option nicht mehr."
+
+#. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner
 msgid "Contact"
 msgstr "Kontakt"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http__display_name
+#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner__display_name
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__display_name
@@ -95,6 +107,7 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http__id
+#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view__id
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__id
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner__id
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__id
@@ -107,6 +120,7 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_ir_http____last_update
+#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_product_template____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner____last_update
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship____last_update
@@ -116,6 +130,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
+
+#. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
+msgid ""
+"Note, that pricelists for website sale orders will change according to\n"
+"         configuration. This means, that coupons and geo filters for pricelist\n"
+"         selection may be ignored."
+msgstr ""
+"Bitte beachten, dass die Preisliste der Konfiguration Vorrang hat.\n"
+"Das bedeuted, dass Coupons oder Geo-Filter für Preislisten ggf. ignoriert\n"
+"werden."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_page
@@ -147,6 +172,35 @@ msgstr ""
 "Weiterleitung greift."
 
 #. module: website_user_types
+#: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
+msgid ""
+"Type of redirect/Rewrite:\n"
+"\n"
+"        301 Moved permanently: The browser will keep in cache the new url.\n"
+"        302 Moved temporarily: The browser will not keep in cache the new url and ask again the next time the new url.\n"
+"        404 Not Found: If you want remove a specific page/controller (e.g. Ecommerce is installed, but you don't want /shop on a specific website)\n"
+"        308 Redirect / Rewrite: If you want rename a controller with a new url. (Eg: /shop -> /garden - Both url will be accessible but /shop will automatically be redirected to /garden)\n"
+"    "
+msgstr ""
+"Art der Umleitung/des Umschreibens:\n"
+"\n"
+"        301 Dauerhaft verschoben: Der Browser behält die neue Url im Cache.\n"
+"        302 Vorübergehend verschoben: Der Browser behält die neue Url nicht im Cache und fragt beim nächsten Mal die neue Url erneut ab.\n"
+"        404 Nicht gefunden: Wenn Sie eine bestimmte Seite/Controller entfernen wollen (z.B. Ecommerce ist installiert, aber Sie wollen /shop nicht auf einer bestimmten Website)\n"
+"        308 Umleitung / Rewrite: Wenn Sie einen Controller mit einer neuen Url umbenennen wollen. (z. B.: /shop -> /garden - Beide URLs sind zugänglich, aber /shop wird automatisch auf /garden umgeleitet)\n"
+"    "
+
+#. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
+msgid "Update On Login/Address Change"
+msgstr "Bei Login-/Adressänderungen aktualisieren"
+
+#. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__update_prices
+msgid "Update Prices on Login/Address Change"
+msgstr "Preise bei Login-/Adressänderungen aktualisieren"
+
+#. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
 msgid ""
 "Use this field to assign an access group to login users associated with this"
@@ -159,6 +213,11 @@ msgstr ""
 #: model:ir.model,name:website_user_types.model_res_users
 msgid "Users"
 msgstr "Benutzer"
+
+#. module: website_user_types
+#: model:ir.model,name:website_user_types.model_ir_ui_view
+msgid "View"
+msgstr "Ansicht"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
