@@ -8,7 +8,7 @@ class BusinessRelationship(models.Model):
 
     update_prices = fields.Boolean(
         string="Update Prices on Login/Address Change",
-        requied=True,
+        required=True,
         default=True,
         help="By default, Odoo does not change pricelists or recalculate prices on"
         + " address or login changes. With this option, pricelists and prices will be"
