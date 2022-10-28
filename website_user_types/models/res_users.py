@@ -5,19 +5,26 @@ from odoo import api, models
 class Users(models.Model):
     _inherit = "res.users"
 
-    @api.model
-    def create(self, values):
-        self._strip_website_user_groups(values)
-        res = super().create(values)
+    @api.model_create_multi
+    def create(self, values_list):
+        for values in values_list:
+            self._strip_website_user_groups(values)
 
-        if res.partner_id and res.partner_id.business_relationship_id:
-            website_user_group = (
-                res.partner_id.business_relationship_id.website_user_group_id
-            )
-            if website_user_group:
-                website_user_group.write({"users": [(4, res.id)]})
+        records = super().create(values_list)
 
-        return res
+        for business_relationship in records.business_relationship_id:
+            wut = business_relationship.website_user_group_id
+
+            if wut:
+                user_ids = records.filtered(
+                    lambda r: r.business_relationship_id == business_relationship
+                ).ids
+                wut.write({"users": [
+                    (4, uid)
+                    for uid in user_ids
+                ]})
+
+        return records
 
     def _strip_website_user_groups(self, values):
         # the template user will have a wut group that we need to filter
