@@ -47,7 +47,9 @@ class BusinessRelationship(models.Model):
 
         for record in records:
             if record.website_user_group_id:
-                record._update_users_website_user_group(None, res.website_user_group_id)
+                record._update_users_website_user_group(
+                    None, record.website_user_group_id,
+                )
 
         return records
 
