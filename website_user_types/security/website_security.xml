@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <!-- changing menu permissions as little as possible -->
-  <record id="website.website_menu" model="ir.rule">
+  <record id="website_menu" model="ir.rule">
+    <field name="name">Website menu: group_ids</field>
+    <field name="model_id" ref="model_website_menu"/>
     <field
       name="groups"
       eval="[(4, ref('base.group_portal')), (4, ref('base.group_public'))]"/>
+    <field name="domain_force">['|', ('group_ids', '=', False), ('group_ids', 'in', user.groups_id.ids)]</field>
   </record>
 
   <!-- while website user groups are accessible by all employees, other restrictions still

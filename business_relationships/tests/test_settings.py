@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.addons.business_relationships.tests.common import (
     BusinessRelationshipsTestUsers,
 )
@@ -33,14 +32,14 @@ class TestSettings(BusinessRelationshipsTestUsers):
 
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
         self._assert_business_relationship_dependent_groups()
 
         config.show_line_subtotals_tax_selection = "tax_excluded"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         self._assert_every_user_has_group(
@@ -53,19 +52,19 @@ class TestSettings(BusinessRelationshipsTestUsers):
     def test_switch_tax_included_tax_business_relationship(self):
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "tax_included"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
         self._assert_business_relationship_dependent_groups()
 
         config.show_line_subtotals_tax_selection = "tax_included"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         self._assert_every_user_has_group(

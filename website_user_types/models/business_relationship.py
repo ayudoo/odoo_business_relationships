@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
 
@@ -42,6 +41,16 @@ class BusinessRelationship(models.Model):
         domain=_website_user_group_domain,
     )
 
+    @api.model_create_multi
+    def create(self, values_list):
+        records = super().create(values_list)
+
+        for record in records:
+            if record.website_user_group_id:
+                record._update_users_website_user_group(None, res.website_user_group_id)
+
+        return records
+
     def write(self, values):
         old_website_user_group = self.website_user_group_id
         super().write(values)
@@ -55,13 +64,6 @@ class BusinessRelationship(models.Model):
             self._update_users_website_user_group(
                 old_website_user_group, new_website_user_group
             )
-
-    @api.model
-    def create(self, values):
-        res = super().create(values)
-        if res.website_user_group_id:
-            self._update_users_website_user_group(None, res.website_user_group_id)
-        return res
 
     def _update_users_website_user_group(self, old_value, new_value):
         if old_value == new_value:

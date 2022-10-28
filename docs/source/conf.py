@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Odoo Business Relationship Types'
-copyright = '2021, Michael Jurke'
-author = 'Michael Jurke'
+project = "Odoo Business Relationship Types"
+copyright = "2021, Michael Jurke"
+author = "Michael Jurke"
 
 
 # -- General configuration ---------------------------------------------------
@@ -27,11 +27,11 @@ author = 'Michael Jurke'
 # let's not use sphinx.ext.githubpages, because we use jekyll plugins
 extensions = [
     # 'sphinx.ext.githubpages',
-    'sphinx_sitemap',
+    "sphinx_sitemap",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -39,15 +39,15 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 # input files
-source_suffix = '.rst'
-master_doc = 'index'
+source_suffix = ".rst"
+master_doc = "index"
 
 # -- Options for HTML output -------------------------------------------------
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
-html_baseurl = 'https://ayudoo.github.io/odoo_business_relationships/'
-html_title = 'Odoo Business Relationship Types Documentation'
-html_theme = 'haiku'
+html_baseurl = "https://ayudoo.github.io/odoo_business_relationships/"
+html_title = "Odoo Business Relationship Types Documentation"
+html_theme = "haiku"
 html_theme_options = {
     "textcolor": "#000",
     "headingcolor": "#000",
@@ -56,11 +56,11 @@ html_theme_options = {
     "hoverlinkcolor": "#000",
 }
 html_css_files = [
-    'custom.css',
+    "custom.css",
 ]
-html_extra_path = ['robots.txt']
+html_extra_path = ["robots.txt"]
 
-if tags.has('github'):
+if tags.has("github"):
     html_context = {
-        'github': True,
+        "github": True,
     }

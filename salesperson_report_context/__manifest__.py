@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 {
     "author": "Michael Jurke, Ayudoo Ltd",
     "name": "Salesperson Report Context",
@@ -15,6 +13,5 @@
         "base",
         "sale",
     ],
-    "data": [
-    ],
+    "data": [],
 }

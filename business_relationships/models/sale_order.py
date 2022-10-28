@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
 
@@ -20,24 +19,28 @@ class SaleOrder(models.Model):
 
     @api.onchange("partner_shipping_id", "partner_id", "company_id")
     def onchange_partner_shipping_id(self):
-        res = super().onchange_partner_shipping_id()
         shipping_pricelist_id = self.partner_shipping_id.property_product_pricelist
         if shipping_pricelist_id and shipping_pricelist_id != self.pricelist_id:
             if self.business_relationship_id.update_pricelist_by == "shipping":
                 if self.pricelist_id.id != shipping_pricelist_id.id:
                     self.pricelist_id = shipping_pricelist_id.id
 
-        return res
+    @api.model_create_multi
+    def create(self, values_list):
+        for values in values_list:
+            self._set_business_relationship_values(values)
 
-    @api.model
-    def create(self, vals):
-        self._set_business_relationship_values(vals)
+        orders = super().create(values_list)
 
-        record = super().create(vals)
-        if record.partner_id != record.partner_shipping_id:
-            record.onchange_partner_shipping_id()
+        for order in orders:
+            update_by = order.partner_id.business_relationship_id.update_pricelist_by
+            if (
+                update_by == "shipping"
+                and order.partner_id != order.partner_shipping_id
+            ):
+                order.onchange_partner_shipping_id()
 
-        return record
+        return orders
 
     def _set_business_relationship_values(self, values):
         partner_id = values.get("partner_id", False)

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 {
     "author": "Michael Jurke, Ayudoo Ltd",
     "name": "B2B/B2C Business Relationship Types",
@@ -32,11 +30,6 @@
         "views/fiscal_position_view.xml",
         "report/sale_report_view.xml",
     ],
-    "assets": {
-        'web.assets_backend': [
-            "business_relationships/static/src/scss/backend.scss",
-        ],
-    },
     "application": True,
     "installable": True,
     "post_init_hook": "init_partner_business_relationships",

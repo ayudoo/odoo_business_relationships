@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo import http
 from odoo.http import request
 
 
 class WebsiteSaleShipping(WebsiteSale):
-
     def values_postprocess(self, order, mode, *args, **kwargs):
         new_values, errors, error_msg = super().values_postprocess(
             order, mode, *args, **kwargs
         )
         # so subclasses can customize
-        if mode[0] in ('new', 'edit'):
+        if mode[0] in ("new", "edit"):
             br = order.partner_id.business_relationship_id
 
             if br:
@@ -36,7 +34,7 @@ class WebsiteSaleShipping(WebsiteSale):
 
         shipping_before = order.partner_shipping_id
         values = super().checkout_values(**kw)
-        order = values['order']
+        order = values["order"]
 
         if partner.business_relationship_id.update_pricelist_by != "shipping":
             if shipping_before != order.partner_shipping_id:
@@ -47,13 +45,13 @@ class WebsiteSaleShipping(WebsiteSale):
         return values
 
     def _checkout_form_save(self, mode, checkout, all_values):
-        partner_id = int(all_values.get('partner_id', 0))
-        partner = request.env['res.partner'].browse(partner_id)
+        partner_id = int(all_values.get("partner_id", 0))
+        partner = request.env["res.partner"].browse(partner_id)
         order = request.website.sale_get_order()
 
         if not (
             order.partner_shipping_id == partner
-            and mode[0] == 'edit'
+            and mode[0] == "edit"
             and partner.business_relationship_id.update_pricelist_by == "shipping"
         ):
             return super()._checkout_form_save(mode, checkout, all_values)
@@ -69,6 +67,5 @@ class WebsiteSaleShipping(WebsiteSale):
     def _recompute_prices_after_shipping_change(self, order):
         order.onchange_partner_shipping_id()
         order._compute_tax_id()
-        request.website.sale_get_order(
-            update_pricelist=True, force_pricelist=order.pricelist_id.id
-        )
+        website = request.website.with_context(force_pricelist_id=order.pricelist_id.id)
+        website.sale_get_order(update_pricelist=True)

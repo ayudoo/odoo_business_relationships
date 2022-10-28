@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from odoo import api, fields, models
@@ -49,7 +48,7 @@ class Partner(models.Model):
             # case for employees, being sub contacts of the company.
 
             ref = record
-            if hasattr(ref, '_origin'):
+            if hasattr(ref, "_origin"):
                 ref = ref._origin
             ref = ref.with_context(active_test=False)
 
@@ -130,6 +129,7 @@ class Partner(models.Model):
         )
 
     def _after_business_relationship_changed(self):
+        self.ensure_one()
         self._set_tax_groups()
         for child in self.child_ids:
             child.business_relationship_id = self.business_relationship_id
@@ -181,8 +181,19 @@ class Partner(models.Model):
                 )
                 to_add.write({"users": [(4, user_id)]})
 
-    @api.model
-    def create(self, values):
+    @api.model_create_multi
+    def create(self, values_list):
+        for values in values_list:
+            self._set_default_business_relationship_values(values)
+
+        partners = super().create(values_list)
+
+        for partner in partners:
+            partner._after_business_relationship_changed()
+
+        return partners
+
+    def _set_default_business_relationship_values(self, values):
         business_relationship_id = values.get("business_relationship_id", None)
         if business_relationship_id:
             business_relationship = self.env[
@@ -195,10 +206,6 @@ class Partner(models.Model):
         for name, value in business_relationship.get_partner_default_values().items():
             if not values.get(name, None):
                 values[name] = value
-
-        r = super().create(values)
-        r._after_business_relationship_changed()
-        return r
 
     def write(self, values):
         old_business_relationship = None

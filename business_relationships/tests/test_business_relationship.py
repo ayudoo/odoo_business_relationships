@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.tests import tagged
 from odoo.addons.business_relationships.tests.common import (
     BusinessRelationshipsTestUsers,
@@ -13,8 +12,8 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
 
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         # defaults
@@ -40,8 +39,8 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
 
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         # defaults
@@ -65,8 +64,8 @@ class TestBusinessRelationship(BusinessRelationshipsTestUsers):
 
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         # defaults

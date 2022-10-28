@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import api, models
 
 
@@ -19,19 +18,18 @@ class Users(models.Model):
                 user_ids = records.filtered(
                     lambda r: r.business_relationship_id == business_relationship
                 ).ids
-                wut.write({"users": [
-                    (4, uid)
-                    for uid in user_ids
-                ]})
+                wut.write({"users": [(4, uid) for uid in user_ids]})
 
         return records
 
     def _strip_website_user_groups(self, values):
         # the template user will have a wut group that we need to filter
         # TODO consider to implement different template users according to br
-        wut_ids = self.env["res.partner.business_relationship"].search(
-            []
-        ).website_user_group_id.ids
+        wut_ids = (
+            self.env["res.partner.business_relationship"]
+            .search([])
+            .website_user_group_id.ids
+        )
 
         group_id = values.get("groups_id", [])
         if group_id:

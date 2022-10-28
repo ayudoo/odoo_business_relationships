@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 {
     "author": "Michael Jurke, Ayudoo EOOD",
     "name": "Website User Types",
@@ -33,7 +31,7 @@
         "views/templates/layout.xml",
     ],
     "assets": {
-        'web.assets_frontend': [
+        "web.assets_frontend": [
             "website_user_types/static/src/scss/frontend.scss",
         ],
     },

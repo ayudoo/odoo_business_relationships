@@ -5,7 +5,7 @@ Business Relationship Types
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-**This is the Odoo 15 branch.**
+**This is the Odoo 16 branch.**
 
 **This module is in beta state. Feel free to provide feedback.**
 
@@ -30,7 +30,7 @@ Configurable business relationship types on contact level. Usable for
 * customize the default business relationship for new contacts
 * assign a default image, salesperson or sales team to new contacts
 * assign default salesperson and analytic account to sale orders
-* restrict website menus, pages, redirects and block visibility to certain users
+* restrict website menus, pages, redirects and block visibilities to certain users
 * use different access permission groups for portal users
 * restrict product visibility to certain user groups
 * create and configure your own business relationships

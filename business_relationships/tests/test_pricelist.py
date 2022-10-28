@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.addons.business_relationships.tests.common import (
     BusinessRelationshipsTestCommon,
 )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import base64
 import io
 
@@ -185,8 +184,8 @@ class TestPartner(BusinessRelationshipsTestUsers):
 
         config = self.env["res.config.settings"].create({})
         config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._onchange_sale_tax()
-        config.flush()
+        config._compute_group_show_line_subtotals()
+        config.flush_model()
         config.execute()
 
         self.user_portal.business_relationship_id = self.business_relationship_b2b

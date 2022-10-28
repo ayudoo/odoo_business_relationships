@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from odoo.addons.business_relationships.tests.common import (
     BusinessRelationshipsTestUsers,
 )
@@ -51,12 +49,12 @@ class TestPartner(BusinessRelationshipsTestUsers):
             }
         )
 
-        wizard = self.env['portal.wizard'].with_context({
-            "active_ids": partner.ids
-        }).create({})
-        wizard.user_ids.write({"in_portal": True})
-
-        wizard.action_apply()
+        wizard = (
+            self.env["portal.wizard"]
+            .with_context({"active_ids": partner.ids})
+            .create({})
+        )
+        wizard.user_ids.action_grant_access()
 
         self.assertEqual(len(partner.user_ids), 1)
         user = partner.user_ids

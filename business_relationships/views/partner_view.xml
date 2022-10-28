@@ -24,8 +24,7 @@
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
-
-      <xpath expr="//span[@name='address_name']" position="before">
+      <xpath expr="//group/group/*[1]" position="before">
         <label for="business_relationship_id" string="Business Rel."/>
         <div>
           <field name="can_change_business_relationship_id" invisible="1"/>
@@ -40,22 +39,19 @@
             style="width: 50%; padding-left: 10px; color: #ccc;"
             attrs="{'invisible': [('business_relationship_id','!=', False)]}"/>
         </div>
-        <label for="open_commercial_entity" string=""/>
         <div
-          name="parent_business_relationship"
+          colspan="2"
           attrs="{'invisible': [
             ('|'),
             ('parent_id','=',False),
             ('can_change_business_relationship_id','=',True),
-          ]}"
-          class="oe_edit_only"
-          style="margin-right: -30px;">
-          <p>is managed on
-            <button
-              name="open_commercial_entity"
-              type="object"
-              string="the parent contact"
-              class="oe_link"/></p>
+          ]}">
+          <div class="d-inline-block">is managed on the parent contact</div>
+          <button
+            name="open_commercial_entity"
+            type="object"
+            title="Open parent contact"
+            class="oe_link pt-1 fa fa-arrow-right"/>
         </div>
       </xpath>
     </field>

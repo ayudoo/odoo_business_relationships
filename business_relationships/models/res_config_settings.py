@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
 
@@ -21,7 +20,7 @@ class ResConfigSettings(models.TransientModel):
         for record in self:
             record.show_line_subtotals_tax_selection = "tax_excluded"
             record._reset_business_relationship_dependent_groups()
-            record._onchange_sale_tax()
+            record._compute_group_show_line_subtotals()
             record.set_values()
 
     show_line_subtotals_tax_selection = fields.Selection(
@@ -71,8 +70,8 @@ class ResConfigSettings(models.TransientModel):
 
         return res
 
-    @api.onchange("show_line_subtotals_tax_selection")
-    def _onchange_sale_tax(self):
+    @api.depends("show_line_subtotals_tax_selection")
+    def _compute_group_show_line_subtotals(self):
         # business_relationship_dependent has no implied tax groups for all users
         if self.show_line_subtotals_tax_selection == "business_relationship_dependent":
             self.update(
@@ -82,4 +81,4 @@ class ResConfigSettings(models.TransientModel):
                 }
             )
         else:
-            super()._onchange_sale_tax()
+            super()._compute_group_show_line_subtotals()
