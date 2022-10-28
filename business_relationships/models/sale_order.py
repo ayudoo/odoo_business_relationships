@@ -11,8 +11,7 @@ class SaleOrder(models.Model):
     )
 
     @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        super().onchange_partner_id()
+    def _br_onchange_partner_id(self):
         br = self.partner_id.business_relationship_id
         if br:
             self.update(br.get_sale_order_default_values(include_false=True))
