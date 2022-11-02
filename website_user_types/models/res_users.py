@@ -46,8 +46,8 @@ class Users(models.Model):
         else:
             wut_class = "wut_tax_excluded"
 
-        if self.user_has_groups("website_user_types.group_website_user_type_b2b"):
+        if self.user_has_groups("website_user_types.group_b2b"):
             return "{} wut_group_b2b".format(wut_class)
-        if self.user_has_groups("website_user_types.group_website_user_type_b2c"):
+        if self.user_has_groups("website_user_types.group_b2c"):
             return "{} wut_group_b2c".format(wut_class)
         return wut_class

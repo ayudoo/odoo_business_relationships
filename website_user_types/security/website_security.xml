@@ -18,7 +18,7 @@
     <field name="domain_force">[
       '|',
       ('group_ids','=',False),
-      ('group_ids','in',user.groups_id.ids + [user.env.ref('website_user_types.group_website_user_type_b2c').id,user.env.ref('website_user_types.group_website_user_type_b2b').id]),
+      ('group_ids','in',user.groups_id.ids + [user.env.ref('website_user_types.group_b2c').id,user.env.ref('website_user_types.group_b2b').id]),
     ]</field>
     <field name="groups" eval="[(4, ref('base.group_user'))]"/>
   </record>
