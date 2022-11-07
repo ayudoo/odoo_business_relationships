@@ -40,7 +40,7 @@ class WebsiteSaleShipping(WebsiteSale):
             if shipping_before != order.partner_shipping_id:
                 self._recompute_prices_after_shipping_change(order)
         elif partner.business_relationship_id.update_prices:
-            order._compute_tax_id()
+            order.order_line._compute_tax_id()
 
         return values
 
@@ -66,6 +66,6 @@ class WebsiteSaleShipping(WebsiteSale):
 
     def _recompute_prices_after_shipping_change(self, order):
         order.onchange_partner_shipping_id()
-        order._compute_tax_id()
+        order.order_line._compute_tax_id()
         website = request.website.with_context(force_pricelist_id=order.pricelist_id.id)
         website.sale_get_order(update_pricelist=True)
