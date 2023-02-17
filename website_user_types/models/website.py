@@ -52,8 +52,10 @@ class Website(models.Model):
         partner = sale_order.partner_id
         if partner.business_relationship_id.update_pricelist_by == "shipping":
             sale_order.onchange_partner_shipping_id()
-        elif partner.property_product_pricelist:
-            # cannot use onchange_partner_id because it will reset addresses
+        elif (
+            partner.property_product_pricelist
+            and sale_order.pricelist_id != partner.property_product_pricelist
+        ):
             sale_order.pricelist_id = partner.property_product_pricelist
 
     @api.model
