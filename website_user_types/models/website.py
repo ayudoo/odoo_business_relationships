@@ -48,15 +48,28 @@ class Website(models.Model):
             force_pricelist=force_pricelist,
         )
 
-    def _recompute_pricelist_for_business_relationship(self, sale_order):
-        partner = sale_order.partner_id
+    def _recompute_pricelist_for_business_relationship(self, order):
+        partner = order.partner_id
         if partner.business_relationship_id.update_pricelist_by == "shipping":
-            sale_order.onchange_partner_shipping_id()
+            # unfortunately, odoo does not check if the fiscal position was changed and
+            # will assign it enew every time. This causes an sale order modify date update
+            # every time, but we do not want this during read operations.
+            update = False
+
+            fiscal_position = self.env['account.fiscal.position'].with_company(
+            self.company_id
+            ).get_fiscal_position(order.partner_id.id, order.partner_shipping_id.id)
+
+            if fiscal_position != order.fiscal_position_id:
+                update = True
+
+            if update:
+                sale_order.onchange_partner_shipping_id()
         elif (
             partner.property_product_pricelist
-            and sale_order.pricelist_id != partner.property_product_pricelist
+            and order.pricelist_id != partner.property_product_pricelist
         ):
-            sale_order.pricelist_id = partner.property_product_pricelist
+            order.pricelist_id = partner.property_product_pricelist
 
     @api.model
     def website_domain(self, website_id=False):
