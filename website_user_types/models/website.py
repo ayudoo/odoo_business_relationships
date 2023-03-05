@@ -55,10 +55,6 @@ class Website(models.Model):
         if force_pricelist_id:
             session_pricelist = request.session["website_sale_current_pl"]
             if session_pricelist != force_pricelist_id:
-                import pdb
-
-                pdb.set_trace()
-                print()
                 request.session.pop("website_sale_current_pl")
 
             return (
