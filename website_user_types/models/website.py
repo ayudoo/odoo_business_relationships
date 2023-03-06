@@ -71,15 +71,17 @@ class Website(models.Model):
             # every time, but we do not want this during read operations.
             update = False
 
-            fiscal_position = self.env['account.fiscal.position'].with_company(
-            self.company_id
+            # use order env to use same context (e.g. sudo) as
+            # onchange_partner_shipping_id
+            fiscal_position = order.env['account.fiscal.position'].with_company(
+                self.company_id
             ).get_fiscal_position(order.partner_id.id, order.partner_shipping_id.id)
 
             if fiscal_position != order.fiscal_position_id:
                 update = True
 
             if update:
-                sale_order.onchange_partner_shipping_id()
+                order.onchange_partner_shipping_id()
         elif (
             partner.property_product_pricelist
             and order.pricelist_id != partner.property_product_pricelist
