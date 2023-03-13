@@ -32,15 +32,11 @@ class Website(models.Model):
         )
 
         if sale_order:
-            last_pricelist = sale_order.pricelist_id
-
             if partner.business_relationship_id.update_prices:
-                self._recompute_pricelist_for_business_relationship(sale_order)
-
-                if (
-                    sale_order.pricelist_id
-                    and last_pricelist != sale_order.pricelist_id
-                ):
+                br_pricelist = self._get_default_business_relationship_pricelist(
+                    sale_order
+                )
+                if br_pricelist != sale_order.pricelist_id:
                     self = self.with_context(
                         force_pricelist_id=sale_order.pricelist_id.id
                     )
@@ -63,30 +59,13 @@ class Website(models.Model):
 
         return super().get_current_pricelist()
 
-    def _recompute_pricelist_for_business_relationship(self, order):
+    def _get_default_business_relationship_pricelist(self, order):
         partner = order.partner_id
+
         if partner.business_relationship_id.update_pricelist_by == "shipping":
-            # unfortunately, odoo does not check if the fiscal position was changed and
-            # will assign it enew every time. This causes an sale order modify date update
-            # every time, but we do not want this during read operations.
-            update = False
+            partner = order.partner_shipping_id
 
-            # use order env to use same context (e.g. sudo) as
-            # onchange_partner_shipping_id
-            fiscal_position = order.env['account.fiscal.position'].with_company(
-                self.company_id
-            ).get_fiscal_position(order.partner_id.id, order.partner_shipping_id.id)
-
-            if fiscal_position != order.fiscal_position_id:
-                update = True
-
-            if update:
-                order.onchange_partner_shipping_id()
-        elif (
-            partner.property_product_pricelist
-            and order.pricelist_id != partner.property_product_pricelist
-        ):
-            order.pricelist_id = partner.property_product_pricelist
+        return partner.property_product_pricelist
 
     @api.model
     def website_domain(self, website_id=False):
