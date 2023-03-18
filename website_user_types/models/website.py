@@ -33,8 +33,6 @@ class Website(models.Model):
         sale_order = self.env['sale.order'].with_company(request.website.company_id.id).sudo().browse(sale_order_id).exists() if sale_order_id else None
 
         if sale_order:
-            last_pricelist = sale_order.pricelist_id
-
             if partner.business_relationship_id.update_prices:
                 br_pricelist = self._get_default_business_relationship_pricelist(
                     sale_order
