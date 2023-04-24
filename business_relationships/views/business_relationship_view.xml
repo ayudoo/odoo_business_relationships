@@ -70,7 +70,7 @@
                   type="object"
                   name="action_assign_defaults_to_partners"
                   string="Update Related Partners Now"
-                  class="btn-link pt-0 oe_read_only"
+                  class="btn-link pt-0"
                   attrs="{'invisible': [
                     ('team_id', '=', False),
                     ('salesperson_id', '=', False),

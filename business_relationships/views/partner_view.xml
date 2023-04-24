@@ -85,7 +85,7 @@
       <field name="property_product_pricelist" position="after">
         <field name="is_fixed_property_pricelist" invisible="1"/>
         <div
-          class="oe_read_only fixed-pricelist-actions"
+          class="fixed-pricelist-actions"
           groups="product.group_product_pricelist"
           colspan="2"
           attrs="{'invisible': [('property_product_pricelist','=',False)]}">
