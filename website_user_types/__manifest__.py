@@ -14,6 +14,8 @@
     """,
     "license": "LGPL-3",
     "category": "Sales/Sales",
+    "support": "support@ayudoo.bg",
+    "website": "https://ayudoo.github.io/odoo_business_relationships/",
     "depends": [
         "base",
         "website",
@@ -37,6 +39,9 @@
             "website_user_types/static/src/scss/frontend.scss",
         ],
     },
+    "images": [
+        "static/description/cover.png",
+    ],
     "license": "LGPL-3",
     "post_init_hook": "init_website_user_groups",
     "demo": [],
