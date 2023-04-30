@@ -14,6 +14,18 @@ Extend your contacts with business relationship types, e.g. `B2C`, `B2B` and
 Change tax display (``Tax-Excluded (B2B)``, ``Tax-Included (B2C)``) of login users
 according to the business relationship of the associated partner contact.
 
+**Important note if you update from previous states of website_user_types:**
+
+There has been a renaming of the website user type groups, ``group_b2b`` and
+``group_b2c``. But how the updates work, the old groups remain and leave the app broken.
+
+I do not have the resources for sophisticated migration scripts, but you can simply fix
+it by deleting the obsolete groups ``group_website_user_type_b2b`` and
+``group_website_user_type_b2c`` (can be done in the settings) and assign the new
+groups to your business relationships
+(Contacts -> Configuration -> Business Relationships).
+Sorry for the inconvenience.
+
 **Table of contents**
 
 .. contents::

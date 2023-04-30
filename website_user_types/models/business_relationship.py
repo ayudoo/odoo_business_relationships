@@ -17,7 +17,7 @@ class BusinessRelationship(models.Model):
 
     def _get_default_website_user_group(self):
         return self.env.ref(
-            "website_user_types.group_website_user_type_b2b",
+            "website_user_types.group_b2b",
             raise_if_not_found=False,
         )
 
@@ -77,8 +77,8 @@ class BusinessRelationship(models.Model):
 
     @api.model
     def _init_website_user_groups(self):
-        group_b2c = self.env.ref("website_user_types.group_website_user_type_b2c")
-        group_b2b = self.env.ref("website_user_types.group_website_user_type_b2b")
+        group_b2c = self.env.ref("website_user_types.group_b2c")
+        group_b2b = self.env.ref("website_user_types.group_b2b")
         internal = self.env.ref("business_relationships.business_relationship_internal")
 
         for business_relationship in self.env[

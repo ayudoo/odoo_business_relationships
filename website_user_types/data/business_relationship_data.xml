@@ -4,19 +4,19 @@
     <record id="business_relationships.business_relationship_b2b" model="res.partner.business_relationship">
       <field
         name="website_user_group_id"
-        ref="website_user_types.group_website_user_type_b2b"/>
+        ref="website_user_types.group_b2b"/>
     </record>
     <record id="business_relationships.business_relationship_b2c" model="res.partner.business_relationship">
       <field
         name="website_user_group_id"
-        ref="website_user_types.group_website_user_type_b2c"/>
+        ref="website_user_types.group_b2c"/>
     </record>
     <record
       id="business_relationships.business_relationship_internal"
       model="res.partner.business_relationship">
       <field
         name="website_user_group_id"
-        ref="website_user_types.group_website_user_type_b2c"/>
+        ref="website_user_types.group_b2c"/>
     </record>
   </data>
 </odoo>
