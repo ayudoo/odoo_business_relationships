@@ -13,6 +13,7 @@
     "license": "LGPL-3",
     "category": "Sales/Sales",
     "support": "support@ayudoo.bg",
+    "website": "https://ayudoo.github.io/odoo_business_relationships/",
     "depends": [
         "base",
         "contacts",
@@ -29,6 +30,9 @@
         "views/pricelist_view.xml",
         "views/fiscal_position_view.xml",
         "report/sale_report_view.xml",
+    ],
+    "images": [
+        "static/description/cover.png",
     ],
     "application": True,
     "installable": True,

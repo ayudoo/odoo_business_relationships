@@ -9,9 +9,13 @@
     "license": "LGPL-3",
     "category": "Sales/Sales",
     "support": "support@ayudoo.bg",
+    "website": "https://ayudoo.github.io/odoo_business_relationships/",
     "depends": [
         "base",
         "sale",
     ],
     "data": [],
+    "images": [
+        "static/description/cover.png",
+    ],
 }
