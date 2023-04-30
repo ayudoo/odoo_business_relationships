@@ -22,12 +22,12 @@ class ProductTemplate(models.Model):
                 return can_access
 
             if self.user_has_groups(
-                "website_user_types.group_website_user_type_b2b"
+                "website_user_types.group_b2b"
             ) and self.user_has_groups(
-                "website_user_types.group_website_user_type_b2c"
+                "website_user_types.group_b2c"
             ):
                 return self.visible_group_b2c or self.visible_group_b2b
-            elif self.user_has_groups("website_user_types.group_website_user_type_b2b"):
+            elif self.user_has_groups("website_user_types.group_b2b"):
                 return self.visible_group_b2b
             else:
                 return self.visible_group_b2c
