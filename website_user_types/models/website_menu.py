@@ -7,8 +7,5 @@ class Menu(models.Model):
     group_ids = fields.Many2many(
         "res.groups",
         string="Visible Groups",
-        help=(
-            "The user needs to be in at least one of these groups for the page to"
-            + " be visible"
-        ),
+        help="The user needs to be in at least one of these groups to see the menu",
     )

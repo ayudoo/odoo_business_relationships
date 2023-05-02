@@ -52,27 +52,15 @@ msgid ""
 " or login changes. With this option, pricelists and prices will be updated "
 "according to configuration. This option may conflict with Geo IP."
 msgstr ""
-"Standardmäßig aktualisiert odoo keine Preislisten und Preise bei Address- oder Loginänderungen. "
-"Mit dieser Option werden Preislisten und Preise entsprechende der Konfiguration geändert. "
-"Geo IP funktioniert mit dieser Option nicht mehr."
+"Standardmäßig aktualisiert odoo keine Preislisten und Preise bei Address- "
+"oder Loginänderungen. Mit dieser Option werden Preislisten und Preise "
+"entsprechende der Konfiguration geändert. Geo IP funktioniert mit dieser "
+"Option nicht mehr."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner
 msgid "Contact"
 msgstr "Kontakt"
-
-#. module: website_user_types
-#: model:ir.model.fields,field_description:website_user_types.field_ir_http__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_product_template__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_res_users__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_website__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_website_page__display_name
-#: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__display_name
-msgid "Display Name"
-msgstr "Anzeigename"
 
 #. module: website_user_types
 #: model:res.groups,name:website_user_types.group_b2b
@@ -106,32 +94,6 @@ msgid "HTTP Routing"
 msgstr ""
 
 #. module: website_user_types
-#: model:ir.model.fields,field_description:website_user_types.field_ir_http__id
-#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view__id
-#: model:ir.model.fields,field_description:website_user_types.field_product_template__id
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner__id
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__id
-#: model:ir.model.fields,field_description:website_user_types.field_res_users__id
-#: model:ir.model.fields,field_description:website_user_types.field_website__id
-#: model:ir.model.fields,field_description:website_user_types.field_website_page__id
-#: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__id
-msgid "ID"
-msgstr ""
-
-#. module: website_user_types
-#: model:ir.model.fields,field_description:website_user_types.field_ir_http____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_ir_ui_view____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_product_template____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_res_users____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_website____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_website_page____last_update
-#: model:ir.model.fields,field_description:website_user_types.field_website_rewrite____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
-
-#. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
 msgid ""
 "Note, that pricelists for website sale orders will change according to\n"
@@ -158,8 +120,8 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_product_template
-msgid "Product Template"
-msgstr "Produktvorlage"
+msgid "Product"
+msgstr "Produkt"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_page__group_ids
@@ -170,6 +132,11 @@ msgid ""
 msgstr ""
 "Der Nutzer muss mindestend einer dieser Gruppen angehören, so dass die "
 "Weiterleitung greift."
+
+#. module: website_user_types
+#: model:ir.model.fields,help:website_user_types.field_website_menu__group_ids
+msgid "The user needs to be in at least one of these groups to see the menu"
+msgstr "Der Nutzer muss in mindestens einer dieser Gruppen sein, um das Menü zu sehen"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
@@ -211,18 +178,13 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_users
-msgid "Users"
+msgid "User"
 msgstr "Benutzer"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_ir_ui_view
 msgid "View"
 msgstr "Ansicht"
-
-#. module: website_user_types
-#: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
-msgid "Visibility"
-msgstr "Sichtbarkeit"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2b
@@ -237,6 +199,7 @@ msgid "Visible Group B2C"
 msgstr "Sichtbar für Gruppe B2C"
 
 #. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_website_menu__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__group_ids
 msgid "Visible Groups"
@@ -246,6 +209,11 @@ msgstr "Sichtbarkeitsgruppen"
 #: model:ir.model,name:website_user_types.model_website
 msgid "Website"
 msgstr ""
+
+#. module: website_user_types
+#: model:ir.model,name:website_user_types.model_website_menu
+msgid "Website Menu"
+msgstr "Website-Menü"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__website_user_group_id
@@ -261,3 +229,13 @@ msgstr "Website-Nutzertypen"
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 msgid "Website User Visibility"
 msgstr "Website-Nutzer Sichtbarkeit"
+
+#. module: website_user_types
+#: model:ir.model,name:website_user_types.model_website_rewrite
+msgid "Website rewrite"
+msgstr "Website-Weiterleitung"
+
+#. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
+msgid "⌙ User Groups"
+msgstr "⌙ Nutzergruppen"
