@@ -10,54 +10,33 @@ class Website(models.Model):
         force_create=False,
         update_pricelist=False,
     ):
-        partner = self.env.user.partner_id
-        sale_order_id = request.session.get("sale_order_id")
-
-        if not sale_order_id and not self.env.user._is_public():
-            last_order = partner.last_website_so_id
-            if last_order:
-                available_pricelists = self.get_pricelist_available()
-                sale_order_id = (
-                    last_order.pricelist_id in available_pricelists and last_order.id
-                )
-
-        sale_order = (
-            self.env["sale.order"]
-            .with_company(request.website.company_id.id)
-            .sudo()
-            .browse(sale_order_id)
-            .exists()
-            if sale_order_id
-            else None
+        sale_order = super().sale_get_order(
+            force_create=force_create, update_pricelist=update_pricelist
         )
-
-        if sale_order:
+        if update_pricelist or force_create:
+            partner = sale_order.partner_id
             if partner.business_relationship_id.update_prices:
-                br_pricelist = self._get_default_business_relationship_pricelist(
+                pricelist = self._get_default_business_relationship_pricelist(
                     sale_order
                 )
-                if br_pricelist != sale_order.pricelist_id:
-                    self = self.with_context(
-                        force_pricelist_id=sale_order.pricelist_id.id
-                    )
+                fiscal_position = self.env[
+                    'account.fiscal.position'
+                ].sudo()._get_fiscal_position(partner, sale_order.partner_shipping_id)
 
-        return super().sale_get_order(
-            force_create=force_create,
-            update_pricelist=update_pricelist,
-        )
+                if (
+                    pricelist != sale_order.pricelist_id
+                    or fiscal_position != sale_order.fiscal_position_id
+                ):
+                    if pricelist != sale_order.pricelist_id:
+                        request.session['website_sale_current_pl'] = pricelist.id
 
-    def get_current_pricelist(self):
-        force_pricelist_id = self.env.context.get("force_pricelist_id", None)
-        if force_pricelist_id:
-            session_pricelist = request.session["website_sale_current_pl"]
-            if session_pricelist != force_pricelist_id:
-                request.session.pop("website_sale_current_pl")
+                    sale_order.write({
+                        'pricelist_id': pricelist.id,
+                        'fiscal_position_id': fiscal_position.id,
+                    })
+                    sale_order._recompute_prices()
 
-            return (
-                self.env["product.pricelist"].browse(force_pricelist_id).exists().sudo()
-            )
-
-        return super().get_current_pricelist()
+        return sale_order
 
     def _get_default_business_relationship_pricelist(self, order):
         partner = order.partner_id
