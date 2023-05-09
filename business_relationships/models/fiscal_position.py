@@ -29,6 +29,11 @@ class AccountFiscalPosition(models.Model):
             ("company_id", "in", [self.env.company.id, False]),
         ]
 
+        # if no business_relationship is given, use the one of the public user
+        if not business_relationship:
+            public_user = self.env.ref('base.public_user')
+            business_relationship = public_user.business_relationship_id
+
         # add business relationship domain
         if business_relationship:
             base_domain += [
