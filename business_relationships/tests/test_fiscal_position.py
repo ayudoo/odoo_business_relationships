@@ -143,7 +143,7 @@ class TestFiscalPosition(BusinessRelationshipsTestUsers):
                 partner = partner.partner_id
 
             self.assertEqual(
-                self.fp.get_fiscal_position(partner.id).id, expected_pos.id, message
+                self.fp._get_fiscal_position(partner).id, expected_pos.id, message
             )
 
         assert_fp(

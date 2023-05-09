@@ -74,22 +74,15 @@ class AccountFiscalPosition(models.Model):
         return fpos
 
     @api.model
-    def get_fiscal_position(self, partner_id, delivery_id=None):
+    def _get_fiscal_position(self, partner, delivery=None):
         """
         :return: fiscal position found (recordset)
         :rtype: :class:`account.fiscal.position`
         """
-        if not partner_id:
+        if not partner:
             return self.env["account.fiscal.position"]
 
-        # This can be easily overridden to apply more complex fiscal rules
-        PartnerObj = self.env["res.partner"]
-        partner = PartnerObj.browse(partner_id)
-
-        # if no delivery use invoicing
-        if delivery_id:
-            delivery = PartnerObj.browse(delivery_id)
-        else:
+        if not delivery:
             delivery = partner
 
         # partner manually set fiscal position always win
