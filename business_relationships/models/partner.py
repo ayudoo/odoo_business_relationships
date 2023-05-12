@@ -61,6 +61,11 @@ class Partner(models.Model):
                 record.can_change_business_relationship_id = (
                     record.business_relationship_id
                     != record.parent_id.business_relationship_id
+                    or
+                    # in Odoo 16, if it's not editable anymore it won't be saved
+                    # so we need to chec ref, too.
+                    ref.business_relationship_id
+                    != record.parent_id.business_relationship_id
                 )
             else:
                 record.can_change_business_relationship_id = True
