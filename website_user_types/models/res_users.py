@@ -38,16 +38,3 @@ class Users(models.Model):
                     for wut_id in wut_ids:
                         if wut_id in rels[2]:
                             rels[2].remove(wut_id)
-
-    @api.model
-    def get_user_website_user_group_class(self):
-        if self.user_has_groups("account.group_show_line_subtotals_tax_included"):
-            wut_class = "wut_tax_included"
-        else:
-            wut_class = "wut_tax_excluded"
-
-        if self.user_has_groups("website_user_types.group_b2b"):
-            return "{} wut_group_b2b".format(wut_class)
-        if self.user_has_groups("website_user_types.group_b2c"):
-            return "{} wut_group_b2c".format(wut_class)
-        return wut_class

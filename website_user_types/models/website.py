@@ -5,6 +5,37 @@ from odoo.http import request
 class Website(models.Model):
     _inherit = "website"
 
+    @api.model
+    def get_available_website_user_group_ids(self):
+        return [
+            self.env.ref("base.group_user").id,
+            self.env.ref("website_user_types.group_b2c").id,
+            self.env.ref("website_user_types.group_b2b").id,
+            self.env.ref("base.group_public").id,
+        ]
+
+    @tools.ormcache('self.env.uid', 'self.id')
+    def get_website_user_group(self):
+        user_group_ids = self.env.user.groups_id.ids
+        for group_id in self.get_available_website_user_group_ids():
+            if group_id in user_group_ids:
+                return self.env["res.groups"].browse(group_id)
+
+        return self.env.ref("base.group_public")
+
+    @tools.ormcache('self.env.uid', 'self.id')
+    def get_website_user_group_classes(self):
+        if self.user_has_groups("account.group_show_line_subtotals_tax_included"):
+            wut_class = "wut_tax_included"
+        else:
+            wut_class = "wut_tax_excluded"
+
+        if self.user_has_groups("website_user_types.group_b2b"):
+            return "{} wut_group_b2b".format(wut_class)
+        if self.user_has_groups("website_user_types.group_b2c"):
+            return "{} wut_group_b2c".format(wut_class)
+        return wut_class
+
     def sale_get_order(
         self,
         force_create=False,
