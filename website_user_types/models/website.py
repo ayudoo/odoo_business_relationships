@@ -14,16 +14,17 @@ class Website(models.Model):
             self.env.ref("base.group_public").id,
         ]
 
-    @tools.ormcache('self.env.uid', 'self.id')
-    def get_website_user_group(self):
+    def get_website_user_group_cache_key(self):
         user_group_ids = self.env.user.groups_id.ids
         for group_id in self.get_available_website_user_group_ids():
             if group_id in user_group_ids:
-                return self.env["res.groups"].browse(group_id)
+                return f"website_user_types_group_{group_id}"
 
-        return self.env.ref("base.group_public")
+        return "website_user_types_group_{}".format(
+            self.env.ref("base.group_public").id
+        )
 
-    @tools.ormcache('self.env.uid', 'self.id')
+    @tools.ormcache('self.env.uid')
     def get_website_user_group_classes(self):
         if self.user_has_groups("account.group_show_line_subtotals_tax_included"):
             wut_class = "wut_tax_included"

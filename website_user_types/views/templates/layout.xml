@@ -11,7 +11,7 @@
         t-value="(body_classname if body_classname else '') + website.get_website_user_group_classes()"/>
     </xpath>
     <xpath expr="//header/t[@t-cache]" position="attributes">
-      <attribute name="t-cache" add="website.get_website_user_group()"/>
+      <attribute name="t-cache" add="website.get_website_user_group_cache_key()"/>
     </xpath>
   </template>
 
