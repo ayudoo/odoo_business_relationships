@@ -1230,7 +1230,7 @@ div.content ul > li {
 <p><a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships">View it on github.com</a></p>
 </section>
 <section id="business-relationship-types">
-<h1>Business Relationship Types<a class="headerlink" href="#business-relationship-types" title="Permalink to this heading">¶</a></h1>
+<h1>Business Relationship Types<a class="headerlink" href="#business-relationship-types" title="Permalink to this heading"></a></h1>
 <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.svg" /></a>
 <p><strong>This is the Odoo 16 branch.</strong></p>
 <p><strong>This module is in beta state. Feel free to provide feedback.</strong></p>
@@ -1280,7 +1280,7 @@ according to the business relationship of the associated partner contact.</p>
 </ul>
 </nav>
 <section id="features">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
 <p>Configurable business relationship types on contact level. Usable for</p>
 <ul class="simple">
 <li><p>automatic assignment of pricelists and fiscal positions</p></li>
@@ -1297,14 +1297,14 @@ according to the business relationship of the associated partner contact.</p>
 </ul>
 </section>
 <section id="typical-use-cases">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Typical use cases</a><a class="headerlink" href="#typical-use-cases" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Typical use cases</a><a class="headerlink" href="#typical-use-cases" title="Permalink to this heading"></a></h2>
 <section id="different-prices-for-user-groups">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Different prices for user groups</a><a class="headerlink" href="#different-prices-for-user-groups" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Different prices for user groups</a><a class="headerlink" href="#different-prices-for-user-groups" title="Permalink to this heading"></a></h3>
 <p>You want to offer different prices for customers like employees or agents? No problem,
 just create the desired pricelist with a business relationship filter.</p>
 </section>
 <section id="business-relationship-dependent-tax-display">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Business Relationship dependent Tax Display</a><a class="headerlink" href="#business-relationship-dependent-tax-display" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Business Relationship dependent Tax Display</a><a class="headerlink" href="#business-relationship-dependent-tax-display" title="Permalink to this heading"></a></h3>
 <p>Depending on your country’s laws, you may have to show tax-included prices to B2C
 customers, while you still want to show the lower tax-excluded prices for logged-in
 B2B users.
@@ -1315,7 +1315,7 @@ The defaults are <code class="docutils literal notranslate"><span class="pre">ta
 <cite>B2C</cite>.</p>
 </section>
 <section id="round-prices-for-b2c">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Round prices for B2C</a><a class="headerlink" href="#round-prices-for-b2c" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Round prices for B2C</a><a class="headerlink" href="#round-prices-for-b2c" title="Permalink to this heading"></a></h3>
 <p>Odoo manages tax-excluded and tax-included prices easily, but not both together.
 Still, this may be your exact use case: You want to provide beautifully rounded
 tax-included prices for your <cite>B2C</cite> customers, but correct tax-excluded prices for other
@@ -1331,7 +1331,7 @@ has multiple delivery addresses that differ in tax handling (e.g. tax free expor
 tax-included pricelists and fiscal position manually on each contact, you may use
 automatic assignment based on the business relationships.</p>
 <section id="pricelists-according-to-shipping-address">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink">Pricelists according to shipping address</a><a class="headerlink" href="#pricelists-according-to-shipping-address" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">Pricelists according to shipping address</a><a class="headerlink" href="#pricelists-according-to-shipping-address" title="Permalink to this heading"></a></h4>
 <p>Tax included prices come with a drawback: your client might have a delivery address
 in another country, that requires tax free export. The problem is, you cannot simply
 remove the taxes with the default configuration, because tax free means 0% on the
@@ -1343,12 +1343,12 @@ easily done with this module by setting the two options
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <p>Set your partner’s business relationship in the contact form, right under the name. Out
 of the box they can be used as additional filter option for your pricelists and fiscal
 positions.</p>
 <section id="automatic-assignment">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Automatic assignment</a><a class="headerlink" href="#automatic-assignment" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Automatic assignment</a><a class="headerlink" href="#automatic-assignment" title="Permalink to this heading"></a></h3>
 <p>Under <code class="docutils literal notranslate"><span class="pre">Contacts</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationships</span></code> you can modify
 existing business relationships or create new ones. There is some basic configuration to
 assign defaults to new contacts and on app installation, but they can be freely
@@ -1362,7 +1362,7 @@ default to a new contact, if and only if you do not explicitly set another one.<
 <p>If you need more options, don’t hesitate to file a feature request.</p>
 </section>
 <section id="tax-display">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Tax Display</a><a class="headerlink" href="#tax-display" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Tax Display</a><a class="headerlink" href="#tax-display" title="Permalink to this heading"></a></h3>
 <p>If you want to adapt the <code class="docutils literal notranslate"><span class="pre">Product</span> <span class="pre">Prices</span></code> display, you need to set the option
 under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Website</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Pricing</span></code> to <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationship</span> <span class="pre">Dependent</span></code>.</p>
 <p>Note, that <code class="docutils literal notranslate"><span class="pre">tax_display</span></code> depends on the currently logged-in user. Your website
@@ -1370,7 +1370,7 @@ customers will see prices according to this setting. However, in the admin backe
 sale order and account move forms, the total/subtotal line display depends on the
 setting for <cite>Internal</cite> users.</p>
 <section id="email-template">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Email Template</a><a class="headerlink" href="#email-template" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Email Template</a><a class="headerlink" href="#email-template" title="Permalink to this heading"></a></h4>
 <p>Odoo’s sale order and move related email templates (not the attached reports)
 display taxes according to the settings of the salesperson. If you want to
 provide a consistent user experience, either create your own templates or assign a
@@ -1382,7 +1382,7 @@ and update existing ones. For this to work in the website context, you need to c
 <cite>Enforce on sale orders in website context</cite>.</p>
 </section>
 <section id="sales-order-and-invoice-pdf-reports">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Sales Order and Invoice PDF Reports</a><a class="headerlink" href="#sales-order-and-invoice-pdf-reports" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Sales Order and Invoice PDF Reports</a><a class="headerlink" href="#sales-order-and-invoice-pdf-reports" title="Permalink to this heading"></a></h4>
 <p>In difference to email templates, these are generated with the tax display settings of
 the OdooBot. Depending on your requirements, you might want to create your own report
 templates, that include conditions to display the right tax line values and contain
@@ -1395,20 +1395,20 @@ Please note, that this feature is still experimental.</p>
 </section>
 </section>
 <section id="website-user-types">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Website User Types</a><a class="headerlink" href="#website-user-types" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Website User Types</a><a class="headerlink" href="#website-user-types" title="Permalink to this heading"></a></h2>
 <p>As a website extension, you may install the auxiliary module <code class="docutils literal notranslate"><span class="pre">Website</span> <span class="pre">User</span> <span class="pre">Types</span></code>.
 After installation, login users will have an access permission group according to the
 configuration of the business relationship of the contact, <cite>Group B2C</cite> and
 <cite>Group B2B</cite>.</p>
 <section id="pages-menus-and-redirects">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Pages, Menus and Redirects</a><a class="headerlink" href="#pages-menus-and-redirects" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Pages, Menus and Redirects</a><a class="headerlink" href="#pages-menus-and-redirects" title="Permalink to this heading"></a></h3>
 <p>All three models can now be restricted to arbitrary Odoo access groups, including the
 new ones from above. This way you can redirect your <cite>B2B</cite> (or other) customers to
 specific landing pages, as well as restrict menu and page accessibility to different
 user groups.</p>
 </section>
 <section id="block-visibility">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Block Visibility</a><a class="headerlink" href="#block-visibility" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Block Visibility</a><a class="headerlink" href="#block-visibility" title="Permalink to this heading"></a></h3>
 <p>The web editor provides a new option <code class="docutils literal notranslate"><span class="pre">Visibility</span></code>, that allows you to restrict the
 visibility of any configurable block to <cite>Group B2C</cite>, <cite>Group B2B</cite> or a tax display
 group. Use it, for example, to create business relationship dependent mega menu entries
@@ -1418,7 +1418,7 @@ rendering logic involved. For more sophisticated features you might rather consi
 using a user group specific page or even a custom extension.</p>
 </section>
 <section id="product-accessibility">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Product Accessibility</a><a class="headerlink" href="#product-accessibility" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Product Accessibility</a><a class="headerlink" href="#product-accessibility" title="Permalink to this heading"></a></h3>
 <p>In the product form, <cite>eCommerce</cite> tab, you find the new section
 <cite>Website User Visibility</cite>. Use it to remove product access of one of the user groups.</p>
 <p>When unset, users of the group will not see the product in the shop list and accessing
@@ -1427,16 +1427,16 @@ still able to see and access it without limit.</p>
 </section>
 </section>
 <section id="bug-tracker">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Bug Tracker</a><a class="headerlink" href="#bug-tracker" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Bug Tracker</a><a class="headerlink" href="#bug-tracker" title="Permalink to this heading"></a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
 <a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships/issues/new?body=**Steps%20to%20reproduce**%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 </section>
 <section id="credits">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Credits</a><a class="headerlink" href="#credits" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Credits</a><a class="headerlink" href="#credits" title="Permalink to this heading"></a></h2>
 <section id="authors">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Authors</a><a class="headerlink" href="#authors" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Authors</a><a class="headerlink" href="#authors" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Michael Jurke</p></li>
 <li><p>Ayudoo Ltd &lt;<a class="reference external" href="mailto:support&#37;&#52;&#48;ayudoo&#46;bg">support<span>&#64;</span>ayudoo<span>&#46;</span>bg</a>&gt;</p></li>
