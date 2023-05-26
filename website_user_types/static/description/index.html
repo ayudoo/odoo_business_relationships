@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Welcome &#8212; Odoo Business Relationship Types Documentation</title>
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+  <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
+  <link rel="canonical" href="https://ayudoo.github.io/odoo_business_relationships/index.html" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="shortcut icon" type="image/x-icon" href="_static/favicon.ico">
+
+</head>
+
+<body>
+  <style>
+
+div.clearer {
+    clear: both;
+}
+
+div.section::after {
+    display: block;
+    content: '';
+    clear: left;
+}
+
+div.related {
+    width: 100%;
+    font-size: 90%;
+}
+
+div.related h3 {
+    display: none;
+}
+
+div.related ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+}
+
+div.related li {
+    display: inline;
+}
+
+div.related li.right {
+    float: right;
+    margin-right: 5px;
+}
+
+div.sphinxsidebarwrapper {
+    padding: 10px 5px 0 10px;
+}
+
+div.sphinxsidebar {
+    float: left;
+    width: 230px;
+    margin-left: -100%;
+    font-size: 90%;
+    word-wrap: break-word;
+    overflow-wrap : break-word;
+}
+
+div.sphinxsidebar ul {
+    list-style: none;
+}
+
+div.sphinxsidebar ul ul,
+div.sphinxsidebar ul.want-points {
+    margin-left: 20px;
+    list-style: square;
+}
+
+div.sphinxsidebar ul ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div.sphinxsidebar form {
+    margin-top: 10px;
+}
+
+div.sphinxsidebar input {
+    border: 1px solid #98dbcc;
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+div.sphinxsidebar #searchbox form.search {
+    overflow: hidden;
+}
+
+div.sphinxsidebar #searchbox input[type="text"] {
+    float: left;
+    width: 80%;
+    padding: 0.25em;
+    box-sizing: border-box;
+}
+
+div.sphinxsidebar #searchbox input[type="submit"] {
+    float: left;
+    width: 20%;
+    border-left: none;
+    padding: 0.25em;
+    box-sizing: border-box;
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+}
+
+ul.search {
+    margin: 10px 0 0 20px;
+    padding: 0;
+}
+
+ul.search li {
+    padding: 5px 0 5px 20px;
+    background-image: url(file.png);
+    background-repeat: no-repeat;
+    background-position: 0 7px;
+}
+
+ul.search li a {
+    font-weight: bold;
+}
+
+ul.search li p.context {
+    color: #888;
+    margin: 2px 0 0 30px;
+    text-align: left;
+}
+
+ul.keywordmatches li.goodmatch a {
+    font-weight: bold;
+}
+
+table.contentstable {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.contentstable p.biglink {
+    line-height: 150%;
+}
+
+a.biglink {
+    font-size: 1.3em;
+}
+
+span.linkdescr {
+    font-style: italic;
+    padding-top: 5px;
+    font-size: 90%;
+}
+
+table.indextable {
+    width: 100%;
+}
+
+table.indextable td {
+    text-align: left;
+    vertical-align: top;
+}
+
+table.indextable ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+table.indextable > tbody > tr > td > ul {
+    padding-left: 0em;
+}
+
+table.indextable tr.pcap {
+    height: 10px;
+}
+
+table.indextable tr.cap {
+    margin-top: 10px;
+    background-color: #f2f2f2;
+}
+
+img.toggler {
+    margin-right: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+div.modindex-jumpbox {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 1em 0 1em 0;
+    padding: 0.4em;
+}
+
+div.genindex-jumpbox {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 1em 0 1em 0;
+    padding: 0.4em;
+}
+
+table.modindextable td {
+    padding: 2px;
+    border-collapse: collapse;
+}
+
+div.body {
+    min-width: 59em;
+    max-width: 70em;
+}
+
+div.body p, div.body dd, div.body li, div.body blockquote {
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+a.headerlink {
+    visibility: hidden;
+}
+
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink,
+dt:hover > a.headerlink,
+caption:hover > a.headerlink,
+p.caption:hover > a.headerlink,
+div.code-block-caption:hover > a.headerlink {
+    visibility: visible;
+}
+
+div.body p.caption {
+    text-align: inherit;
+}
+
+div.body td {
+    text-align: left;
+}
+
+.first {
+    margin-top: 0 !important;
+}
+
+p.rubric {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+img.align-left, figure.align-left, .figure.align-left, object.align-left {
+    clear: left;
+    float: left;
+    margin-right: 1em;
+}
+
+img.align-right, figure.align-right, .figure.align-right, object.align-right {
+    clear: right;
+    float: right;
+    margin-left: 1em;
+}
+
+img.align-center, figure.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.align-default, figure.align-default, .figure.align-default {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-default {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+div.sidebar,
+aside.sidebar {
+    margin: 0 0 0.5em 1em;
+    border: 1px solid #ddb;
+    padding: 7px;
+    background-color: #ffe;
+    width: 40%;
+    float: right;
+    clear: right;
+    overflow-x: auto;
+}
+
+p.sidebar-title {
+    font-weight: bold;
+}
+
+nav.contents,
+aside.topic,
+div.admonition, div.topic, blockquote {
+    clear: left;
+}
+
+nav.contents,
+aside.topic,
+div.topic {
+    border: 1px solid #ccc;
+    padding: 7px;
+    margin: 10px 0 10px 0;
+}
+
+p.topic-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+div.admonition {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+
+div.admonition dt {
+    font-weight: bold;
+}
+
+p.admonition-title {
+    margin: 0px 10px 5px 0px;
+    font-weight: bold;
+}
+
+div.body p.centered {
+    text-align: center;
+    margin-top: 25px;
+}
+
+div.sidebar > :last-child,
+aside.sidebar > :last-child,
+nav.contents > :last-child,
+aside.topic > :last-child,
+div.topic > :last-child,
+div.admonition > :last-child {
+    margin-bottom: 0;
+}
+
+div.sidebar::after,
+aside.sidebar::after,
+nav.contents::after,
+aside.topic::after,
+div.topic::after,
+div.admonition::after,
+blockquote::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+table.docutils {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-collapse: collapse;
+}
+
+table.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.align-default {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table caption span.caption-number {
+    font-style: italic;
+}
+
+table caption span.caption-text {
+}
+
+table.docutils td, table.docutils th {
+    padding: 1px 8px 1px 5px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #aaa;
+}
+
+th {
+    text-align: left;
+    padding-right: 5px;
+}
+
+table.citation {
+    border-left: solid 1px gray;
+    margin-left: 1px;
+}
+
+table.citation td {
+    border-bottom: none;
+}
+
+th > :first-child,
+td > :first-child {
+    margin-top: 0px;
+}
+
+th > :last-child,
+td > :last-child {
+    margin-bottom: 0px;
+}
+
+div.figure, figure {
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+div.figure p.caption, figcaption {
+    padding: 0.3em;
+}
+
+div.figure p.caption span.caption-number,
+figcaption span.caption-number {
+    font-style: italic;
+}
+
+div.figure p.caption span.caption-text,
+figcaption span.caption-text {
+}
+
+table.field-list td, table.field-list th {
+    border: 0 !important;
+}
+
+.field-list ul {
+    margin: 0;
+    padding-left: 1em;
+}
+
+.field-list p {
+    margin: 0;
+}
+
+.field-name {
+    -moz-hyphens: manual;
+    -ms-hyphens: manual;
+    -webkit-hyphens: manual;
+    hyphens: manual;
+}
+
+table.hlist {
+    margin: 1em 0;
+}
+
+table.hlist td {
+    vertical-align: top;
+}
+
+.sig {
+	font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+}
+
+.sig-name, code.descname {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.sig-name {
+	font-size: 1.1em;
+}
+
+code.descname {
+    font-size: 1.2em;
+}
+
+.sig-prename, code.descclassname {
+    background-color: transparent;
+}
+
+.optional {
+    font-size: 1.3em;
+}
+
+.sig-paren {
+    font-size: larger;
+}
+
+.sig-param.n {
+	font-style: italic;
+}
+
+ol.arabic {
+    list-style: decimal;
+}
+
+ol.loweralpha {
+    list-style: lower-alpha;
+}
+
+ol.upperalpha {
+    list-style: upper-alpha;
+}
+
+ol.lowerroman {
+    list-style: lower-roman;
+}
+
+ol.upperroman {
+    list-style: upper-roman;
+}
+
+:not(li) > ol > li:first-child > :first-child,
+:not(li) > ul > li:first-child > :first-child {
+    margin-top: 0px;
+}
+
+:not(li) > ol > li:last-child > :last-child,
+:not(li) > ul > li:last-child > :last-child {
+    margin-bottom: 0px;
+}
+
+ol.simple ol p,
+ol.simple ul p,
+ul.simple ol p,
+ul.simple ul p {
+    margin-top: 0;
+}
+
+ol.simple > li:not(:first-child) > p,
+ul.simple > li:not(:first-child) > p {
+    margin-top: 0;
+}
+
+ol.simple p,
+ul.simple p {
+    margin-bottom: 0;
+}
+
+aside.footnote > span,
+div.citation > span {
+    float: left;
+}
+aside.footnote > span:last-of-type,
+div.citation > span:last-of-type {
+  padding-right: 0.5em;
+}
+aside.footnote > p {
+  margin-left: 2em;
+}
+div.citation > p {
+  margin-left: 4em;
+}
+aside.footnote > p:last-of-type,
+div.citation > p:last-of-type {
+    margin-bottom: 0em;
+}
+aside.footnote > p:last-of-type:after,
+div.citation > p:last-of-type:after {
+    content: "";
+    clear: both;
+}
+
+dl.field-list {
+    display: grid;
+    grid-template-columns: fit-content(30%) auto;
+}
+
+dl.field-list > dt {
+    font-weight: bold;
+    word-break: break-word;
+    padding-left: 0.5em;
+    padding-right: 5px;
+}
+
+dl.field-list > dd {
+    padding-left: 0.5em;
+    margin-top: 0em;
+    margin-left: 0em;
+    margin-bottom: 0em;
+}
+
+dl {
+    margin-bottom: 15px;
+}
+
+dd > :first-child {
+    margin-top: 0px;
+}
+
+dd ul, dd table {
+    margin-bottom: 10px;
+}
+
+dd {
+    margin-top: 3px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+dl > dd:last-child,
+dl > dd:last-child > :last-child {
+    margin-bottom: 0;
+}
+
+dt:target, span.highlighted {
+    background-color: #fbe54e;
+}
+
+rect.highlighted {
+    fill: #fbe54e;
+}
+
+dl.glossary dt {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.versionmodified {
+    font-style: italic;
+}
+
+.system-message {
+    background-color: #fda;
+    padding: 5px;
+    border: 3px solid red;
+}
+
+.footnote:target  {
+    background-color: #ffa;
+}
+
+.line-block {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.line-block .line-block {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1.5em;
+}
+
+.guilabel, .menuselection {
+    font-family: sans-serif;
+}
+
+.accelerator {
+    text-decoration: underline;
+}
+
+.classifier {
+    font-style: oblique;
+}
+
+.classifier:before {
+    font-style: normal;
+    margin: 0 0.5em;
+    content: ":";
+    display: inline-block;
+}
+
+abbr, acronym {
+    border-bottom: dotted 1px;
+    cursor: help;
+}
+
+pre {
+    overflow: auto;
+    overflow-y: hidden;  /* fixes display issues on Chrome browsers */
+}
+
+pre, div[class*="highlight-"] {
+    clear: both;
+}
+
+span.pre {
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    -webkit-hyphens: none;
+    hyphens: none;
+    white-space: nowrap;
+}
+
+div[class*="highlight-"] {
+    margin: 1em 0;
+}
+
+td.linenos pre {
+    border: 0;
+    background-color: transparent;
+    color: #aaa;
+}
+
+table.highlighttable {
+    display: block;
+}
+
+table.highlighttable tbody {
+    display: block;
+}
+
+table.highlighttable tr {
+    display: flex;
+}
+
+table.highlighttable td {
+    margin: 0;
+    padding: 0;
+}
+
+table.highlighttable td.linenos {
+    padding-right: 0.5em;
+}
+
+table.highlighttable td.code {
+    flex: 1;
+    overflow: hidden;
+}
+
+.highlight .hll {
+    display: block;
+}
+
+div.highlight pre,
+table.highlighttable pre {
+    margin: 0;
+}
+
+div.code-block-caption + div {
+    margin-top: 0;
+}
+
+div.code-block-caption {
+    margin-top: 1em;
+    padding: 2px 5px;
+    font-size: small;
+}
+
+div.code-block-caption code {
+    background-color: transparent;
+}
+
+table.highlighttable td.linenos,
+span.linenos,
+div.highlight span.gp {  /* gp: Generic.Prompt */
+  user-select: none;
+  -webkit-user-select: text; /* Safari fallback only */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+div.code-block-caption span.caption-number {
+    padding: 0.1em 0.3em;
+    font-style: italic;
+}
+
+div.code-block-caption span.caption-text {
+}
+
+div.literal-block-wrapper {
+    margin: 1em 0;
+}
+
+code.xref, a code {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+    background-color: transparent;
+}
+
+.viewcode-link {
+    float: right;
+}
+
+.viewcode-back {
+    float: right;
+    font-family: sans-serif;
+}
+
+div.viewcode-block:target {
+    margin: -1px -10px;
+    padding: 0 10px;
+}
+
+img.math {
+    vertical-align: middle;
+}
+
+div.body div.math p {
+    text-align: center;
+}
+
+span.eqno {
+    float: right;
+}
+
+span.eqno a.headerlink {
+    position: absolute;
+    z-index: 1;
+}
+
+div.math:hover a.headerlink {
+    visibility: visible;
+}
+
+@media print {
+    div.document,
+    div.documentwrapper,
+    div.bodywrapper {
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    div.sphinxsidebar,
+    div.related,
+    div.footer,
+    #top-link {
+        display: none;
+    }
+}
+
+html {
+    margin: 0px;
+    padding: 0px;
+    background: #FFF url(bg-page.png) top left repeat-x;
+}
+
+body {
+    line-height: 1.5;
+    margin: auto;
+    padding: 0px;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+    min-width: 59em;
+    max-width: 70em;
+    color: #000;
+}
+
+div.footer {
+    padding: 8px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* link colors and text decoration */
+
+a:link {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover, a:active {
+    text-decoration: underline;
+    color: #000;
+}
+
+/* Some headers act as anchors, don't give them a hover effect */
+
+h1 a:hover, a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+h2 a:hover, a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+h3 a:hover, a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+h4 a:hover, a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+a.headerlink {
+    color: #a7ce38;
+    padding-left: 5px;
+}
+
+a.headerlink:hover {
+    color: #a7ce38;
+}
+
+/* basic text elements */
+
+div.content {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 50px;
+    font-size: 0.9em;
+}
+
+/* heading and navigation */
+
+div.header {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 85px;
+    /* background: #eeeeee; */
+    padding: 0 40px;
+}
+div.header h1 {
+    font-size: 1.6em;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #000;
+    border: 0;
+    margin: 0;
+    padding-top: 15px;
+}
+div.header h1 a {
+    font-weight: normal;
+    color: #000;
+}
+div.header h2 {
+    font-size: 1.3em;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aaa;
+    border: 0;
+    margin-top: -3px;
+    padding: 0;
+}
+
+div.header img.rightlogo {
+    float: right;
+}
+
+
+div.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #000;
+    border-bottom: dotted thin #e0e0e0;
+    margin-bottom: 25px;
+}
+div.topnav {
+    /* background: #e0e0e0; */
+}
+div.topnav p {
+    margin-top: 0;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+    text-align: right;
+    font-size: 0.8em;
+}
+div.bottomnav {
+    background: #eeeeee;
+}
+div.bottomnav p {
+    margin-right: 40px;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+a.uplink {
+    font-weight: normal;
+}
+
+
+/* contents box */
+
+table.index {
+    margin: 0px 0px 30px 30px;
+    padding: 1px;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #e0e0e0;
+}
+table.index tr.heading {
+    background-color: #e0e0e0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+table.index tr.index {
+    background-color: #eeeeee;
+}
+table.index td {
+    padding: 5px 20px;
+}
+
+table.index a:link, table.index a:visited {
+    font-weight: normal;
+    text-decoration: none;
+    color: #000;
+}
+table.index a:hover, table.index a:active {
+    text-decoration: underline;
+    color: #000;
+}
+
+
+/* Haiku User Guide styles and layout */
+
+/* Rounded corner boxes */
+/* Common declarations */
+div.admonition {
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: thin;
+    border-color: #dcdcdc;
+    padding: 10px 15px 10px 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+div.note {
+    padding: 10px 15px 10px 80px;
+    background: #e4ffde url(alert_info_32.png) 15px 15px no-repeat;
+    min-height: 42px;
+}
+div.warning {
+    padding: 10px 15px 10px 80px;
+    background: #fffbc6 url(alert_warning_32.png) 15px 15px no-repeat;
+    min-height: 42px;
+}
+div.seealso {
+    background: #e4ffde;
+}
+
+/* More layout and styles */
+h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #000;
+    border-bottom: dotted thin #e0e0e0;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #000;
+    border-bottom: dotted thin #e0e0e0;
+    margin-top: 30px;
+}
+
+h3 {
+    font-size: 1.1em;
+    font-weight: normal;
+    color: #000;
+    margin-top: 30px;
+}
+
+h4 {
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #000;
+    margin-top: 30px;
+}
+
+p {
+    text-align: justify;
+}
+
+p.last {
+    margin-bottom: 0;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+ul {
+    padding-left: 5px;
+    margin-top: 3px;
+}
+
+li {
+    line-height: 1.3;
+}
+
+div.content ul > li {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background: transparent url(bullet_orange.png) no-repeat scroll left 0.45em;
+    list-style-image: none;
+    list-style-type: none;
+    padding: 0 0 0 1.666em;
+    margin-bottom: 3px;
+}
+
+td {
+    vertical-align: top;
+}
+
+code {
+    background-color: #e2e2e2;
+    font-size: 1.0em;
+    font-family: monospace;
+}
+
+pre {
+    border-color: #0c3762;
+    border-style: dotted;
+    border-width: thin;
+    margin: 0 0 12px 0;
+    padding: 0.8em;
+}
+
+hr {
+    border-top: 1px solid #ccc;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+/* printer only pretty stuff */
+@media print {
+    .noprint {
+        display: none;
+    }
+    /* for acronyms we want their definitions inlined at print time */
+    acronym[title]:after {
+        font-size: small;
+        content: " (" attr(title) ")";
+        font-style: italic;
+    }
+    /* and not have mozilla dotted underline */
+    acronym {
+        border: none;
+    }
+    div.topnav, div.bottomnav, div.header, table.index {
+        display: none;
+    }
+    div.content {
+        margin: 0px;
+        padding: 0px;
+    }
+    html {
+        background: #FFF;
+    }
+}
+
+.viewcode-back {
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+}
+
+div.viewcode-block:target {
+    background-color: #f4debf;
+    border-top: 1px solid #ac9;
+    border-bottom: 1px solid #ac9;
+    margin: -1px -10px;
+    padding: 0 12px;
+}
+
+/* math display */
+div.math p {
+    text-align: center;
+}
+
+#welcome p {
+  text-align: right;
+}
+
+#contents a {
+  font-weight: normal;
+  text-align: right;
+}
+
+div.content ul > li {
+  filter: grayscale(100%);
+}
+  </style>
+  <div class="header" role="banner"><h1 class="heading"><a href="#">
+      <span>Odoo Business Relationship Types Documentation</span></a></h1>
+    <h2 class="heading"><span>Welcome</span></h2>
+  </div>
+  <div class="topnav" role="navigation" aria-label="top navigation">
+
+
+  </div>
+  <div class="content" role="main">
+
+
+<div class="toctree-wrapper compound">
+</div>
+<section id="welcome">
+<p><a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships">View it on github.com</a></p>
+</section>
+<section id="business-relationship-types">
+<h1>Business Relationship Types<a class="headerlink" href="#business-relationship-types" title="Permalink to this heading">¶</a></h1>
+<a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.svg" /></a>
+<p><strong>This is the Odoo 16 branch.</strong></p>
+<p><strong>This module is in beta state. Feel free to provide feedback.</strong></p>
+<p>Extend your contacts with business relationship types, e.g. <cite>B2C</cite>, <cite>B2B</cite> and
+<cite>Internal</cite> and configure automatic assignment of pricelists and fiscal positions.
+Change tax display (<code class="docutils literal notranslate"><span class="pre">Tax-Excluded</span> <span class="pre">(B2B)</span></code>, <code class="docutils literal notranslate"><span class="pre">Tax-Included</span> <span class="pre">(B2C)</span></code>) of login users
+according to the business relationship of the associated partner contact.</p>
+<p><strong>Table of contents</strong></p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#features" id="id1">Features</a></p></li>
+<li><p><a class="reference internal" href="#typical-use-cases" id="id2">Typical use cases</a></p>
+<ul>
+<li><p><a class="reference internal" href="#different-prices-for-user-groups" id="id3">Different prices for user groups</a></p></li>
+<li><p><a class="reference internal" href="#business-relationship-dependent-tax-display" id="id4">Business Relationship dependent Tax Display</a></p></li>
+<li><p><a class="reference internal" href="#round-prices-for-b2c" id="id5">Round prices for B2C</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pricelists-according-to-shipping-address" id="id6">Pricelists according to shipping address</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#automatic-assignment" id="id8">Automatic assignment</a></p></li>
+<li><p><a class="reference internal" href="#tax-display" id="id9">Tax Display</a></p>
+<ul>
+<li><p><a class="reference internal" href="#email-template" id="id10">Email Template</a></p></li>
+<li><p><a class="reference internal" href="#sales-order-and-invoice-pdf-reports" id="id11">Sales Order and Invoice PDF Reports</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#website-user-types" id="id12">Website User Types</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pages-menus-and-redirects" id="id13">Pages, Menus and Redirects</a></p></li>
+<li><p><a class="reference internal" href="#block-visibility" id="id14">Block Visibility</a></p></li>
+<li><p><a class="reference internal" href="#product-accessibility" id="id15">Product Accessibility</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bug-tracker" id="id16">Bug Tracker</a></p></li>
+<li><p><a class="reference internal" href="#credits" id="id17">Credits</a></p>
+<ul>
+<li><p><a class="reference internal" href="#authors" id="id18">Authors</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="features">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
+<p>Configurable business relationship types on contact level. Usable for</p>
+<ul class="simple">
+<li><p>automatic assignment of pricelists and fiscal positions</p></li>
+<li><p>different tax display settings for different users</p></li>
+<li><p>customize the default business relationship for new contacts</p></li>
+<li><p>assign a default image, salesperson or sales team to new contacts</p></li>
+<li><p>assign default salesperson and analytic account to sale orders</p></li>
+<li><p>restrict website menus, pages, redirects and block visibilities to certain users</p></li>
+<li><p>use different access permission groups for portal users</p></li>
+<li><p>restrict product visibility to certain user groups</p></li>
+<li><p>create and configure your own business relationships</p></li>
+<li><p>recompute existing cart prices on login and address changes</p></li>
+<li><p>individual pricelists for child contacts and sale order pricelists by shipping address</p></li>
+</ul>
+</section>
+<section id="typical-use-cases">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Typical use cases</a><a class="headerlink" href="#typical-use-cases" title="Permalink to this heading">¶</a></h2>
+<section id="different-prices-for-user-groups">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Different prices for user groups</a><a class="headerlink" href="#different-prices-for-user-groups" title="Permalink to this heading">¶</a></h3>
+<p>You want to offer different prices for customers like employees or agents? No problem,
+just create the desired pricelist with a business relationship filter.</p>
+</section>
+<section id="business-relationship-dependent-tax-display">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Business Relationship dependent Tax Display</a><a class="headerlink" href="#business-relationship-dependent-tax-display" title="Permalink to this heading">¶</a></h3>
+<p>Depending on your country’s laws, you may have to show tax-included prices to B2C
+customers, while you still want to show the lower tax-excluded prices for logged-in
+B2B users.
+By default, tax display is a global setting in Odoo. With this module you can
+activate <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationship</span> <span class="pre">Dependent</span></code> tax display and configure this option for
+each business relationship separately.
+The defaults are <code class="docutils literal notranslate"><span class="pre">tax_excluded</span></code> for <cite>Internal</cite> and <cite>B2B</cite>, but <code class="docutils literal notranslate"><span class="pre">tax_included</span></code> for
+<cite>B2C</cite>.</p>
+</section>
+<section id="round-prices-for-b2c">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Round prices for B2C</a><a class="headerlink" href="#round-prices-for-b2c" title="Permalink to this heading">¶</a></h3>
+<p>Odoo manages tax-excluded and tax-included prices easily, but not both together.
+Still, this may be your exact use case: You want to provide beautifully rounded
+tax-included prices for your <cite>B2C</cite> customers, but correct tax-excluded prices for other
+<cite>B2B</cite> transactions.</p>
+<p>In <a class="reference external" href="https://www.odoo.com/documentation/14.0/applications/finance/accounting/taxation/taxes/B2B_B2C.html">Manage prices for B2B (tax excluded) and B2C (tax
+included)</a>
+you find a detailed description of the problem and the documented workaround: While
+basically working tax-excluded, you configure separate tax-included pricelists and
+fiscal positions, that swap tax-excluded to tax-included. These have to be assigned
+manually to your special tax-included customers and it won’t work if this customer
+has multiple delivery addresses that differ in tax handling (e.g. tax free export).</p>
+<p>Here <code class="docutils literal notranslate"><span class="pre">business_relationships</span></code> comes to the help: instead of having to assign the
+tax-included pricelists and fiscal position manually on each contact, you may use
+automatic assignment based on the business relationships.</p>
+<section id="pricelists-according-to-shipping-address">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">Pricelists according to shipping address</a><a class="headerlink" href="#pricelists-according-to-shipping-address" title="Permalink to this heading">¶</a></h4>
+<p>Tax included prices come with a drawback: your client might have a delivery address
+in another country, that requires tax free export. The problem is, you cannot simply
+remove the taxes with the default configuration, because tax free means 0% on the
+invoice. To get things right, you will need to switch to a tax excluded pricelist,
+easily done with this module by setting the two options
+<code class="docutils literal notranslate"><span class="pre">individual</span> <span class="pre">pricelists</span> <span class="pre">for</span> <span class="pre">child</span> <span class="pre">contacts</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sale</span> <span class="pre">order</span> <span class="pre">pricelist</span> <span class="pre">by</span> <span class="pre">shipping</span> <span class="pre">address</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="usage">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p>Set your partner’s business relationship in the contact form, right under the name. Out
+of the box they can be used as additional filter option for your pricelists and fiscal
+positions.</p>
+<section id="automatic-assignment">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Automatic assignment</a><a class="headerlink" href="#automatic-assignment" title="Permalink to this heading">¶</a></h3>
+<p>Under <code class="docutils literal notranslate"><span class="pre">Contacts</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationships</span></code> you can modify
+existing business relationships or create new ones. There is some basic configuration to
+assign defaults to new contacts and on app installation, but they can be freely
+reassigned.</p>
+<p>There are <cite>B2B</cite>, <cite>B2C</cite> and <cite>Internal</cite>. <cite>B2B</cite> is default for
+companies and for contacts, that have <code class="docutils literal notranslate"><span class="pre">Purchase</span> <span class="pre">Payment</span> <span class="pre">Terms</span></code> set (your
+suppliers). <cite>Internal</cite> will be set for your employees (users of group
+<code class="docutils literal notranslate"><span class="pre">base.group_user</span></code>). All further contacts are set to <cite>B2C</cite>. The match conditions
+are configurable and the first matching business relationship will be assigned as
+default to a new contact, if and only if you do not explicitly set another one.</p>
+<p>If you need more options, don’t hesitate to file a feature request.</p>
+</section>
+<section id="tax-display">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Tax Display</a><a class="headerlink" href="#tax-display" title="Permalink to this heading">¶</a></h3>
+<p>If you want to adapt the <code class="docutils literal notranslate"><span class="pre">Product</span> <span class="pre">Prices</span></code> display, you need to set the option
+under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Website</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Pricing</span></code> to <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationship</span> <span class="pre">Dependent</span></code>.</p>
+<p>Note, that <code class="docutils literal notranslate"><span class="pre">tax_display</span></code> depends on the currently logged-in user. Your website
+customers will see prices according to this setting. However, in the admin backend
+sale order and account move forms, the total/subtotal line display depends on the
+setting for <cite>Internal</cite> users.</p>
+<section id="email-template">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Email Template</a><a class="headerlink" href="#email-template" title="Permalink to this heading">¶</a></h4>
+<p>Odoo’s sale order and move related email templates (not the attached reports)
+display taxes according to the settings of the salesperson. If you want to
+provide a consistent user experience, either create your own templates or assign a
+salesperson to orders and invoices with the same setting as the targeted partner.</p>
+<p>The recommended approach is to configure the <cite>B2C</cite> business relationship with a
+salesperson with type <cite>B2C</cite>, e.g. <cite>My B2C Shop</cite>. In <code class="docutils literal notranslate"><span class="pre">Contacts</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Configuration</span></code>
+-&gt; <code class="docutils literal notranslate"><span class="pre">Business</span> <span class="pre">Relationships</span></code> you can assign the default salesperson for new contacts
+and update existing ones. For this to work in the website context, you need to check
+<cite>Enforce on sale orders in website context</cite>.</p>
+</section>
+<section id="sales-order-and-invoice-pdf-reports">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Sales Order and Invoice PDF Reports</a><a class="headerlink" href="#sales-order-and-invoice-pdf-reports" title="Permalink to this heading">¶</a></h4>
+<p>In difference to email templates, these are generated with the tax display settings of
+the OdooBot. Depending on your requirements, you might want to create your own report
+templates, that include conditions to display the right tax line values and contain
+other business relationship dependent information. However, as an alternative or
+support module, you may install the module <code class="docutils literal notranslate"><span class="pre">salesperson_report_context</span></code>. Like emails,
+the reports will be generated in the context of the associated salesperson and you can
+rely on the salesperson configuration from above.
+Please note, that this feature is still experimental.</p>
+</section>
+</section>
+</section>
+<section id="website-user-types">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Website User Types</a><a class="headerlink" href="#website-user-types" title="Permalink to this heading">¶</a></h2>
+<p>As a website extension, you may install the auxiliary module <code class="docutils literal notranslate"><span class="pre">Website</span> <span class="pre">User</span> <span class="pre">Types</span></code>.
+After installation, login users will have an access permission group according to the
+configuration of the business relationship of the contact, <cite>Group B2C</cite> and
+<cite>Group B2B</cite>.</p>
+<section id="pages-menus-and-redirects">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Pages, Menus and Redirects</a><a class="headerlink" href="#pages-menus-and-redirects" title="Permalink to this heading">¶</a></h3>
+<p>All three models can now be restricted to arbitrary Odoo access groups, including the
+new ones from above. This way you can redirect your <cite>B2B</cite> (or other) customers to
+specific landing pages, as well as restrict menu and page accessibility to different
+user groups.</p>
+</section>
+<section id="block-visibility">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Block Visibility</a><a class="headerlink" href="#block-visibility" title="Permalink to this heading">¶</a></h3>
+<p>The web editor provides a new option <code class="docutils literal notranslate"><span class="pre">Visibility</span></code>, that allows you to restrict the
+visibility of any configurable block to <cite>Group B2C</cite>, <cite>Group B2B</cite> or a tax display
+group. Use it, for example, to create business relationship dependent mega menu entries
+or to add tax display specific information.</p>
+<p>Note, these elements are simply hidden from the user, there is no additional server
+rendering logic involved. For more sophisticated features you might rather consider
+using a user group specific page or even a custom extension.</p>
+</section>
+<section id="product-accessibility">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Product Accessibility</a><a class="headerlink" href="#product-accessibility" title="Permalink to this heading">¶</a></h3>
+<p>In the product form, <cite>eCommerce</cite> tab, you find the new section
+<cite>Website User Visibility</cite>. Use it to remove product access of one of the user groups.</p>
+<p>When unset, users of the group will not see the product in the shop list and accessing
+the product page results in 404. However, internal users of group <cite>Web Designer</cite> are
+still able to see and access it without limit.</p>
+</section>
+</section>
+<section id="bug-tracker">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Bug Tracker</a><a class="headerlink" href="#bug-tracker" title="Permalink to this heading">¶</a></h2>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/ayudoo/odoo_business_relationships/issues/new?body=**Steps%20to%20reproduce**%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+</section>
+<section id="credits">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Credits</a><a class="headerlink" href="#credits" title="Permalink to this heading">¶</a></h2>
+<section id="authors">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Authors</a><a class="headerlink" href="#authors" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Michael Jurke</p></li>
+<li><p>Ayudoo Ltd &lt;<a class="reference external" href="mailto:support&#37;&#52;&#48;ayudoo&#46;bg">support<span>&#64;</span>ayudoo<span>&#46;</span>bg</a>&gt;</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+
+      </div>
+
+  </body>
+</html>
