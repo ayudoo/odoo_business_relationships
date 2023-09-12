@@ -121,6 +121,29 @@ class Website(models.Model):
 
         return domain
 
+    def get_unique_path(self, page_url):
+        page = self.env.context.get("page")
+
+        if not page:
+            group_ids = False
+        else:
+            group_ids = page.group_ids.ids
+
+        inc = 0
+        website_id = self.env.context.get('website_id', False) or self.get_current_website().id
+        domain_static = [('website_id', '=', website_id)]  # .website_domain()
+        domain_static.append(
+            ("group_ids", "=", group_ids)
+        )
+        page_temp = page_url
+
+        while self.env['website.page'].with_context(active_test=False).sudo().search(
+            [('url', '=', page_temp)] + domain_static
+        ):
+            inc += 1
+            page_temp = page_url + (inc and "-%s" % inc or "")
+        return page_temp
+
 
 class View(models.Model):
     _inherit = "ir.ui.view"

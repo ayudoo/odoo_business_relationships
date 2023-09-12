@@ -17,4 +17,10 @@ class Http(models.AbstractModel):
         request.website = request.website.with_context(
             with_group_ids=request.env.user.groups_id.ids
         )
-        return super()._serve_page()
+        res = super()._serve_page()
+
+        if not res and request.env.user.has_group("website.group_website_designer"):
+            request.website = request.website.with_context(with_group_ids=False)
+            res = super()._serve_page()
+
+        return res

@@ -19,6 +19,14 @@
       <field name="track" position="after">
         <field name="group_ids" widget="many2many_tags"/>
       </field>
+      <button name="action_page_debug_view" position="after">
+        <button
+          name="action_edit_page"
+          type="object"
+          title="Edit"
+          icon="fa-edit fa-lg"/>
+      </button>
+
     </field>
   </record>
 
