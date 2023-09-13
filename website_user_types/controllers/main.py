@@ -1,6 +1,20 @@
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website.controllers.main import Website
 from odoo import http
 from odoo.http import request
+
+
+class TypesWebsite(Website):
+
+    def index(self, **kw):
+        result = super().index(**kw)
+
+        if result.status_code == 303:
+            fallback = request.env['ir.http']._serve_fallback()
+            if fallback:
+                return fallback
+
+        return result
 
 
 class WebsiteSaleShipping(WebsiteSale):
