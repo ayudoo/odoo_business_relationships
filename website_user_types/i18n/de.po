@@ -63,6 +63,11 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.website_pages_tree_view
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#. module: website_user_types
 #: model:res.groups,name:website_user_types.group_b2b
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_search_view
