@@ -9,7 +9,7 @@
           name="business_relationship_ids"
           string="Business Rel."
           widget="many2many_tags"
-          options="{'color_field': 'color'}"/>
+          options="{'color_field': 'color', 'no_create': True}"/>
       </field>
     </field>
   </record>

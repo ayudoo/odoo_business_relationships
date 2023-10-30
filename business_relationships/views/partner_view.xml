@@ -31,6 +31,7 @@
           <field
             name="business_relationship_id"
             style="width: 50%;"
+            options="{'no_create': True}"
             attrs="{'readonly': [('can_change_business_relationship_id','=',False)]}"/>
           <field
             name="default_business_relationship_id"
