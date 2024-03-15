@@ -21,6 +21,7 @@ class Partner(models.Model):
 
     @api.onchange(
         "is_company",
+        "parent_id",
         "business_relationship_id",
         "property_supplier_payment_term_id",
     )
