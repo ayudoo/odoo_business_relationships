@@ -45,7 +45,18 @@ class Groups(models.Model):
 
     @api.model
     def get_website_user_type_groups(self):
-        category_id = self.env.ref(
-            "website_user_types.module_category_website_user_types"
+        # we only return groups in use and in the order of their first occurrence
+        # in the business relationship
+        brs = self.env["res.partner.business_relationship"].search([])
+        return brs.website_user_group_id
+
+    @api.model
+    def _wut_get_selectable_groups(self):
+        # we need to restrict this because of caching reasons
+        groups = (
+            self.env.ref("base.group_user")
+            + self.get_website_user_type_groups()
+            + self.env.ref("base.group_public")
         )
-        return self.env["res.groups"].search([("category_id", "=", category_id.id)])
+
+        return groups

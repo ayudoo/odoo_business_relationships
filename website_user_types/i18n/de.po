@@ -140,8 +140,12 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_menu__group_ids
-msgid "The user needs to be in at least one of these groups to see the menu"
-msgstr "Der Nutzer muss in mindestens einer dieser Gruppen sein, um das Menü zu sehen"
+msgid ""
+"The user needs to be in at least one of these groups to see the menu. Note, "
+"that selectable groups are limited because of caching."
+msgstr ""
+"Der Nutzer muss in mindestens einer dieser Gruppen sein, um das Menü zu "
+"sehen. Aufgrund des Cachings ist die Gruppenauswahl begrenzt."
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
