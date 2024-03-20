@@ -38,3 +38,14 @@ class Users(models.Model):
                     for wut_id in wut_ids:
                         if wut_id in rels[2]:
                             rels[2].remove(wut_id)
+
+
+class Groups(models.Model):
+    _inherit = 'res.groups'
+
+    @api.model
+    def get_website_user_type_groups(self):
+        category_id = self.env.ref(
+            "website_user_types.module_category_website_user_types"
+        )
+        return self.env["res.groups"].search([("category_id", "=", category_id.id)])

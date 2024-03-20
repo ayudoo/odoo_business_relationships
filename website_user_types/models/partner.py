@@ -9,14 +9,8 @@ class Partner(models.Model):
         super()._after_business_relationship_changed()
         self._set_website_user_groups()
 
-    def _get_website_user_groups(self):
-        category_id = self.env.ref(
-            "website_user_types.module_category_website_user_types"
-        )
-        return self.env["res.groups"].search([("category_id", "=", category_id.id)])
-
     def _set_website_user_groups(self):
-        website_user_groups = self._get_website_user_groups()
+        website_user_groups = self.env["res.groups"].get_website_user_type_groups()
 
         for record in self:
             if not record.business_relationship_id:
