@@ -5,17 +5,6 @@ from odoo.http import request
 class Website(models.Model):
     _inherit = "website"
 
-    # TODO remove later
-    @api.model
-    def get_available_website_user_group_ids(self):
-        groups = (
-            self.env.ref("base.group_user")
-            + self.env["res.groups"].get_website_user_type_groups()
-            + self.env.ref("base.group_public")
-        )
-
-        return groups.ids
-
     def get_website_user_group_cache_key(self):
         # needed for the header cache. Only the first group is used for the key,
         user_group_ids = self.env.user.groups_id.ids
