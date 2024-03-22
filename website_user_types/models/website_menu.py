@@ -16,7 +16,7 @@ class Menu(models.Model):
 
     def _compute_visible(self):
         super()._compute_visible()
-        if self.user_has_groups("base.group_user"):
+        if self.user_has_groups("base.group_user,!website.group_website_designer"):
             for record in self:
                 if record.group_ids and not record.group_ids & self.env.user.groups_id:
                     record.is_visible = False
