@@ -164,9 +164,13 @@ Website User Types
 ------------------
 
 As a website extension, you may install the auxiliary module ``Website User Types``.
-After installation, login users will have an access permission group according to the
-configuration of the business relationship of the contact, `Group B2C` and
-`Group B2B`.
+After installation, users/logins will have a special access permission group according
+to the configuration of the business relationship of the contact, by default
+`Group B2C` and `Group B2B`. These groups can be used to customize the portal
+experience. Note, that every login can only have one type.
+
+Tipp: you can install ``Website User Types Optional Interface Extensions`` to see and
+edit a user's ``Website User Types`` in the settings, individually on user level.
 
 
 Pages, Menus and Redirects
