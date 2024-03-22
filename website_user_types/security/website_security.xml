@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+  <!-- group_user is filtered differently, so it does not cause issues in the backend -->
   <record id="website_menu" model="ir.rule">
     <field name="name">Website menu: group_ids</field>
     <field name="model_id" ref="model_website_menu"/>

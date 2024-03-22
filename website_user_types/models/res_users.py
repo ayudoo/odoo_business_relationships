@@ -1,4 +1,5 @@
 from odoo import api, models
+from odoo.addons.base.models.res_users import name_selection_groups
 
 
 class Users(models.Model):
@@ -39,6 +40,29 @@ class Users(models.Model):
                         if wut_id in rels[2]:
                             rels[2].remove(wut_id)
 
+    def write(self, values):
+        wut_category = self.env.ref(
+            "website_user_types.module_category_website_user_types"
+        )
+        wut_groups = self.env["res.groups"].search([
+            ("category_id", "=", wut_category.id)
+        ])
+        wut_group_field_name = name_selection_groups(wut_groups.ids)
+
+        if not values.get(wut_group_field_name):
+            return super().write(values)
+
+        res = super().write(values)
+
+        wut_groups = wut_groups.filtered(lambda w: w.id != values[wut_group_field_name])
+        wut_groups.with_context(active_test=False).write(
+            {"users": [
+                (3, uid)
+                for uid in self.ids
+            ]}
+        )
+        return res
+
 
 class Groups(models.Model):
     _inherit = 'res.groups'
@@ -53,10 +77,8 @@ class Groups(models.Model):
     @api.model
     def _wut_get_selectable_groups(self):
         # we need to restrict this because of caching reasons
-        groups = (
+        return (
             self.env.ref("base.group_user")
             + self.get_website_user_type_groups()
             + self.env.ref("base.group_public")
         )
-
-        return groups

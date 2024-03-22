@@ -124,6 +124,11 @@ msgstr ""
 "Webseitensichtbarkeit zu nutzen."
 
 #. module: website_user_types
+#: model:ir.module.category,name:website_user_types.module_category_portal_customization
+msgid "Portal Customization"
+msgstr "Portal-Anpassung"
+
+#. module: website_user_types
 #: model:ir.model,name:website_user_types.model_product_template
 msgid "Product"
 msgstr "Produkt"
