@@ -44,7 +44,7 @@ class Users(models.Model):
         wut_category = self.env.ref(
             "website_user_types.module_category_website_user_types"
         )
-        wut_groups = self.env["res.groups"].search([
+        wut_groups = self.env["res.groups"].sudo().search([
             ("category_id", "=", wut_category.id)
         ])
         wut_group_field_name = name_selection_groups(wut_groups.ids)

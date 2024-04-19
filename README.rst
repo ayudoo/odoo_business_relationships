@@ -170,7 +170,8 @@ to the configuration of the business relationship of the contact, by default
 experience. Note, that every login can only have one type.
 
 Tipp: you can install ``Website User Types Optional Interface Extensions`` to see and
-edit a user's ``Website User Types`` in the settings, individually on user level.
+edit a user's ``Website User Types`` more comfortably in the settings, individually on
+user level.
 
 
 Pages, Menus and Redirects
