@@ -47,12 +47,13 @@
             ('parent_id','=',False),
             ('can_change_business_relationship_id','=',True),
           ]}">
-          <div class="d-inline-block">is managed on the parent contact</div>
+          <div class="d-inline-block">is managed on the</div>
           <button
             name="open_commercial_entity"
             type="object"
+            string="parent company"
             title="Open parent contact"
-            class="oe_link pt-1 fa fa-arrow-right"/>
+            class="oe_link pt-1"/>
         </div>
       </xpath>
     </field>

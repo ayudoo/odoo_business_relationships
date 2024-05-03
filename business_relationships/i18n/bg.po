@@ -28,7 +28,9 @@ msgstr "Аналитична Сметка"
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Any of the following must be true (leave empty to match all contacts)."
-msgstr "Трябва да се прилага едно от условията (оставете го празно за останалите контакти). "
+msgstr ""
+"Трябва да се прилага едно от условията (оставете го празно за останалите "
+"контакти)."
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
@@ -213,14 +215,17 @@ msgstr ""
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "If set, will be used as fallback image on contact creation."
-msgstr "Ако се добави, ще бъде ползвана за нови контакти, ако няма друга снимка."
+msgstr ""
+"Ако се добави, ще бъде ползвана за нови контакти, ако няма друга снимка."
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_res_partner_business_relationship__active
 msgid ""
 "If the active field is set to false, it will allow you to hide Business "
 "Relationship without removing it."
-msgstr "Ако папка 'активно' е настроена на false, то ще Ви позволи да скриете бизнес отношение, без да я премахвате."
+msgstr ""
+"Ако папка 'активно' е настроена на false, то ще Ви позволи да скриете бизнес"
+" отношение, без да я премахвате"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__image_1920
@@ -270,7 +275,7 @@ msgstr "Записи в Дневника"
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Последна промяна на"
 
 #. module: business_relationships
 #: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__write_uid
@@ -420,7 +425,9 @@ msgstr "Ценовата листа ще се промени според кон
 msgid ""
 "The business relationship with this contact. Use for tax display, fiscal "
 "positions and pricelists."
-msgstr "Бизнес отношението с този контакт. Използва се за данъчно показване, фискални позиции и ценови листи."
+msgstr ""
+"Бизнес отношението с този контакт. Използва се за данъчно показване, "
+"фискални позиции и ценови листи."
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
@@ -484,20 +491,25 @@ msgstr ""
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_business_relationship_form
-msgid "is managed on the parent contact"
-msgstr ""
+msgid "is managed on the"
+msgstr "управляват се в"
+
+#. module: business_relationships
+#: model_terms:ir.ui.view,arch_db:business_relationships.view_partner_business_relationship_form
+msgid "parent company"
+msgstr "компанята-майка"
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_res_partner_business_relationship__for_suppliers
 msgid "triggers, if purchase supplier payment terms are set"
-msgstr ""
+msgstr "Задейства възлагане, ако контактът има възложени 'Сроковете за плащане'"
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_res_partner_business_relationship__for_internal_users
 msgid "triggers, if the contact has an associated employee user login"
-msgstr ""
+msgstr "Задейства възлагане, ако контактът има потребителски логин."
 
 #. module: business_relationships
 #: model:ir.model.fields,help:business_relationships.field_res_partner_business_relationship__for_companies
 msgid "triggers, if the contact is a company"
-msgstr ""
+msgstr "Задейства възлагане, ако контактът е фирма"
