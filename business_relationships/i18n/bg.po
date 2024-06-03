@@ -92,7 +92,7 @@ msgstr "Име на Бизнес Отношението..."
 #: model:ir.model,name:business_relationships.model_res_partner_business_relationship
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_res_partner_business_relationship_search
 msgid "Business Relationship, e.g. B2B, B2C"
-msgstr ""
+msgstr "Бизнес отношението, например B2B, B2C"
 
 #. module: business_relationships
 #: model:ir.actions.act_window,name:business_relationships.action_business_relationship
