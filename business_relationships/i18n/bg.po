@@ -438,7 +438,7 @@ msgstr "Това е по подразбиране за"
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid ""
 "To set the associated users' tax group according\n"
-"                  to the business relationship, activate the options in the"
+"                  to the business relationship, activate the option in the"
 msgstr ""
 
 #. module: business_relationships

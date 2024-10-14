@@ -50,7 +50,7 @@
             <group name="options" string="Groups / Options">
               <div name="parent_business_relationship" colspan="2">
                 <p class="text-muted">To set the associated users' tax group according
-                  to the business relationship, activate the options in the
+                  to the business relationship, activate the option in the
                   <button
                     name="open_invoicing_settings"
                     type="object"
