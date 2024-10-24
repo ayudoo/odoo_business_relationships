@@ -432,7 +432,7 @@ msgstr "Esto se use por defecto para"
 msgid ""
 "To set the associated users' tax group according\n"
 "                  to the business relationship, activate the option in the"
-msgstr "Para asignar el grupo de mostrar impuestos aqui, tiene que activar la opcion en los"
+msgstr "Para asignar el grupo de mostrar impuestos aqui, tiene que activar la opción en los"
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
@@ -447,7 +447,7 @@ msgstr "Acualiza la tarifa según"
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
 msgid "Update Related Partners Now"
-msgstr ""
+msgstr "Actualizar los contactos relacionados ahora"
 
 #. module: business_relationships
 #: model:ir.model,name:business_relationships.model_res_users
