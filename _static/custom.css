@@ -1,0 +1,18 @@
+
+/* don't duplicate heading */
+#welcome h1:first-child, #business-relationship-types h1:first-child {
+  display: none;
+}
+
+#welcome p {
+  text-align: right;
+}
+
+#contents a {
+  font-weight: normal;
+  text-align: right;
+}
+
+div.content ul > li {
+  filter: grayscale(100%);
+}
