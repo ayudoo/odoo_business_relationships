@@ -26,7 +26,7 @@ class Website(models.Model):
             wut_class = "wut_tax_excluded"
 
         category_id = self.env.ref("website_user_types.module_category_website_user_types").id
-        group = self.env["res.groups"].search([
+        group = self.env["res.groups"].sudo().search([
             ("category_id", "=", category_id),
             ("users", "=", self.env.user.id),
         ])
