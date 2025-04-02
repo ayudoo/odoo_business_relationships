@@ -25,10 +25,19 @@ class Website(models.Model):
         else:
             wut_class = "wut_tax_excluded"
 
-        if self.user_has_groups("website_user_types.group_b2b"):
-            return "{} wut_group_b2b".format(wut_class)
-        if self.user_has_groups("website_user_types.group_b2c"):
-            return "{} wut_group_b2c".format(wut_class)
+        category_id = self.env.ref("website_user_types.module_category_website_user_types").id
+        group = self.env["res.groups"].search([
+            ("category_id", "=", category_id),
+            ("users", "=", self.env.user.id),
+        ])
+        if group:
+            if self.user_has_groups("website_user_types.group_b2b"):
+                return "{} wut_group_b2b".format(wut_class)
+            elif self.user_has_groups("website_user_types.group_b2c"):
+                return "{} wut_group_b2c".format(wut_class)
+            else:
+                return "{} wut_group_{}".format(wut_class, group.id)
+
         return wut_class
 
     def sale_get_order(

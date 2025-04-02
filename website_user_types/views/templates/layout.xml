@@ -13,6 +13,22 @@
     <xpath expr="//header/t[@t-cache]" position="attributes">
       <attribute name="t-cache" add="website.get_website_user_group_cache_key()"/>
     </xpath>
+    <xpath expr="//head" position="inside">
+      <style>
+        <t t-foreach="website.env['res.groups'].sudo().get_website_user_type_groups()" t-as="website_user_group">
+          body:not(.editor_enable):not(.<t
+          t-esc="website_user_group.get_website_user_type_class()"/>) .restrict_to_<t
+          t-esc="website_user_group.get_website_user_type_class()"/> {
+            display: none !important;
+          }
+          body.editor_enable:not(.<t
+          t-esc="website_user_group.get_website_user_type_class()"/>) .restrict_to_<t
+          t-esc="website_user_group.get_website_user_type_class()"/> {
+            opacity: 0.6 !important;
+          }
+        </t>
+      </style>
+    </xpath>
   </template>
 
 </odoo>

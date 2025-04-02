@@ -1,12 +1,4 @@
 body:not(.editor_enable) {
-  &:not(.wut_group_b2c) .restrict_to_wut_group_b2c {
-    display: none !important;
-  }
-
-  &:not(.wut_group_b2b) .restrict_to_wut_group_b2b {
-    display: none !important;
-  }
-
   &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {
     display: none !important;
   }
@@ -17,14 +9,6 @@ body:not(.editor_enable) {
 }
 
 body.editor_enable {
-  &:not(.wut_group_b2c) .restrict_to_wut_group_b2c {
-    opacity: 0.6 !important;
-  }
-
-  &:not(.wut_group_b2b) .restrict_to_wut_group_b2b {
-    opacity: 0.6 !important;
-  }
-
   &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {
     opacity: 0.6 !important;
   }

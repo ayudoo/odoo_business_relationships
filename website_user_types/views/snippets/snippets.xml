@@ -11,8 +11,13 @@
           string="⌙ User Groups"
           data-dependencies="visibility_conditional">
           <we-button data-select-class="" title="All Website User Types">All Website User Types</we-button>
-          <we-button data-select-class="restrict_to_wut_group_b2b" title="Group B2B">Group B2B</we-button>
-          <we-button data-select-class="restrict_to_wut_group_b2c" title="Group B2C">Group B2C</we-button>
+          <we-button
+            t-foreach="request.env['res.groups'].get_website_user_type_groups()"
+            t-as="website_user_group"
+            t-att-data-select-class="'restrict_to_' + website_user_group.get_website_user_type_class()"
+            t-att-title="website_user_group.name">
+            <span t-esc="website_user_group.name"/>
+          </we-button>
           <we-button
             data-select-class="restrict_to_wut_tax_excluded"
             title="Group Tax Excluded">Group Tax Excluded</we-button>

@@ -67,6 +67,14 @@ class Users(models.Model):
 class Groups(models.Model):
     _inherit = 'res.groups'
 
+    def get_website_user_type_class(self):
+        if self == self.env.ref("website_user_types.group_b2b"):
+            return "wut_group_b2b"
+        elif self == self.env.ref("website_user_types.group_b2c"):
+            return "wut_group_b2c"
+        else:
+            return "wut_group_{}".format(self.id)
+
     @api.model
     def get_website_user_type_groups(self):
         # we only return groups in use and in the order of their first occurrence
