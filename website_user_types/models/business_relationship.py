@@ -71,8 +71,14 @@ class BusinessRelationship(models.Model):
         if old_value == new_value:
             return
         if old_value and old_value.users:
+            # let's use the oportunity to fix possible inconsistencies, for example,
+            # because of migration or concurrency problems
+            brs_with_old_value = self.search([
+                ("website_user_group_id", "=", old_value.id),
+                ("id", "!=", self.id),
+            ])
             old_value.write(
-                {"users": [(6, 0, set(old_value.users.ids) - set(self.user_ids.ids))]}
+                {"users": [(6, 0, brs_with_old_value.user_ids.ids)]}
             )
         if new_value:
             if self.user_ids.ids:
