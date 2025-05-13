@@ -186,10 +186,10 @@ user groups.
 Block Visibility
 ^^^^^^^^^^^^^^^^
 
-The web editor provides a new option ``Visibility``, that allows you to restrict the
-visibility of any configurable block to `Group B2C`, `Group B2B` or a tax display
-group. Use it, for example, to create business relationship dependent mega menu entries
-or to add tax display specific information.
+The web editor extends the ``Visibility`` option to allow you to restrict the
+visibility of any configurable block to `Group B2C`, `Group B2B` or any other group of
+category `Application` `Website User Types`. Use it, for example, to create business
+relationship dependent mega menu customizations or show/hide arbitrary website blocks.
 
 Note, these elements are simply hidden from the user, there is no additional server
 rendering logic involved. For more sophisticated features you might rather consider
