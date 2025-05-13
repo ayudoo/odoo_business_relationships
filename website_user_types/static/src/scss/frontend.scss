@@ -1,12 +1,3 @@
-body:not(.editor_enable) {
-  &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {
-    display: none !important;
-  }
-
-  &:not(.wut_tax_included) .restrict_to_wut_tax_included {
-    display: none !important;
-  }
-}
 
 body.editor_enable {
   &:not(.wut_tax_excluded) .restrict_to_wut_tax_excluded {

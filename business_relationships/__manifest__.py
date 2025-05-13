@@ -7,8 +7,7 @@
         To facilitate different business realtionships, this adds configurable
         types, by default B2B, B2C and Internal.
 
-        They can be used for automatic pricelist and fiscal positions assignment as
-        well as contact specifc tax display settings.
+        They can be used for automatic pricelist and fiscal positions assignment.
     """,
     "license": "LGPL-3",
     "category": "Sales/Sales",

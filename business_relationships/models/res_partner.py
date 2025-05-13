@@ -15,7 +15,7 @@ class Partner(models.Model):
         string="Business Relationship",
         ondelete="restrict",
         tracking=True,
-        help="The business relationship with this contact. Use for tax display,"
+        help="The business relationship with this contact. Use for"
         + " fiscal positions and pricelists.",
     )
 
@@ -136,56 +136,8 @@ class Partner(models.Model):
 
     def _after_business_relationship_changed(self):
         self.ensure_one()
-        self._set_tax_groups()
         for child in self.child_ids:
             child.business_relationship_id = self.business_relationship_id
-
-    def _set_tax_groups(self):
-        tax_selection = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "account.show_line_subtotals_tax_selection", default="tax_excluded"
-            )
-        )
-        if tax_selection != "business_relationship_dependent":
-            return
-
-        tax_excluded_group = self.env.ref(
-            "account.group_show_line_subtotals_tax_excluded"
-        )
-        tax_included_group = self.env.ref(
-            "account.group_show_line_subtotals_tax_included"
-        )
-
-        for record in self:
-            if not record.business_relationship_id:
-                continue
-
-            tax_selection = (
-                record.business_relationship_id.show_line_subtotals_tax_selection
-            )
-            if tax_selection == "tax_excluded":
-                to_remove = tax_included_group
-                to_add = tax_excluded_group
-            else:
-                to_remove = tax_excluded_group
-                to_add = tax_included_group
-
-            for user_id in record.with_context(active_test=False).user_ids.ids:
-                self._cr.execute(
-                    """
-                    DELETE FROM res_groups_users_rel
-                    WHERE uid={} AND gid={}
-                """.format(
-                        user_id, to_remove.id
-                    )
-                )
-
-                to_remove.with_context(active_test=False).write(
-                    {"users": [(3, user_id)]}
-                )
-                to_add.write({"users": [(4, user_id)]})
 
     @api.model_create_multi
     def create(self, values_list):
