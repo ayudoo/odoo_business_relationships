@@ -6,9 +6,9 @@
     <field name="model">res.partner.business_relationship</field>
     <field name="inherit_id" ref="business_relationships.view_business_relationship_form"/>
     <field name="arch" type="xml">
-      <field name="show_line_subtotals_tax_selection" position="after">
+      <group name="options" position="inside">
         <field name="website_user_group_id"/>
-      </field>
+      </group>
       <field name="child_contact_pricelist" position="after">
         <field
           name="update_prices"
@@ -31,7 +31,7 @@
     <field name="model">res.partner.business_relationship</field>
     <field name="inherit_id" ref="business_relationships.view_business_relationship_tree"/>
     <field name="arch" type="xml">
-      <field name="show_line_subtotals_tax_selection" position="after">
+      <field name="active" position="before">
         <field name="website_user_group_id"/>
       </field>
     </field>
