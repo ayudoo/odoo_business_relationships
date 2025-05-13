@@ -11,7 +11,6 @@
       <field name="color">7</field>
       <field name="for_companies">True</field>
       <field name="for_suppliers">True</field>
-      <field name="show_line_subtotals_tax_selection">tax_excluded</field>
     </record>
 
     <record
@@ -22,7 +21,6 @@
       <field name="name">Internal</field>
       <field name="color">5</field>
       <field name="for_internal_users">True</field>
-      <field name="show_line_subtotals_tax_selection">tax_excluded</field>
     </record>
 
     <record
@@ -32,7 +30,6 @@
       <field name="sequence">2</field>
       <field name="name">B2C</field>
       <field name="color">10</field>
-      <field name="show_line_subtotals_tax_selection">tax_included</field>
     </record>
 
   </data>

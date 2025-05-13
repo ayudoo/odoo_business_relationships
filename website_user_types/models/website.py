@@ -20,11 +20,6 @@ class Website(models.Model):
 
     @tools.ormcache('self.env.uid')
     def get_website_user_group_classes(self):
-        if self.user_has_groups("account.group_show_line_subtotals_tax_included"):
-            wut_class = "wut_tax_included"
-        else:
-            wut_class = "wut_tax_excluded"
-
         category_id = self.env.ref("website_user_types.module_category_website_user_types").id
         group = self.env["res.groups"].sudo().search([
             ("category_id", "=", category_id),
@@ -32,11 +27,11 @@ class Website(models.Model):
         ])
         if group:
             if self.user_has_groups("website_user_types.group_b2b"):
-                return "{} wut_group_b2b".format(wut_class)
+                return "wut_group_b2b"
             elif self.user_has_groups("website_user_types.group_b2c"):
-                return "{} wut_group_b2c".format(wut_class)
+                return "wut_group_b2c"
             else:
-                return "{} wut_group_{}".format(wut_class, group.id)
+                return "wut_group_{}".format(group.id)
 
         return wut_class
 

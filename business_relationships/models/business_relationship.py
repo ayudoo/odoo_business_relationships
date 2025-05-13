@@ -51,16 +51,6 @@ class BusinessRelationship(models.Model):
         help="triggers, if the contact has an associated employee user login",
     )
 
-    show_line_subtotals_tax_selection = fields.Selection(
-        [
-            ("tax_excluded", "Tax-Excluded"),
-            ("tax_included", "Tax-Included"),
-        ],
-        string="Tax Display",
-        required=True,
-        default="tax_excluded",
-    )
-
     team_id = fields.Many2one(
         "crm.team",
         string="Sales Team",
@@ -84,26 +74,6 @@ class BusinessRelationship(models.Model):
     analytic_account_id = fields.Many2one(
         "account.analytic.account",
         string="Analytic Account",
-    )
-
-    @api.onchange("show_line_subtotals_tax_selection", "salesperson_id")
-    def _compute_salesperson_tax_selection_matches(self):
-        for record in self:
-            if not record.salesperson_id:
-                record.salesperson_tax_selection_matches = True
-            else:
-                br = record.salesperson_id.partner_id.business_relationship_id
-                if (
-                    record.show_line_subtotals_tax_selection
-                    == br.show_line_subtotals_tax_selection
-                ):
-                    record.salesperson_tax_selection_matches = True
-                else:
-                    record.salesperson_tax_selection_matches = False
-
-    salesperson_tax_selection_matches = fields.Boolean(
-        string="Salesperson Tax Display Matches",
-        compute=_compute_salesperson_tax_selection_matches,
     )
 
     update_pricelist_by = fields.Selection(
@@ -165,39 +135,6 @@ class BusinessRelationship(models.Model):
             values["analytic_account_id"] = self.analytic_account_id.id
 
         return values
-
-    def write(self, values):
-        old_tax_selection = self.show_line_subtotals_tax_selection
-        super().write(values)
-
-        if "show_line_subtotals_tax_selection" in values:
-            if old_tax_selection != values["show_line_subtotals_tax_selection"]:
-                self._update_users_tax_selection(
-                    values["show_line_subtotals_tax_selection"]
-                )
-
-    def _update_users_tax_selection(self, new_value):
-        if new_value == "tax_excluded":
-            to_remove = self.env.ref("account.group_show_line_subtotals_tax_included")
-            to_add = self.env.ref("account.group_show_line_subtotals_tax_excluded")
-        else:
-            to_remove = self.env.ref("account.group_show_line_subtotals_tax_excluded")
-            to_add = self.env.ref("account.group_show_line_subtotals_tax_included")
-
-        for user_id in self.partner_ids.with_context(active_test=False).user_ids.ids:
-            # This is odd: adding works for inactive users, but removal not:
-            # We need to remove it manually
-            self._cr.execute(
-                """
-                DELETE FROM res_groups_users_rel
-                WHERE uid={} AND gid={}
-            """.format(
-                    user_id, to_remove.id
-                )
-            )
-            # and also from the cache:
-            to_remove.write({"users": [(3, user_id)]})
-            to_add.write({"users": [(4, user_id)]})
 
     def open_invoicing_settings(self):
         """Utility method used to add an "Open Settings" button in views"""

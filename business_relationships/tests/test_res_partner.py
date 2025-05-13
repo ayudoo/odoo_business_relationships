@@ -177,27 +177,3 @@ class TestPartner(BusinessRelationshipsTestUsers):
             }
         )
         self.assertEqual(shipping.property_product_pricelist, pricelist_main)
-
-    def test_change_tax_display_according_to_business_relationship_change(self):
-        tax_excluded = "account.group_show_line_subtotals_tax_excluded"
-        tax_included = "account.group_show_line_subtotals_tax_included"
-
-        config = self.env["res.config.settings"].create({})
-        config.show_line_subtotals_tax_selection = "business_relationship_dependent"
-        config._compute_group_show_line_subtotals()
-        config.flush_model()
-        config.execute()
-
-        self.user_portal.business_relationship_id = self.business_relationship_b2b
-        self.user_company.business_relationship_id = self.business_relationship_b2c
-        self.user_odoo_root.business_relationship_id = self.business_relationship_b2c
-
-        self.assertEqual(self.user_portal.has_group(tax_included), False)
-        self.assertEqual(self.user_portal.has_group(tax_excluded), True)
-
-        self.assertEqual(self.user_company.has_group(tax_excluded), False)
-        self.assertEqual(self.user_company.has_group(tax_included), True)
-
-        # and for inactive user
-        self.assertEqual(self.user_odoo_root.has_group(tax_excluded), False)
-        self.assertEqual(self.user_odoo_root.has_group(tax_included), True)

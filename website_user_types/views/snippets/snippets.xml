@@ -18,12 +18,6 @@
             t-att-title="website_user_group.name">
             <span t-esc="website_user_group.name"/>
           </we-button>
-          <we-button
-            data-select-class="restrict_to_wut_tax_excluded"
-            title="Group Tax Excluded">Group Tax Excluded</we-button>
-          <we-button
-            data-select-class="restrict_to_wut_tax_included"
-            title="Group Tax Included">Group Tax Included</we-button>
         </we-select>
       </div>
     </xpath>

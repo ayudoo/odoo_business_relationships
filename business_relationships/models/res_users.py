@@ -26,5 +26,4 @@ class Users(models.Model):
                 default_br = partner._get_default_business_relationship()
                 if default_br and default_br != partner.business_relationship_id:
                     partner.business_relationship_id = default_br
-        users.partner_id._set_tax_groups()
         return users

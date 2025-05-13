@@ -48,19 +48,6 @@ You want to offer different prices for customers like employees or agents? No pr
 just create the desired pricelist with a business relationship filter.
 
 
-Business Relationship dependent Tax Display
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Depending on your country's laws, you may have to show tax-included prices to B2C
-customers, while you still want to show the lower tax-excluded prices for logged-in
-B2B users.
-By default, tax display is a global setting in Odoo. With this module you can
-activate ``Business Relationship Dependent`` tax display and configure this option for
-each business relationship separately.
-The defaults are ``tax_excluded`` for `Internal` and `B2B`, but ``tax_included`` for
-`B2C`.
-
-
 Round prices for B2C
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -118,46 +105,6 @@ are configurable and the first matching business relationship will be assigned a
 default to a new contact, if and only if you do not explicitly set another one.
 
 If you need more options, don't hesitate to file a feature request.
-
-
-Tax Display
-^^^^^^^^^^^
-
-If you want to adapt the ``Product Prices`` display, you need to set the option
-under ``Settings`` -> ``Website`` -> ``Pricing`` to ``Business Relationship Dependent``.
-
-Note, that ``tax_display`` depends on the currently logged-in user. Your website
-customers will see prices according to this setting. However, in the admin backend
-sale order and account move forms, the total/subtotal line display depends on the
-setting for `Internal` users.
-
-
-Email Template
-~~~~~~~~~~~~~~
-
-Odoo's sale order and move related email templates (not the attached reports)
-display taxes according to the settings of the salesperson. If you want to
-provide a consistent user experience, either create your own templates or assign a
-salesperson to orders and invoices with the same setting as the targeted partner.
-
-The recommended approach is to configure the `B2C` business relationship with a
-salesperson with type `B2C`, e.g. `My B2C Shop`. In ``Contacts`` -> ``Configuration``
--> ``Business Relationships`` you can assign the default salesperson for new contacts
-and update existing ones. For this to work in the website context, you need to check
-`Enforce on sale orders in website context`.
-
-
-Sales Order and Invoice PDF Reports
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In difference to email templates, these are generated with the tax display settings of
-the OdooBot. Depending on your requirements, you might want to create your own report
-templates, that include conditions to display the right tax line values and contain
-other business relationship dependent information. However, as an alternative or
-support module, you may install the module ``salesperson_report_context``. Like emails,
-the reports will be generated in the context of the associated salesperson and you can
-rely on the salesperson configuration from above.
-Please note, that this feature is still experimental.
 
 
 Website User Types
