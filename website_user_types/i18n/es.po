@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 17:37+0000\n"
-"PO-Revision-Date: 2021-07-22 17:37+0000\n"
+"POT-Creation-Date: 2025-05-13 15:04+0000\n"
+"PO-Revision-Date: 2025-05-13 15:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,17 +23,17 @@ msgstr ""
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_groups
 msgid "Access Groups"
-msgstr "Zugriffsgruppen"
+msgstr "Grupos de acceso"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__redirect_type
 msgid "Action"
-msgstr "Aktion"
+msgstr "Acción"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "All Website User Types"
-msgstr "Alle Website-Nutzertypen"
+msgstr "Todos los tipos de usuarios"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_view_tree_website_sale
@@ -48,7 +48,7 @@ msgstr ""
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner_business_relationship
 msgid "Business Relationship, e.g. B2B, B2C"
-msgstr "Geschäftsbeziehung, bswp. B2B, B2C"
+msgstr "Relacion Comercial, p.ej. B2B, B2C"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__update_prices
@@ -56,67 +56,48 @@ msgid ""
 "By default, Odoo does not change pricelists or recalculate prices on address"
 " or login changes. With this option, pricelists and prices will be updated "
 "according to configuration. This option may conflict with Geo IP."
-msgstr ""
-"Standardmäßig aktualisiert odoo keine Preislisten und Preise bei Address- "
-"oder Loginänderungen. Mit dieser Option werden Preislisten und Preise "
-"entsprechende der Konfiguration geändert. Geo IP funktioniert mit dieser "
-"Option nicht mehr."
+msgstr "Por defecto, Odoo no cambia las tarifas o recalcula precios durante cambios de direcciones o del login."
+" Con esta opción, tarifas y precios se van a acutalizar según la configuración."
+" Sin embargo, está opción puede causar inconsistencias con Geo IP."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner
 msgid "Contact"
-msgstr "Kontakt"
+msgstr "Contacto"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.website_pages_tree_view
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr "Editar"
 
 #. module: website_user_types
 #: model:res.groups,name:website_user_types.group_b2b
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_search_view
 msgid "Group B2B"
-msgstr "Gruppe B2B"
+msgstr "Grupo B2B"
 
 #. module: website_user_types
 #: model:res.groups,name:website_user_types.group_b2c
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_search_view
 msgid "Group B2C"
-msgstr "Gruppe B2C"
+msgstr "Grupo B2C"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "Group Tax Excluded"
-msgstr "Gruppe Steuer-exkludiert"
+msgstr "Grupo Impuestos Excluidos"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "Group Tax Included"
-msgstr "Gruppe Steuer-inkludiert"
+msgstr "Grupo Impuestos Incluidos"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_ir_http
 msgid "HTTP Routing"
-msgstr "HTTP-Routing"
-
-#. module: website_user_types
-#: model:ir.model.fields,field_description:website_user_types.field_product_product__has_hidden_groups
-#: model:ir.model.fields,field_description:website_user_types.field_product_template__has_hidden_groups
-msgid "Has Hidden Groups"
-msgstr ""
-
-#. module: website_user_types
-#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
-msgid "Hidden For"
-msgstr "Versteckt für"
-
-#. module: website_user_types
-#: model:ir.model.fields,field_description:website_user_types.field_product_product__hidden_for_group_ids
-#: model:ir.model.fields,field_description:website_user_types.field_product_template__hidden_for_group_ids
-msgid "Hidden for Groups"
-msgstr "Versteckt für Gruppen"
+msgstr "Enrutamiento HTTP "
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
@@ -125,14 +106,11 @@ msgid ""
 "         configuration. This means, that coupons and geo filters for pricelist\n"
 "         selection may be ignored."
 msgstr ""
-"Bitte beachten, dass die Preisliste der Konfiguration Vorrang hat.\n"
-"Das bedeuted, dass Coupons oder Geo-Filter für Preislisten ggf. ignoriert\n"
-"werden."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_page
 msgid "Page"
-msgstr "Seite"
+msgstr "Página"
 
 #. module: website_user_types
 #: model:ir.module.category,description:website_user_types.module_category_website_user_types
@@ -140,18 +118,16 @@ msgid ""
 "Parent category to handle your different business relationship types for "
 "website visibility."
 msgstr ""
-"Oberkategorie, um die verschieden Geschäftsbeziehungstypen für "
-"Webseitensichtbarkeit zu nutzen."
 
 #. module: website_user_types
 #: model:ir.module.category,name:website_user_types.module_category_portal_customization
 msgid "Portal Customization"
-msgstr "Portal-Anpassung"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_product_template
 msgid "Product Template"
-msgstr "Produkt"
+msgstr "Producto"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_page__group_ids
@@ -160,8 +136,6 @@ msgid ""
 "The user needs to be in at least one of these groups for the redirect to "
 "have effect"
 msgstr ""
-"Der Nutzer muss mindestend einer dieser Gruppen angehören, so dass die "
-"Weiterleitung greift."
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_menu__group_ids
@@ -169,8 +143,6 @@ msgid ""
 "The user needs to be in at least one of these groups to see the menu. Note, "
 "that selectable groups are limited because of caching."
 msgstr ""
-"Der Nutzer muss in mindestens einer dieser Gruppen sein, um das Menü zu "
-"sehen. Aufgrund des Cachings ist die Gruppenauswahl begrenzt."
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
@@ -183,23 +155,23 @@ msgid ""
 "        308 Redirect / Rewrite: If you want rename a controller with a new url. (Eg: /shop -> /garden - Both url will be accessible but /shop will automatically be redirected to /garden)\n"
 "    "
 msgstr ""
-"Art der Umleitung/des Umschreibens:\n"
+"Tipo de redireccionamiento/reescritura:\n"
 "\n"
-"        301 Dauerhaft verschoben: Der Browser behält die neue Url im Cache.\n"
-"        302 Vorübergehend verschoben: Der Browser behält die neue Url nicht im Cache und fragt beim nächsten Mal die neue Url erneut ab.\n"
-"        404 Nicht gefunden: Wenn Sie eine bestimmte Seite/Controller entfernen wollen (z.B. Ecommerce ist installiert, aber Sie wollen /shop nicht auf einer bestimmten Website)\n"
-"        308 Umleitung / Rewrite: Wenn Sie einen Controller mit einer neuen Url umbenennen wollen. (z. B.: /shop -> /garden - Beide URLs sind zugänglich, aber /shop wird automatisch auf /garden umgeleitet)\n"
+"        301 Movido permanentemente: El navegador mantendrá en caché la nueva url.\n"
+"        302 Movido temporalmente: El navegador no mantendrá en caché la nueva url y volverá a preguntar por la nueva url la próxima vez.\n"
+"        404 No encontrado: Si desea eliminar una página/controlador específico (por ejemplo, el comercio electrónico está instalado, pero no desea/la tienda en un sitio web específico)\n"
+"        308 Redireccionar/Reescribir: Si desea cambiar el nombre de un controlador con una nueva url. (Por ejemplo: / tienda -> / jardín - Ambas URL serán accesibles pero / tienda será redireccionado automáticamente a / jardín)\n"
 "    "
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
 msgid "Update On Login/Address Change"
-msgstr "Bei Login-/Adressänderungen aktualisieren"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__update_prices
 msgid "Update Prices on Login/Address Change"
-msgstr "Preise bei Login-/Adressänderungen aktualisieren"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
@@ -207,69 +179,67 @@ msgid ""
 "Use this field to assign an access group to login users associated with this"
 " partner"
 msgstr ""
-"Nutzen Sie dieses Feld, um allen Nutzerlogins, die mit diesem Kontakt "
-"verknüpft sind, eine Rechtegruppe zuzuordnen"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_users
 msgid "User"
-msgstr "Benutzer"
+msgstr "Usuario"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_ir_ui_view
 msgid "View"
-msgstr "Ansicht"
+msgstr "Ver"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2b
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2b
 msgid "Visible Group B2B"
-msgstr "Sichtbar für Gruppe B2B"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2c
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2c
 msgid "Visible Group B2C"
-msgstr "Sichtbar für Gruppe B2C"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_website_menu__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__group_ids
 msgid "Visible Groups"
-msgstr "Sichtbarkeitsgruppen"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_menu
 msgid "Website Menu"
-msgstr "Website-Menü"
+msgstr "Menú del sitio web"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__website_user_group_id
 msgid "Website User Type"
-msgstr "Website-Nutzertyp"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.module.category,name:website_user_types.module_category_website_user_types
 msgid "Website User Types"
-msgstr "Website-Nutzertypen"
+msgstr ""
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 msgid "Website User Visibility"
-msgstr "Website-Nutzer Sichtbarkeit"
+msgstr ""
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_rewrite
 msgid "Website rewrite"
-msgstr "Website-Weiterleitung"
+msgstr "Reescritura del sitio web"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "⌙ User Groups"
-msgstr "⌙ Nutzergruppen"
+msgstr ""

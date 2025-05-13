@@ -23,6 +23,8 @@
         <group name="website_user_type_visibility" string="Website User Visibility">
           <field name="visible_group_b2c" string="Group B2C"/>
           <field name="visible_group_b2b" string="Group B2B"/>
+          <field name="has_hidden_groups" invisible="1"/>
+          <field name="hidden_for_group_ids" string="Hidden For" widget="many2many_tags"/>
         </group>
       </group>
     </field>
