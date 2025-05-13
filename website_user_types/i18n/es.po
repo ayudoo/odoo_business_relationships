@@ -56,9 +56,11 @@ msgid ""
 "By default, Odoo does not change pricelists or recalculate prices on address"
 " or login changes. With this option, pricelists and prices will be updated "
 "according to configuration. This option may conflict with Geo IP."
-msgstr "Por defecto, Odoo no cambia las tarifas o recalcula precios durante cambios de direcciones o del login."
-" Con esta opción, tarifas y precios se van a acutalizar según la configuración."
-" Sin embargo, está opción puede causar inconsistencias con Geo IP."
+msgstr ""
+"Por defecto, Odoo no cambia las tarifas o recalcula precios durante cambios "
+"de direcciones o del login. Con esta opción, tarifas y precios se van a "
+"acutalizar según la configuración. Sin embargo, está opción puede causar "
+"inconsistencias con Geo IP."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_partner
@@ -98,6 +100,23 @@ msgstr "Grupo Impuestos Incluidos"
 #: model:ir.model,name:website_user_types.model_ir_http
 msgid "HTTP Routing"
 msgstr "Enrutamiento HTTP "
+
+#. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_product_product__has_hidden_groups
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__has_hidden_groups
+msgid "Has Hidden Groups"
+msgstr ""
+
+#. module: website_user_types
+#: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
+msgid "Hidden For"
+msgstr ""
+
+#. module: website_user_types
+#: model:ir.model.fields,field_description:website_user_types.field_product_product__hidden_for_group_ids
+#: model:ir.model.fields,field_description:website_user_types.field_product_template__hidden_for_group_ids
+msgid "Hidden for Groups"
+msgstr ""
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
