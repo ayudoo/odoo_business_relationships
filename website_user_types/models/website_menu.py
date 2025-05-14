@@ -7,8 +7,7 @@ class Menu(models.Model):
     group_ids = fields.Many2many(
         "res.groups",
         string="Visible Groups",
-        help="The user needs to be in at least one of these groups to see the menu." +
-        " Note, that selectable groups are limited because of caching.",
+        help="The user needs to be in at least one of these groups to see the menu",
         domain=lambda self: [
             ("id", "in", self.env["res.groups"]._wut_get_selectable_groups().ids),
         ],

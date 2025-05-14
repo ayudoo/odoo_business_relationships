@@ -21,6 +21,15 @@ msgid "403 Forbidden"
 msgstr ""
 
 #. module: website_user_types
+#: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
+msgid ""
+"A user associated with a contect with this business relationship will be "
+"part of this group"
+msgstr ""
+"Un usuario asociado con un contacto con esta relación comercial será parte "
+"de este grupo"
+
+#. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_groups
 msgid "Access Groups"
 msgstr "Grupos de acceso"
@@ -110,13 +119,13 @@ msgstr ""
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 msgid "Hidden For"
-msgstr ""
+msgstr "Escondido para"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__hidden_for_group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__hidden_for_group_ids
 msgid "Hidden for Groups"
-msgstr ""
+msgstr "Escondido para Grupos"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
@@ -125,6 +134,9 @@ msgid ""
 "         configuration. This means, that coupons and geo filters for pricelist\n"
 "         selection may be ignored."
 msgstr ""
+"Observe, que las tarifas para presupuestos del sitio web van a cambiar según"
+" la configuración.Esto significa, que ciertos cupones y filtros geographicos"
+" pueden ser ignorados."
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_page
@@ -141,7 +153,7 @@ msgstr ""
 #. module: website_user_types
 #: model:ir.module.category,name:website_user_types.module_category_portal_customization
 msgid "Portal Customization"
-msgstr ""
+msgstr "Personalización del portal"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_product_template
@@ -155,13 +167,15 @@ msgid ""
 "The user needs to be in at least one of these groups for the redirect to "
 "have effect"
 msgstr ""
+"El usuario debe de ser miembro de al menos uno de estos grupos para poder "
+"ser redirigido"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_menu__group_ids
-msgid ""
-"The user needs to be in at least one of these groups to see the menu. Note, "
-"that selectable groups are limited because of caching."
+msgid "The user needs to be in at least one of these groups to see the menu"
 msgstr ""
+"El usuario debe de ser miembro de al menos uno de estos grupos para ver el "
+"menu"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
@@ -185,19 +199,12 @@ msgstr ""
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.view_business_relationship_form
 msgid "Update On Login/Address Change"
-msgstr ""
+msgstr "Actualizar al login/cambios de dirección"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__update_prices
 msgid "Update Prices on Login/Address Change"
-msgstr ""
-
-#. module: website_user_types
-#: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
-msgid ""
-"Use this field to assign an access group to login users associated with this"
-" partner"
-msgstr ""
+msgstr "Actualizar precios al login/cambios de dirección"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_users
@@ -207,13 +214,13 @@ msgstr "Usuario"
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_ir_ui_view
 msgid "View"
-msgstr "Ver"
+msgstr "Vista"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2b
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2b
 msgid "Visible Group B2B"
-msgstr ""
+msgstr "Visible Grupo B2B"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2c

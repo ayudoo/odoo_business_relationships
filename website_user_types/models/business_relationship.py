@@ -34,8 +34,8 @@ class BusinessRelationship(models.Model):
         "res.groups",
         "Website User Type",
         help=(
-            "Use this field to assign an access group to login users associated with"
-            + " this partner"
+            "A user associated with a contect with this business relationship will"
+            + " be part of this group"
         ),
         default=_get_default_website_user_group,
         domain=_website_user_group_domain,

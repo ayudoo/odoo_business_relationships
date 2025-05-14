@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-22 17:37+0000\n"
-"PO-Revision-Date: 2021-07-22 17:37+0000\n"
+"PO-Revision-Date: 2025-05-14 19:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,14 @@ msgstr ""
 #: model:ir.model.fields.selection,name:website_user_types.selection__website_rewrite__redirect_type__403
 msgid "403 Forbidden"
 msgstr ""
+
+#. module: website_user_types
+#: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
+msgid ""
+"A user associated with a contect with this business relationship will be "
+"part of this group"
+msgstr ""
+"Ein Nutzer zu einem Kontakt mit dieser Geschäftsbeziehung ist Mitglied dieser Gruppe"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_groups
@@ -165,12 +173,10 @@ msgstr ""
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_menu__group_ids
-msgid ""
-"The user needs to be in at least one of these groups to see the menu. Note, "
-"that selectable groups are limited because of caching."
+msgid "The user needs to be in at least one of these groups to see the menu"
 msgstr ""
 "Der Nutzer muss in mindestens einer dieser Gruppen sein, um das Menü zu "
-"sehen. Aufgrund des Cachings ist die Gruppenauswahl begrenzt."
+"sehen"
 
 #. module: website_user_types
 #: model:ir.model.fields,help:website_user_types.field_website_rewrite__redirect_type
@@ -200,15 +206,6 @@ msgstr "Bei Login-/Adressänderungen aktualisieren"
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__update_prices
 msgid "Update Prices on Login/Address Change"
 msgstr "Preise bei Login-/Adressänderungen aktualisieren"
-
-#. module: website_user_types
-#: model:ir.model.fields,help:website_user_types.field_res_partner_business_relationship__website_user_group_id
-msgid ""
-"Use this field to assign an access group to login users associated with this"
-" partner"
-msgstr ""
-"Nutzen Sie dieses Feld, um allen Nutzerlogins, die mit diesem Kontakt "
-"verknüpft sind, eine Rechtegruppe zuzuordnen"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_res_users
