@@ -117,10 +117,32 @@ class Website(models.Model):
                 domain.append(
                     ("visible_group_b2b", "=", True),
                 )
-            else:
+            elif (
+                self.user_has_groups("website_user_types.group_b2c")
+            ):
                 domain.append(
                     ("visible_group_b2c", "=", True),
                 )
+            else:
+                other_wut_groups = self.env["res.groups"].sudo().search([
+                    ('id', 'not in', [
+                        self.env.ref('website_user_types.group_b2b').id,
+                        self.env.ref('website_user_types.group_b2c').id,
+                    ]),
+                    ('category_id', '=', self.env.ref(
+                        "website_user_types.module_category_website_user_types"
+                    ).id),
+                ])
+
+                for group in other_wut_groups:
+                    self._cr.execute(
+                        "SELECT 1 FROM res_groups_users_rel WHERE uid=%s AND gid=%s",
+                        (self._uid, group.id),
+                    )
+                    if bool(self._cr.fetchone()):
+                        domain.append(
+                            ("hidden_for_group_ids", "!=", group.id),
+                        )
 
         return domain
 

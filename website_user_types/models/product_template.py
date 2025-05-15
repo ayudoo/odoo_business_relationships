@@ -38,7 +38,9 @@ class ProductTemplate(models.Model):
                 self.env.ref('website_user_types.group_b2b').id,
                 self.env.ref('website_user_types.group_b2c').id,
             ]),
-            ('category_id', '=', self.env.ref("website_user_types.module_category_website_user_types").id),
+            ('category_id', '=', self.env.ref(
+                "website_user_types.module_category_website_user_types"
+            ).id),
         ],
     )
 
