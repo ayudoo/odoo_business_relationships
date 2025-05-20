@@ -226,14 +226,14 @@ msgstr "Visible Grupo B2B"
 #: model:ir.model.fields,field_description:website_user_types.field_product_product__visible_group_b2c
 #: model:ir.model.fields,field_description:website_user_types.field_product_template__visible_group_b2c
 msgid "Visible Group B2C"
-msgstr ""
+msgstr "Visible Grupo B2C"
 
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_website_menu__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_page__group_ids
 #: model:ir.model.fields,field_description:website_user_types.field_website_rewrite__group_ids
 msgid "Visible Groups"
-msgstr ""
+msgstr "Grupos Visibles"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website
@@ -248,17 +248,17 @@ msgstr "Menú del sitio web"
 #. module: website_user_types
 #: model:ir.model.fields,field_description:website_user_types.field_res_partner_business_relationship__website_user_group_id
 msgid "Website User Type"
-msgstr ""
+msgstr "Tipo de Usuario del Sitio Web"
 
 #. module: website_user_types
 #: model:ir.module.category,name:website_user_types.module_category_website_user_types
 msgid "Website User Types"
-msgstr ""
+msgstr "Tipos de Usuario del Sitio Web"
 
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.product_template_form_view
 msgid "Website User Visibility"
-msgstr ""
+msgstr "Visibilidad según Usuario"
 
 #. module: website_user_types
 #: model:ir.model,name:website_user_types.model_website_rewrite
@@ -268,4 +268,4 @@ msgstr "Reescritura del sitio web"
 #. module: website_user_types
 #: model_terms:ir.ui.view,arch_db:website_user_types.snippet_options
 msgid "⌙ User Groups"
-msgstr ""
+msgstr "⌙ Grupo de Usuario"
