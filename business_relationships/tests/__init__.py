@@ -3,5 +3,4 @@ from . import (
     test_pricelist,
     test_res_partner,
     test_res_users,
-    test_settings,
 )
