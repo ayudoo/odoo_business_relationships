@@ -11,8 +11,6 @@ Business Relationship Types
 
 Extend your contacts with business relationship types, e.g. `B2C`, `B2B` and
 `Internal` and configure automatic assignment of pricelists and fiscal positions.
-Change tax display (``Tax-Excluded (B2B)``, ``Tax-Included (B2C)``) of login users
-according to the business relationship of the associated partner contact.
 
 **Table of contents**
 
@@ -26,7 +24,6 @@ Features
 Configurable business relationship types on contact level. Usable for
 
 * automatic assignment of pricelists and fiscal positions
-* different tax display settings for different users
 * customize the default business relationship for new contacts
 * assign a default image, salesperson or sales team to new contacts
 * assign default salesperson and analytic account to sale orders
