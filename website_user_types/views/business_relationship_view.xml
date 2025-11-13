@@ -16,9 +16,7 @@
         <div
           colspan="2"
           class="mr-3 text-muted"
-          attrs="{'invisible': [
-            ('update_prices', '=', False),
-          ]}"
+          invisible="not update_prices"
           >Note, that pricelists for website sale orders will change according to
          configuration. This means, that coupons and geo filters for pricelist
          selection may be ignored.</div>

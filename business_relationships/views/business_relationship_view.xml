@@ -23,13 +23,14 @@
             name="web_ribbon"
             title="Archived"
             bg_color="bg-danger"
-            attrs="{'invisible': [('active', '=', True)]}"/>
+            invisible="active"/>
           <field
             name="image_1920"
             help="If set, will be used as fallback image on contact creation."
-            widget='image'
+            widget="image"
             class="oe_avatar"
             options='{"preview_image": "image_128"}'/>
+
           <div class="oe_title">
             <label for="name" class="oe_edit_only" string="Business Relationship"/>
             <h1>
@@ -60,17 +61,14 @@
                   name="action_assign_defaults_to_partners"
                   string="Update Related Partners Now"
                   class="btn-link pt-0"
-                  attrs="{'invisible': [
-                    ('team_id', '=', False),
-                    ('salesperson_id', '=', False),
-                  ]}"
+                  invisible="not team_id and not salesperson_id"
                   icon="fa-refresh"/>
               </div>
 
               <label for="team_id"/>
               <div>
                 <field name="team_id"/>
-                <div attrs="{'invisible': [('team_id', '=', False)]}">
+                <div invisible="not team_id">
                   <field name="enforce_team_website"/>
                   <label
                     for="enforce_team_website"
@@ -82,7 +80,7 @@
               <label for="salesperson_id"/>
               <div>
                 <field name="salesperson_id"/>
-                <div attrs="{'invisible': [('salesperson_id', '=', False)]}">
+                <div invisible="not salesperson_id">
                   <field name="enforce_salesperson_website"/>
                   <label
                     for="enforce_salesperson_website"
@@ -101,7 +99,6 @@
   <record id="view_business_relationship_tree" model="ir.ui.view">
     <field name="name">res.partner.business_relationship.tree</field>
     <field name="model">res.partner.business_relationship</field>
-    <field name="field_parent">child_ids</field>
     <field name="arch" type="xml">
       <tree string="Business Relationship">
         <field name="sequence" widget="handle"/>

@@ -22,13 +22,13 @@ var recordFilter = function(self, record, records) {
     ).length === 1;
 }
 
-patch(PageListRenderer.prototype, "website_user_type_page_list_patch", {
+patch(PageListRenderer.prototype, {
   recordFilter(record, records) {
     return recordFilter(this, record, records);
   }
 });
 
-patch(PageKanbanRenderer.prototype, "website_user_type_page_kanban_patch", {
+patch(PageKanbanRenderer.prototype, {
   recordFilter(record, records) {
     return recordFilter(this, record, records);
   }

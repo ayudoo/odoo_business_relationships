@@ -14,7 +14,7 @@
         <field
           name="group_ids"
           widget="many2many_tags"
-          attrs="{'invisible': [('redirect_type', 'not in', ['301', '302'])]}"/>
+          invisible="redirect_type not in ['301', '302']"/>
       </field>
     </field>
   </record>

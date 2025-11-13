@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
   <record id="view_account_fiscal_position_filter" model="ir.ui.view">
@@ -48,15 +49,11 @@
         <field
           name="country_group_id"
           readonly="1"
-          attrs="{'invisible': [
-          ('auto_apply', '!=', True)
-        ]}"/>
+          invisible="not auto_apply"/>
         <field
           name="country_id"
           readonly="1"
-          attrs="{'invisible': [
-          ('auto_apply', '!=', True)
-        ]}"/>
+          invisible="not auto_apply"/>
       </field>
     </field>
   </record>
@@ -72,7 +69,7 @@
           string="Business Rel."
           widget="many2many_tags"
           options="{'color_field': 'color', 'no_create': True}"
-          attrs="{'invisible': [('auto_apply', '!=', True)]}"/>
+          invisible="not auto_apply"/>
       </field>
     </field>
   </record>
