@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Pricelist(models.Model):
@@ -11,45 +11,51 @@ class Pricelist(models.Model):
         help="Restrict automatic assignment to these business relationships.",
     )
 
-    def _get_partner_pricelist_multi(self, partner_ids, company_id=None):
-        """Retrieve the applicable pricelist for given partners in a given company.
+    @api.model
+    def _get_partner_pricelist_multi(self, partner_ids):
+        """ Retrieve the applicable pricelist for given partners in a given company.
 
-        Extended, so it will return the pricelist of the partner business relationship
-        accordingly.
-
+        It will return the first found pricelist in this order:
         First, the pricelist of the specific property (res_id set), this one
-               is created when saving a pricelist on the partner form view.
-        Else, it will return the pricelist of the partner country group and
-              business relationship
-        Else, it will return the pricelist of either country group or business
-              relationship, which one comes first, respectively
-        Else, it will return the generic property (res_id not set), this one
-              is created on the company creation.
-        Else, it will return the first available pricelist
+                is created when saving a pricelist on the partner form view.
+        Else, it will return the pricelist of the partner country group
+        Else, it will return the generic property (res_id not set)
+        Else, it will return the first available pricelist if any
 
-        :param company_id: if passed, used for looking up properties,
+        :param int company_id: if passed, used for looking up properties,
             instead of current user's company
         :return: a dict {partner_id: pricelist}
         """
-        # `partner_ids` might be ID from inactive uers. We should use active_test
+        # `partner_ids` might be ID from inactive users. We should use active_test
         # as we will do a search() later (real case for website public user).
-        Partner = self.env["res.partner"].with_context(active_test=False)
-        company_id = company_id or self.env.company.id
+        Partner = self.env['res.partner'].with_context(active_test=False)
+        company_id = self.env.company.id
 
-        Property = self.env["ir.property"].with_company(company_id)
-        Pricelist = self.env["product.pricelist"]
+        Property = self.env['ir.property'].with_company(company_id)
+        Pricelist = self.env['product.pricelist']
         pl_domain = self._get_partner_pricelist_multi_search_domain_hook(company_id)
 
         # if no specific property, try to find a fitting pricelist
-        result = Property._get_multi(
-            "property_product_pricelist", Partner._name, partner_ids
+        specific_properties = Property._get_multi(
+            'property_product_pricelist', Partner._name,
+            list(models.origin_ids(partner_ids)),  # Some NewID can be in the partner_ids
         )
+        result = {}
+        remaining_partner_ids = []
+        for pid in partner_ids:
+            if (
+                specific_properties.get(pid)
+                and specific_properties[pid]._get_partner_pricelist_multi_filter_hook()
+            ):
+                result[pid] = specific_properties[pid]
+            elif (
+                isinstance(pid, models.NewId) and specific_properties.get(pid.origin)
+                and specific_properties[pid.origin]._get_partner_pricelist_multi_filter_hook()
+            ):
+                result[pid] = specific_properties[pid.origin]
+            else:
+                remaining_partner_ids.append(pid)
 
-        remaining_partner_ids = [
-            pid
-            for pid, val in result.items()
-            if not val or not val._get_partner_pricelist_multi_filter_hook()
-        ]
         if remaining_partner_ids:
             # get fallback pricelist when no pricelist for a given country or business
             # relationship
