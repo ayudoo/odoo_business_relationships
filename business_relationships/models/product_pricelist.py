@@ -57,8 +57,7 @@ class Pricelist(models.Model):
                 remaining_partner_ids.append(pid)
 
         if remaining_partner_ids:
-            # get fallback pricelist when no pricelist for a given country or business
-            # relationship
+            # get fallback pricelist when no pricelist for a given country or business relationship
             pl_fallback = (
                 Pricelist.search(
                     pl_domain
@@ -71,58 +70,47 @@ class Pricelist(models.Model):
                 or Property._get("property_product_pricelist", "res.partner")
                 or Pricelist.search(pl_domain, limit=1)
             )
+
+            remaining_partners = self.env['res.partner'].browse(remaining_partner_ids)
+            partners_by_br = remaining_partners.grouped('business_relationship_id')
+
             # group partners by country and business relationship,
             # and find a pricelist for each country + business relationship
-            domain = [("id", "in", remaining_partner_ids)]
-            groups = Partner.read_group(
-                domain,
-                ["business_relationship_id", "country_id"],
-                ["business_relationship_id", "country_id"],
-                lazy=False,
-            )
+            for business_relationship, br_partners in partners_by_br.items():
+                for country, partners in br_partners.grouped("country_id").items():
+                    if country:
+                        country_domain = ("country_group_ids.country_ids", "=", country.id)
+                    else:
+                        country_domain = ("country_group_ids", "=", False)
 
-            for group in groups:
-                country_id = group["country_id"] and group["country_id"][0]
-                business_relationship_id = (
-                    group["business_relationship_id"]
-                    and group["business_relationship_id"][0]
-                )
-
-                if country_id:
-                    country_domain = ("country_group_ids.country_ids", "=", country_id)
-                else:
-                    country_domain = ("country_group_ids", "=", False)
-
-                pl = Pricelist.search(
-                    pl_domain
-                    + [
-                        country_domain,
-                        ("|"),
-                        ("business_relationship_ids", "=", business_relationship_id),
-                        # match first business relationship indepent lists, too
-                        ("business_relationship_ids", "=", False),
-                    ],
-                    limit=1,
-                )
-
-                if not pl and country_id:
-                    # if not found by country, try a match by business relationship for
-                    # country independent pricelists
                     pl = Pricelist.search(
                         pl_domain
                         + [
-                            ("country_group_ids", "=", False),
-                            (
-                                "business_relationship_ids",
-                                "=",
-                                business_relationship_id,
-                            ),
+                            country_domain,
+                            ("|"),
+                            ("business_relationship_ids", "=", business_relationship.id),
+                            # match first business relationship indepent lists, too
+                            ("business_relationship_ids", "=", False),
                         ],
                         limit=1,
                     )
 
-                pl = pl or pl_fallback
-                for pid in Partner.search(group["__domain"]).ids:
-                    result[pid] = pl
+                    if not pl and country:
+                        # if not found by country, try a match by business relationship for
+                        # country independent pricelists
+                        pl = Pricelist.search(
+                            pl_domain
+                            + [
+                                ("country_group_ids", "=", False),
+                                (
+                                    "business_relationship_ids",
+                                    "=",
+                                    business_relationship.id,
+                                ),
+                            ],
+                            limit=1,
+                        )
+                    pl = pl or pl_fallback
+                    result.update(dict.fromkeys(partners._ids, pl))
 
         return result
