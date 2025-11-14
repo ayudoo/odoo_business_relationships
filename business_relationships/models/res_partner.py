@@ -84,10 +84,11 @@ class Partner(models.Model):
     @api.depends_context("company")
     def _compute_is_fixed_property_pricelist(self):
         for record in self:
+            record_id = record._origin.id if isinstance(record.id, models.NewId) else record.id
             actual = self.env["ir.property"]._get(
                 "property_product_pricelist",
                 "res.partner",
-                "res.partner,%s" % record.id,
+                "res.partner,%s" % record_id,
             )
             if actual:
                 record.is_fixed_property_pricelist = True
