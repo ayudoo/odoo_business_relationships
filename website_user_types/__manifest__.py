@@ -36,9 +36,6 @@
         "web.assets_frontend": [
             "website_user_types/static/src/scss/frontend.scss",
         ],
-        'web.assets_backend': [
-            'website_user_types/static/src/components/views/page_view_mixins.js',
-        ],
     },
     "images": [
         "static/description/cover.png",

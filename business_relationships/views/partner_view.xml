@@ -66,6 +66,7 @@
 
       <field name="property_product_pricelist" position="attributes">
         <attribute name="readonly">not is_company and parent_id and child_contact_pricelist == 'parent'</attribute>
+        <attribute name="invisible"></attribute>
       </field>
       <div name="parent_pricelists" position="attributes">
         <attribute name="invisible">is_company or (not parent_id or child_contact_pricelist != 'parent')</attribute>
@@ -76,7 +77,7 @@
           class="fixed-pricelist-actions"
           groups="product.group_product_pricelist"
           colspan="2"
-          invisible="not property_product_pricelist or not id">
+          invisible="(not is_company and parent_id and child_contact_pricelist == 'parent') or not property_product_pricelist or not id">
           <div
             invisible="not is_fixed_property_pricelist"
           >The Pricelist is fixed on this contact. <button

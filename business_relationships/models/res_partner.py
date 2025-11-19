@@ -85,35 +85,15 @@ class Partner(models.Model):
     def _compute_is_fixed_property_pricelist(self):
         for record in self:
             record_id = record._origin.id if isinstance(record.id, models.NewId) else record.id
-            actual = self.env["ir.property"]._get(
-                "property_product_pricelist",
-                "res.partner",
-                "res.partner,%s" % record_id,
-            )
+            actual = record.specific_property_product_pricelist
+
             if actual:
                 record.is_fixed_property_pricelist = True
             else:
                 record.is_fixed_property_pricelist = False
 
     def _search_is_fixed_property_pricelist(self, operator, operand):
-        if operator != "=":
-            raise UserError("Property Pricelist search only works with operator '='.")
-
-        if operand is True:
-            operator = "in"
-        elif operand is False:
-            operator = "not in"
-        else:
-            raise UserError(
-                "Property Pricelist search only works operands True and False."
-            )
-
-        domain = self.env["ir.property"]._get_domain(
-            "property_product_pricelist", "res.partner"
-        )
-        properties = self.env["ir.property"].search(domain)
-        res_ids = [int(p["res_id"].split(",")[1]) for p in properties.read(["res_id"])]
-        return [("id", "in", res_ids)]
+        return [("specific_property_product_pricelist", operator, operand)]
 
     is_fixed_property_pricelist = fields.Boolean(
         "Pricelist is fixed on this contact",
@@ -122,18 +102,10 @@ class Partner(models.Model):
     )
 
     def reset_fixed_property_pricelist(self):
-        self.env["ir.property"]._set_multi(
-            "property_product_pricelist",
-            self._name,
-            {self.id: False},
-        )
+        self.specific_property_product_pricelist = False
 
     def make_property_pricelist_fixed(self):
-        self.env["ir.property"]._set_multi(
-            "property_product_pricelist",
-            self._name,
-            {self.id: self.property_product_pricelist},
-        )
+        self.specific_property_product_pricelist = self.property_product_pricelist
 
     def _after_business_relationship_changed(self):
         self.ensure_one()

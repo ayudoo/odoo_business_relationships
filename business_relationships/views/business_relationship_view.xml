@@ -100,7 +100,7 @@
     <field name="name">res.partner.business_relationship.tree</field>
     <field name="model">res.partner.business_relationship</field>
     <field name="arch" type="xml">
-      <tree string="Business Relationship">
+      <list string="Business Relationship">
         <field name="sequence" widget="handle"/>
         <field
           name="self_ref_ids"
@@ -108,7 +108,7 @@
           widget="many2many_tags"
           options="{'color_field': 'color'}"/>
         <field name="active" invisible="1"/>
-      </tree>
+      </list>
     </field>
   </record>
 

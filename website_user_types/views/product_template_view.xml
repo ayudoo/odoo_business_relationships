@@ -17,9 +17,9 @@
   <record id="product_template_form_view" model="ir.ui.view">
     <field name="name">product.template.product.form</field>
     <field name="model">product.template</field>
-    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="inherit_id" ref="website_sale.product_template_form_view"/>
     <field name="arch" type="xml">
-      <group name="shop" position='after'>
+      <group name="extra_info" position='after'>
         <group name="website_user_type_visibility" string="Website User Visibility">
           <field name="visible_group_b2c" string="Group B2C"/>
           <field name="visible_group_b2b" string="Group B2B"/>

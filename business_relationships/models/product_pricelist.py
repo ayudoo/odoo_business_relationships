@@ -31,32 +31,26 @@ class Pricelist(models.Model):
         Partner = self.env['res.partner'].with_context(active_test=False)
         company_id = self.env.company.id
 
-        Property = self.env['ir.property'].with_company(company_id)
+        IrConfigParameter = self.env['ir.config_parameter'].sudo()
         Pricelist = self.env['product.pricelist']
         pl_domain = self._get_partner_pricelist_multi_search_domain_hook(company_id)
 
         # if no specific property, try to find a fitting pricelist
-        specific_properties = Property._get_multi(
-            'property_product_pricelist', Partner._name,
-            list(models.origin_ids(partner_ids)),  # Some NewID can be in the partner_ids
-        )
         result = {}
         remaining_partner_ids = []
-        for pid in partner_ids:
-            if (
-                specific_properties.get(pid)
-                and specific_properties[pid]._get_partner_pricelist_multi_filter_hook()
-            ):
-                result[pid] = specific_properties[pid]
-            elif (
-                isinstance(pid, models.NewId) and specific_properties.get(pid.origin)
-                and specific_properties[pid.origin]._get_partner_pricelist_multi_filter_hook()
-            ):
-                result[pid] = specific_properties[pid.origin]
+        for partner in Partner.browse(partner_ids):
+            if partner.specific_property_product_pricelist._get_partner_pricelist_multi_filter_hook():
+                result[partner.id] = partner.specific_property_product_pricelist
             else:
-                remaining_partner_ids.append(pid)
+                remaining_partner_ids.append(partner.id)
 
         if remaining_partner_ids:
+            def convert_to_int(string_value):
+                try:
+                    return int(string_value)
+                except (TypeError, ValueError, OverflowError):
+                    return None
+
             # get fallback pricelist when no pricelist for a given country or business relationship
             pl_fallback = (
                 Pricelist.search(
@@ -66,9 +60,10 @@ class Pricelist(models.Model):
                         ("business_relationship_ids", "=", False),
                     ],
                     limit=1,
-                )
-                or Property._get("property_product_pricelist", "res.partner")
-                or Pricelist.search(pl_domain, limit=1)
+                ) or
+                Pricelist.browse(convert_to_int(IrConfigParameter.get_param(f'res.partner.property_product_pricelist_{company_id}'))) or
+                Pricelist.browse(convert_to_int(IrConfigParameter.get_param('res.partner.property_product_pricelist'))) or
+                Pricelist.search(pl_domain, limit=1)
             )
 
             remaining_partners = self.env['res.partner'].browse(remaining_partner_ids)
@@ -78,6 +73,9 @@ class Pricelist(models.Model):
             # and find a pricelist for each country + business relationship
             for business_relationship, br_partners in partners_by_br.items():
                 for country, partners in br_partners.grouped("country_id").items():
+                    if not country and (country_code := self.env.context.get('country_code')):
+                        country = self.env['res.country'].search([('code', '=', country_code)], limit=1)
+
                     if country:
                         country_domain = ("country_group_ids.country_ids", "=", country.id)
                     else:
