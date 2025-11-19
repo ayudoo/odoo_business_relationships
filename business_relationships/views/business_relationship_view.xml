@@ -88,7 +88,8 @@
                     />
                 </div>
               </div>
-              <field name="analytic_account_id"/>
+              <!-- TODO see https://github.com/odoo/odoo/commit/238a41e35280256382f6509182b9e900fb4f7aba#diff-695321b9df7129604a59fbc9bff34f97ba90b3394aa1166ca24e36b27389ae82 -->
+              <!-- <field name="analytic_account_id"/> -->
             </group>
           </group>
         </sheet>
