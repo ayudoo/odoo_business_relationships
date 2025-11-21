@@ -48,18 +48,18 @@ class ProductTemplate(models.Model):
         can_access = super().can_access_from_current_website(**kwargs)
 
         if can_access:
-            if self.user_has_groups("website.group_website_designer"):
+            if self.env.user.has_group("website.group_website_designer"):
                 return can_access
 
-            if self.user_has_groups(
+            if self.env.user.has_group(
                 "website_user_types.group_b2b"
-            ) and self.user_has_groups(
+            ) and self.env.user.has_group(
                 "website_user_types.group_b2c"
             ):
                 return self.visible_group_b2c or self.visible_group_b2b
-            elif self.user_has_groups("website_user_types.group_b2b"):
+            elif self.env.user.has_group("website_user_types.group_b2b"):
                 return self.visible_group_b2b
-            elif self.user_has_groups("website_user_types.group_b2c"):
+            elif self.env.user.has_group("website_user_types.group_b2c"):
                 return self.visible_group_b2c
             elif not self.hidden_for_group_ids:
                 return True

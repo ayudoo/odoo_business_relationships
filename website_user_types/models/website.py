@@ -26,9 +26,9 @@ class Website(models.Model):
             ("users", "=", self.env.user.id),
         ])
         if group:
-            if self.user_has_groups("website_user_types.group_b2b"):
+            if self.env.user.has_group("website_user_types.group_b2b"):
                 return "wut_group_b2b"
-            elif self.user_has_groups("website_user_types.group_b2c"):
+            elif self.env.user.has_group("website_user_types.group_b2c"):
                 return "wut_group_b2c"
             else:
                 return "wut_group_{}".format(group.id)
@@ -38,12 +38,11 @@ class Website(models.Model):
     def sale_get_order(
         self,
         force_create=False,
-        update_pricelist=False,
     ):
         sale_order = super().sale_get_order(
-            force_create=force_create, update_pricelist=update_pricelist
+            force_create=force_create
         )
-        if update_pricelist or force_create:
+        if force_create:
             partner = sale_order.partner_id
             if partner.business_relationship_id.update_prices:
                 pricelist = self._get_default_business_relationship_pricelist(
@@ -94,26 +93,26 @@ class Website(models.Model):
     def sale_product_domain(self):
         domain = super().sale_product_domain()
 
-        if self.user_has_groups("website.group_website_designer"):
+        if self.env.user.has_group("website.group_website_designer"):
             return domain
 
         # A user having both groups cannot be configured with business relationships,
         # but you can do so in the technical admin user settings
-        if self.user_has_groups(
+        if self.env.user.has_group(
             "website_user_types.group_b2b"
-        ) and self.user_has_groups("website_user_types.group_b2c"):
+        ) and self.env.user.has_group("website_user_types.group_b2c"):
             domain = domain + [
                 ("|"),
                 ("visible_group_b2c", "=", True),
                 ("visible_group_b2b", "=", True),
             ]
         else:
-            if self.user_has_groups("website_user_types.group_b2b"):
+            if self.env.user.has_group("website_user_types.group_b2b"):
                 domain.append(
                     ("visible_group_b2b", "=", True),
                 )
             elif (
-                self.user_has_groups("website_user_types.group_b2c")
+                self.env.user.has_group("website_user_types.group_b2c")
             ):
                 domain.append(
                     ("visible_group_b2c", "=", True),
