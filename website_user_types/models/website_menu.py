@@ -9,7 +9,7 @@ class Menu(models.Model):
         string="Visible Groups",
         help="The user needs to be in at least one of these groups to see the menu",
         domain=lambda self: [
-            ("id", "in", self.env["res.groups"]._wut_get_selectable_groups().ids),
+            ("id", "in", self.env["res.groups"].sudo()._wut_get_selectable_groups().ids),
         ],
     )
 
