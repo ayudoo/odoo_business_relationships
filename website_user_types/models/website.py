@@ -33,7 +33,7 @@ class Website(models.Model):
             else:
                 return "wut_group_{}".format(group.id)
 
-        return wut_class
+        return ""
 
     def sale_get_order(
         self,
