@@ -84,8 +84,8 @@ class Website(models.Model):
         if group_ids:
             domain = domain + [
                 ("|"),
-                ("group_ids", "=", False),
-                ("group_ids", "in", group_ids),
+                ("groups_id", "=", False),
+                ("groups_id", "in", group_ids),
             ]
 
         return domain
