@@ -1,0 +1,11 @@
+title: Odoo Business Relationship Types Documentation
+description: Manage business relationship types, e.g. B2B, B2C and Internal on contact level
+baseurl: "/odoo_business_relationships" # the subpath of your site, e.g. /blog
+url: "https://ayudoo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+permalink: pretty
+plugins:
+  - jekyll-seo-tag
+
+include:
+  - _static
