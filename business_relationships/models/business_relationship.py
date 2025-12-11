@@ -121,8 +121,9 @@ class BusinessRelationship(models.Model):
         if self.image_1920:
             values["image_1920"] = self.image_1920
 
-        if self.team_id:
-            values["team_id"] = self.team_id.id
+        # TODO how to provide this functionality in odoo 18
+        # if self.team_id:
+        #     values["team_id"] = self.team_id.id
 
         if self.salesperson_id:
             values["user_id"] = self.salesperson_id.id

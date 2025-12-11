@@ -171,7 +171,7 @@ class Partner(models.Model):
             return parent_id.business_relationship_id
 
         internal = self.env.context.get("business_relationship_internal_user", False)
-        is_company = values.get("is_company", self.is_company)
+        is_company = values.get("company_type", self.company_type) == 'company'
         property_supplier_payment_term_id = values.get(
             "property_supplier_payment_term_id", self.property_supplier_payment_term_id
         )
