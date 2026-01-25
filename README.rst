@@ -26,7 +26,7 @@ Configurable business relationship types on contact level. Usable for
 * automatic assignment of pricelists and fiscal positions
 * customize the default business relationship for new contacts
 * assign a default image, salesperson or sales team to new contacts
-* assign default salesperson and analytic account to sale orders
+* assign default salesperson and project to sale orders
 * restrict website menus, pages, redirects and block visibilities to certain users
 * use different access permission groups for portal users
 * restrict product visibility to certain user groups

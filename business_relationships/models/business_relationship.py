@@ -71,11 +71,10 @@ class BusinessRelationship(models.Model):
         default=False,
     )
 
-    # TODO see https://github.com/odoo/odoo/commit/238a41e35280256382f6509182b9e900fb4f7aba#diff-695321b9df7129604a59fbc9bff34f97ba90b3394aa1166ca24e36b27389ae82
-    # analytic_account_id = fields.Many2one(
-    #     "account.analytic.account",
-    #     string="Analytic Account",
-    # )
+    project_id = fields.Many2one(
+        "project.project",
+        string="Project",
+    )
 
     update_pricelist_by = fields.Selection(
         [
@@ -133,9 +132,8 @@ class BusinessRelationship(models.Model):
     def get_sale_order_default_values(self, include_false=False):
         values = {}
 
-        # TODO see https://github.com/odoo/odoo/commit/238a41e35280256382f6509182b9e900fb4f7aba#diff-695321b9df7129604a59fbc9bff34f97ba90b3394aa1166ca24e36b27389ae82
-        # if self.analytic_account_id or include_false:
-        #     values["analytic_account_id"] = self.analytic_account_id.id
+        if self.project_id or include_false:
+            values["project_id"] = self.project_id.id
 
         return values
 

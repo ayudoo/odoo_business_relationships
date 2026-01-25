@@ -21,9 +21,9 @@ msgid "Active"
 msgstr "Aktiv"
 
 #. module: business_relationships
-#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__analytic_account_id
-msgid "Analytic Account"
-msgstr "Kostenstelle"
+#: model:ir.model.fields,field_description:business_relationships.field_res_partner_business_relationship__project_id
+msgid "Project"
+msgstr "Projekt"
 
 #. module: business_relationships
 #: model_terms:ir.ui.view,arch_db:business_relationships.view_business_relationship_form
