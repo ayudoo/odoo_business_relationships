@@ -67,6 +67,11 @@ class BusinessRelationship(models.Model):
                 old_website_user_group, new_website_user_group
             )
 
+    def action_update_website_user_groups(self):
+        for record in self:
+            if record.website_user_group_id:
+                record._update_users_website_user_group(None, record.website_user_group_id)
+
     def _update_users_website_user_group(self, old_value, new_value):
         if old_value == new_value:
             return
