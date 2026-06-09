@@ -1,4 +1,6 @@
-from odoo import api, models
+from collections import defaultdict
+
+from odoo import api, Command, models
 from odoo.addons.base.models.res_users import name_selection_groups
 
 
@@ -40,20 +42,46 @@ class Users(models.Model):
                         if wut_id in rels[2]:
                             rels[2].remove(wut_id)
 
+    # alternative solution, works only when changing one user
+    # def _remove_reified_groups(self, values):
+    #     # UsersImplied of odoo base clears all groups for portal users
+    #     result = super()._remove_reified_groups(values)
+    #     if len(self) == 1 and result.get("groups_id"):
+    #         user_gid = self.partner_id.business_relationship_id.website_user_group_id.id
+    #         if isinstance(result["groups_id"], list):
+    #             result["groups_id"].append(Command.link(user_gid))
+    #         else:
+    #             result["groups_id"] |= self.env["res.groups"].browse(user_gid)
+    #     return result
+
     def write(self, values):
-        wut_category = self.env.ref(
-            "website_user_types.module_category_website_user_types"
-        )
-        wut_groups = self.env["res.groups"].sudo().search([
-            ("category_id", "=", wut_category.id)
-        ])
+        wut_groups = self.env["res.groups"].get_all_website_user_type_groups()
         wut_group_field_name = name_selection_groups(wut_groups.ids)
 
         if not values.get(wut_group_field_name):
-            return super().write(values)
+            # UsersImplied will remove all groups from demoted users. So, we have to restore the wut
+            users_before = self.filtered(lambda u: u._is_internal())
+            res = super().write(values)
+            demoted_users = users_before.filtered(lambda u: not u._is_internal())
+            demoted_users_map = defaultdict(lambda: self.env["res.users"])
+
+            for duser in demoted_users:
+                uwut = duser.partner_id.business_relationship_id.website_user_group_id
+                if uwut:
+                    demoted_users_map[uwut.id] |= duser
+
+            for uwut_id, dusers in demoted_users_map.items():
+                vals = {'groups_id': [Command.link(uwut_id)]}
+                if values.get("groups_id"):
+                    vals["groups_id"] += values['groups_id']
+                super(Users, dusers).write(vals)
+
+            return res
 
         res = super().write(values)
 
+        # remove other wut groups
+        # TODO unless implied
         wut_groups = wut_groups.filtered(lambda w: w.id != values[wut_group_field_name])
         wut_groups.with_context(active_test=False).write(
             {"users": [
@@ -74,6 +102,15 @@ class Groups(models.Model):
             return "wut_group_b2c"
         else:
             return "wut_group_{}".format(self.id)
+
+    @api.model
+    def get_all_website_user_type_groups(self):
+        wut_category = self.env.ref(
+            "website_user_types.module_category_website_user_types"
+        )
+        return self.env["res.groups"].sudo().search([
+            ("category_id", "=", wut_category.id)
+        ])
 
     @api.model
     def get_website_user_type_groups(self):
