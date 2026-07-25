@@ -19,6 +19,7 @@
         # product dependency comes with sale -> payment -> account
         # "product",
         "sale",
+        "sale_project",
     ],
     "data": [
         "security/ir.model.access.csv",
